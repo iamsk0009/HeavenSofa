@@ -1,1 +1,0 @@
-import{t as e}from"./Navbar-7LvVMTbY.js";import{t}from"./Footer-DWJnTLcW.js";import{n}from"./three-vendor-Ba399cob.js";var r=n();function i({children:n}){return(0,r.jsxs)(r.Fragment,{children:[(0,r.jsx)(e,{}),(0,r.jsx)(`main`,{className:`store-main min-h-[70svh] pt-28`,children:n}),(0,r.jsx)(t,{})]})}export{i as t};
