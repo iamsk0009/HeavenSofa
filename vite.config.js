@@ -15,6 +15,13 @@ export default defineConfig({
         codeSplitting: {
           groups: [
             {
+              name: 'gsap-vendor',
+              test: /node_modules[\\/](?:gsap|@gsap[\\/]react)[\\/]/,
+              priority: 30,
+              minSize: 24 * 1024,
+              maxSize: 1024 * 1024,
+            },
+            {
               name: 'three-vendor',
               test: /node_modules[\\/](?:three|@react-three)[\\/]/,
               priority: 20,
