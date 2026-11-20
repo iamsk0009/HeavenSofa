@@ -15,6 +15,20 @@ export default defineConfig({
         codeSplitting: {
           groups: [
             {
+              name: 'scheduler-vendor',
+              test: /node_modules[\\/]scheduler[\\/]/,
+              priority: 50,
+              minSize: 0,
+              maxSize: 128 * 1024,
+            },
+            {
+              name: 'react-runtime',
+              test: /node_modules[\\/]react[\\/]jsx-runtime\.js$/,
+              priority: 40,
+              minSize: 0,
+              maxSize: 128 * 1024,
+            },
+            {
               name: 'gsap-vendor',
               test: /node_modules[\\/](?:gsap|@gsap[\\/]react)[\\/]/,
               priority: 30,
