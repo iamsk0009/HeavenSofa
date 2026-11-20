@@ -1,0 +1,317 @@
+export const CATEGORIES = [
+	"Sofas",
+	"Chairs",
+	"Tables",
+	"Beds",
+	"Storage",
+	"Lighting",
+	"Accessories"
+];
+// Demonstration catalogue: prices and availability are illustrative, not live inventory.
+export const PRODUCTS = [
+	{
+		slug: "linnea-sofa",
+		name: "Linnea Two-Seater",
+		category: "Sofas",
+		price: 124e3,
+		material: "Linen",
+		colour: "Oat",
+		availability: "Made to order",
+		year: 2026,
+		featured: 1,
+		image: "/images/products/linnea-sofa/linnea-sofa-studio.jpg",
+		fabricMask: "/images/masks/linnea-sofa-fabric-mask.png",
+		alternateImage: "/images/products/linnea-sofa/linnea-sofa-front.jpg",
+		detailImage: "/images/materials/linen/linen-and-oak-detail.jpg",
+		roomImage: "/images/lifestyle/living-room/living-room-linnea.jpg",
+		visual: "sofa",
+		fabric: "#D9C7AA",
+		short: "A generous, quiet silhouette in stonewashed linen.",
+		description: "A considered two-seater with a solid beech frame, softly rounded arms and removable linen covers. Designed for slow mornings and long conversations.",
+		dimensions: "W 192 × D 88 × H 86 cm",
+		specifications: [
+			"Solid beech frame",
+			"Stonewashed linen upholstery",
+			"High resilience foam and feather blend",
+			"Removable, repairable covers"
+		],
+		colours: [
+			"Oat",
+			"Moss",
+			"Clay"
+		]
+	},
+	{
+		slug: "ora-lounge-chair",
+		name: "Ora Lounge Chair",
+		category: "Chairs",
+		price: 68500,
+		material: "Bouclé",
+		colour: "Ivory",
+		availability: "Made to order",
+		year: 2026,
+		featured: 2,
+		image: "/images/products/ora-chair/ora-chair-studio.jpg",
+		alternateImage: "/images/products/ora-chair/ora-chair-front.jpg",
+		detailImage: "/images/materials/boucle/boucle-upholstery-detail.jpg",
+		roomImage: "/images/lifestyle/lounge/lounge-boucle-chair.jpg",
+		visual: "lounge",
+		fabric: "#E5DED2",
+		short: "A sculptural seat with a soft, enveloping back.",
+		description: "A low lounge chair balancing a generous upholstered shell with a hand-finished oak base. Its compact footprint makes a comfortable reading corner anywhere.",
+		dimensions: "W 78 × D 82 × H 76 cm",
+		specifications: [
+			"Solid oak frame",
+			"Textured ivory bouclé",
+			"Hand-finished joinery",
+			"Protective floor glides"
+		],
+		colours: ["Ivory", "Walnut"]
+	},
+	{
+		slug: "terra-coffee-table",
+		name: "Terra Coffee Table",
+		category: "Tables",
+		price: 38900,
+		material: "Oak",
+		colour: "Natural",
+		availability: "In studio",
+		year: 2026,
+		featured: 3,
+		image: "/images/products/terra-table/terra-table-studio.jpg",
+		alternateImage: "/images/products/terra-table/terra-table-front.jpg",
+		detailImage: "/images/materials/oak/oak-grain-detail.jpg",
+		roomImage: "/images/lifestyle/living-room/living-room-linnea.jpg",
+		visual: "table",
+		fabric: "#B4865A",
+		short: "A grounded oak table with a softly eased edge.",
+		description: "A low, tactile centrepiece shaped from solid oak. The softly eased edge and recessed plinth give the simple form a quieter architectural presence.",
+		dimensions: "W 110 × D 62 × H 38 cm",
+		specifications: [
+			"Solid European oak",
+			"Low sheen natural oil",
+			"Rounded, hand-sanded edges",
+			"Felt floor protectors"
+		],
+		colours: ["Natural", "Smoked"]
+	},
+	{
+		slug: "soren-dining-chair",
+		name: "Soren Dining Chair",
+		category: "Chairs",
+		price: 32400,
+		material: "Oak",
+		colour: "Natural",
+		availability: "Made to order",
+		year: 2025,
+		featured: 4,
+		image: "/images/products/soren-chair/soren-chair-studio.jpg",
+		alternateImage: "/images/products/soren-chair/soren-chair-front.jpg",
+		detailImage: "/images/materials/oak/oak-grain-detail.jpg",
+		roomImage: "/images/lifestyle/dining/dining-natural-oak.jpg",
+		visual: "chair",
+		fabric: "#B4865A",
+		short: "A light oak frame shaped for everyday dining.",
+		description: "A pared-back dining chair with a curved back rail, considered proportions and a woven seat. Made to gather around, and made to stay.",
+		dimensions: "W 48 × D 52 × H 79 cm",
+		specifications: [
+			"Solid oak frame",
+			"Hand-woven natural rush seat",
+			"Traditional mortise and tenon joints",
+			"Low VOC finish"
+		],
+		colours: ["Natural", "Walnut"]
+	},
+	{
+		slug: "alma-bed",
+		name: "Alma Upholstered Bed",
+		category: "Beds",
+		price: 112e3,
+		material: "Linen",
+		colour: "Sand",
+		availability: "Made to order",
+		year: 2025,
+		featured: 5,
+		image: "/images/products/alma-bed/alma-bed-studio.jpg",
+		fabricMask: "/images/masks/alma-bed-fabric-mask.png",
+		alternateImage: "/images/products/alma-bed/alma-bed-front.jpg",
+		detailImage: "/images/materials/linen/linen-and-oak-detail.jpg",
+		roomImage: "/images/lifestyle/bedroom/bedroom-alma.jpg",
+		visual: "bed",
+		fabric: "#D9C7AA",
+		short: "A softly upholstered headboard with a grounded oak base.",
+		description: "A restful bed built around a sturdy beech frame, a gently curved linen headboard and discreet oak feet. Sized for considered, uncluttered bedrooms.",
+		dimensions: "W 168 × D 218 × H 104 cm",
+		specifications: [
+			"Solid beech and oak frame",
+			"Linen upholstered headboard",
+			"Fits a 160 × 200 cm mattress",
+			"Slatted timber support"
+		],
+		colours: [
+			"Sand",
+			"Oat",
+			"Moss"
+		]
+	},
+	{
+		slug: "nord-sideboard",
+		name: "Nord Sideboard",
+		category: "Storage",
+		price: 89500,
+		material: "Walnut",
+		colour: "Walnut",
+		availability: "Made to order",
+		year: 2025,
+		featured: 6,
+		image: "/images/products/nord-sideboard/nord-sideboard-studio.jpg",
+		alternateImage: "/images/products/nord-sideboard/nord-sideboard-front.jpg",
+		detailImage: "/images/materials/walnut/walnut-grain-detail.jpg",
+		roomImage: "/images/lifestyle/living-room/living-room-linnea.jpg",
+		visual: "storage",
+		fabric: "#795A42",
+		short: "Quietly useful storage in richly grained walnut.",
+		description: "A long, low sideboard with clean-lined doors, adjustable shelves and a recessed base. The natural walnut grain brings warmth without visual noise.",
+		dimensions: "W 160 × D 42 × H 74 cm",
+		specifications: [
+			"Solid walnut fronts",
+			"Veneered walnut cabinet",
+			"Soft-close hinges",
+			"Adjustable interior shelves"
+		],
+		colours: ["Walnut", "Natural oak"]
+	},
+	{
+		slug: "sol-table-lamp",
+		name: "Sol Table Lamp",
+		category: "Lighting",
+		price: 18500,
+		material: "Ceramic",
+		colour: "Chalk",
+		availability: "In studio",
+		year: 2026,
+		featured: 7,
+		image: "/images/products/sol-lamp/sol-lamp-studio.jpg",
+		alternateImage: "/images/products/sol-lamp/sol-lamp-front.jpg",
+		detailImage: "/images/products/sol-lamp/sol-lamp-studio.jpg",
+		roomImage: "/images/lifestyle/bedroom/bedroom-alma.jpg",
+		visual: "lamp",
+		fabric: "#C8BBA8",
+		short: "A warm pool of light on a hand-thrown ceramic base.",
+		description: "A softly rounded ceramic base and linen shade bring an easy, warm glow to bedside tables and reading corners.",
+		dimensions: "W 34 × D 34 × H 52 cm",
+		specifications: [
+			"Hand-thrown ceramic base",
+			"Natural linen shade",
+			"Dimmable warm LED included",
+			"220–240 V"
+		],
+		colours: ["Chalk", "Sage"]
+	},
+	{
+		slug: "still-vessel-set",
+		name: "Still Ceramic Vessels",
+		category: "Accessories",
+		price: 7800,
+		material: "Ceramic",
+		colour: "Chalk",
+		availability: "In studio",
+		year: 2026,
+		featured: 8,
+		image: "/images/products/still-vessels/still-vessels-studio.jpg",
+		detailImage: "/images/products/still-vessels/still-vessels-studio.jpg",
+		roomImage: "/images/lifestyle/living-room/living-room-linnea.jpg",
+		visual: "vessel",
+		fabric: "#C8BBA8",
+		short: "A pair of quiet forms, shaped and glazed by hand.",
+		description: "Two small stoneware vessels with a matte, tactile glaze. Each piece is finished by hand, so subtle variations make every pair its own.",
+		dimensions: "Set of 2 · H 18 and 24 cm",
+		specifications: [
+			"Hand-thrown stoneware",
+			"Matte food-safe glaze",
+			"Made in small batches",
+			"Each piece is unique"
+		],
+		colours: ["Chalk", "Sage"]
+	}
+];
+export const COLLECTIONS = [
+	{
+		slug: "living-room",
+		title: "Living Room",
+		description: "Room to settle in. Sofas, chairs and tables shaped for the everyday rituals of home.",
+		visual: "sofa",
+		image: "/images/lifestyle/living-room/living-room-linnea.jpg",
+		products: [
+			"linnea-sofa",
+			"ora-lounge-chair",
+			"terra-coffee-table"
+		]
+	},
+	{
+		slug: "dining",
+		title: "Dining",
+		description: "Honest materials and generous forms for meals that last a little longer.",
+		visual: "dining",
+		image: "/images/lifestyle/dining/dining-natural-oak.jpg",
+		products: ["soren-dining-chair", "terra-coffee-table"]
+	},
+	{
+		slug: "lounge",
+		title: "Lounge",
+		description: "A softer pace, expressed through enveloping seats and warm natural finishes.",
+		visual: "lounge",
+		image: "/images/lifestyle/lounge/lounge-boucle-chair.jpg",
+		products: ["ora-lounge-chair", "linnea-sofa"]
+	},
+	{
+		slug: "bedroom",
+		title: "Bedroom",
+		description: "Quiet, considered pieces to make the end of each day feel like a return.",
+		visual: "bed",
+		image: "/images/lifestyle/bedroom/bedroom-alma.jpg",
+		products: ["alma-bed", "sol-table-lamp"]
+	},
+	{
+		slug: "designer-chairs",
+		title: "Designer Chairs",
+		description: "Five distinct studies in comfort, proportion and the character of wood.",
+		visual: "chair",
+		image: "/images/lifestyle/dining/dining-natural-oak.jpg",
+		products: ["ora-lounge-chair", "soren-dining-chair"]
+	}
+];
+export const productBySlug = (slug) => PRODUCTS.find((product) => product.slug === slug);
+export const collectionBySlug = (slug) => COLLECTIONS.find((collection) => collection.slug === slug);
+const GALLERY_IMAGE_KEYS = [
+	"threeQuarter",
+	"front",
+	"material",
+	"lifestyle"
+];
+export function productImagesForColour(product, colour) {
+	const baseImages = {
+		threeQuarter: product.image,
+		front: product.alternateImage ?? product.image,
+		material: product.detailImage ?? product.image,
+		lifestyle: product.roomImage ?? product.image
+	};
+	const variant = product.variants?.find((item) => item.colour.toLowerCase() === colour.toLowerCase());
+	if (!variant) {
+		const isBaseColour = product.colour.toLowerCase() === colour.toLowerCase();
+		return {
+			images: baseImages,
+			available: isBaseColour,
+			fallbackColour: product.colour
+		};
+	}
+	const images = Object.fromEntries(GALLERY_IMAGE_KEYS.map((key) => [key, variant.images[key] || baseImages[key]]));
+	const available = GALLERY_IMAGE_KEYS.every((key) => Boolean(variant.images[key]));
+	return {
+		images,
+		available,
+		fallbackColour: product.colour
+	};
+}
+
+//# sourceMappingURL=data:application/json;base64,eyJtYXBwaW5ncyI6IkFBQUEsT0FBTyxNQUFNLGFBQWE7Q0FBQztDQUFTO0NBQVU7Q0FBVTtDQUFRO0NBQVc7Q0FBWTtBQUFhOztBQUdwRyxPQUFPLE1BQU0sV0FBVztDQUN0QjtFQUNFLE1BQU07RUFBZSxNQUFNO0VBQXFCLFVBQVU7RUFBUyxPQUFPO0VBQzFFLFVBQVU7RUFBUyxRQUFRO0VBQU8sY0FBYztFQUFpQixNQUFNO0VBQU0sVUFBVTtFQUN2RixPQUFPO0VBQ1AsWUFBWTtFQUNaLGdCQUFnQjtFQUNoQixhQUFhO0VBQ2IsV0FBVztFQUNYLFFBQVE7RUFBUSxRQUFRO0VBQ3hCLE9BQU87RUFDUCxhQUFhO0VBQ2IsWUFBWTtFQUNaLGdCQUFnQjtHQUFDO0dBQXFCO0dBQWdDO0dBQTBDO0VBQThCO0VBQzlJLFNBQVM7R0FBQztHQUFPO0dBQVE7RUFBTTtDQUNqQztDQUNBO0VBQ0UsTUFBTTtFQUFvQixNQUFNO0VBQW9CLFVBQVU7RUFBVSxPQUFPO0VBQy9FLFVBQVU7RUFBVSxRQUFRO0VBQVMsY0FBYztFQUFpQixNQUFNO0VBQU0sVUFBVTtFQUMxRixPQUFPO0VBQ1AsZ0JBQWdCO0VBQ2hCLGFBQWE7RUFDYixXQUFXO0VBQ1gsUUFBUTtFQUFVLFFBQVE7RUFBVyxPQUFPO0VBQzVDLGFBQWE7RUFDYixZQUFZO0VBQXlCLGdCQUFnQjtHQUFDO0dBQW1CO0dBQXlCO0dBQXlCO0VBQXlCO0VBQUcsU0FBUyxDQUFDLFNBQVMsUUFBUTtDQUNwTDtDQUNBO0VBQ0UsTUFBTTtFQUFzQixNQUFNO0VBQXNCLFVBQVU7RUFBVSxPQUFPO0VBQ25GLFVBQVU7RUFBTyxRQUFRO0VBQVcsY0FBYztFQUFhLE1BQU07RUFBTSxVQUFVO0VBQ3JGLE9BQU87RUFDUCxnQkFBZ0I7RUFDaEIsYUFBYTtFQUNiLFdBQVc7RUFDWCxRQUFRO0VBQVMsUUFBUTtFQUFXLE9BQU87RUFDM0MsYUFBYTtFQUNiLFlBQVk7RUFBMEIsZ0JBQWdCO0dBQUM7R0FBc0I7R0FBeUI7R0FBOEI7RUFBdUI7RUFBRyxTQUFTLENBQUMsV0FBVyxRQUFRO0NBQzdMO0NBQ0E7RUFDRSxNQUFNO0VBQXNCLE1BQU07RUFBc0IsVUFBVTtFQUFVLE9BQU87RUFDbkYsVUFBVTtFQUFPLFFBQVE7RUFBVyxjQUFjO0VBQWlCLE1BQU07RUFBTSxVQUFVO0VBQ3pGLE9BQU87RUFDUCxnQkFBZ0I7RUFDaEIsYUFBYTtFQUNiLFdBQVc7RUFDWCxRQUFRO0VBQVMsUUFBUTtFQUFXLE9BQU87RUFDM0MsYUFBYTtFQUNiLFlBQVk7RUFBeUIsZ0JBQWdCO0dBQUM7R0FBbUI7R0FBZ0M7R0FBd0M7RUFBZ0I7RUFBRyxTQUFTLENBQUMsV0FBVyxRQUFRO0NBQ25NO0NBQ0E7RUFDRSxNQUFNO0VBQVksTUFBTTtFQUF3QixVQUFVO0VBQVEsT0FBTztFQUN6RSxVQUFVO0VBQVMsUUFBUTtFQUFRLGNBQWM7RUFBaUIsTUFBTTtFQUFNLFVBQVU7RUFDeEYsT0FBTztFQUNQLFlBQVk7RUFDWixnQkFBZ0I7RUFDaEIsYUFBYTtFQUNiLFdBQVc7RUFDWCxRQUFRO0VBQU8sUUFBUTtFQUFXLE9BQU87RUFDekMsYUFBYTtFQUNiLFlBQVk7RUFBNEIsZ0JBQWdCO0dBQUM7R0FBNkI7R0FBK0I7R0FBZ0M7RUFBd0I7RUFBRyxTQUFTO0dBQUM7R0FBUTtHQUFPO0VBQU07Q0FDak47Q0FDQTtFQUNFLE1BQU07RUFBa0IsTUFBTTtFQUFrQixVQUFVO0VBQVcsT0FBTztFQUM1RSxVQUFVO0VBQVUsUUFBUTtFQUFVLGNBQWM7RUFBaUIsTUFBTTtFQUFNLFVBQVU7RUFDM0YsT0FBTztFQUNQLGdCQUFnQjtFQUNoQixhQUFhO0VBQ2IsV0FBVztFQUNYLFFBQVE7RUFBVyxRQUFRO0VBQVcsT0FBTztFQUM3QyxhQUFhO0VBQ2IsWUFBWTtFQUEwQixnQkFBZ0I7R0FBQztHQUF1QjtHQUEyQjtHQUFxQjtFQUE2QjtFQUFHLFNBQVMsQ0FBQyxVQUFVLGFBQWE7Q0FDak07Q0FDQTtFQUNFLE1BQU07RUFBa0IsTUFBTTtFQUFrQixVQUFVO0VBQVksT0FBTztFQUM3RSxVQUFVO0VBQVcsUUFBUTtFQUFTLGNBQWM7RUFBYSxNQUFNO0VBQU0sVUFBVTtFQUN2RixPQUFPO0VBQ1AsZ0JBQWdCO0VBQ2hCLGFBQWE7RUFDYixXQUFXO0VBQ1gsUUFBUTtFQUFRLFFBQVE7RUFBVyxPQUFPO0VBQzFDLGFBQWE7RUFDYixZQUFZO0VBQXlCLGdCQUFnQjtHQUFDO0dBQTRCO0dBQXVCO0dBQThCO0VBQVc7RUFBRyxTQUFTLENBQUMsU0FBUyxNQUFNO0NBQ2hMO0NBQ0E7RUFDRSxNQUFNO0VBQW9CLE1BQU07RUFBeUIsVUFBVTtFQUFlLE9BQU87RUFDekYsVUFBVTtFQUFXLFFBQVE7RUFBUyxjQUFjO0VBQWEsTUFBTTtFQUFNLFVBQVU7RUFDdkYsT0FBTztFQUNQLGFBQWE7RUFDYixXQUFXO0VBQ1gsUUFBUTtFQUFVLFFBQVE7RUFBVyxPQUFPO0VBQzVDLGFBQWE7RUFDYixZQUFZO0VBQTZCLGdCQUFnQjtHQUFDO0dBQXlCO0dBQXlCO0dBQXlCO0VBQXNCO0VBQUcsU0FBUyxDQUFDLFNBQVMsTUFBTTtDQUN6TDtBQUNGO0FBRUEsT0FBTyxNQUFNLGNBQWM7Q0FDekI7RUFBRSxNQUFNO0VBQWUsT0FBTztFQUFlLGFBQWE7RUFBd0YsUUFBUTtFQUFRLE9BQU87RUFBd0QsVUFBVTtHQUFDO0dBQWU7R0FBb0I7RUFBb0I7Q0FBRTtDQUNyUztFQUFFLE1BQU07RUFBVSxPQUFPO0VBQVUsYUFBYTtFQUE0RSxRQUFRO0VBQVUsT0FBTztFQUFtRCxVQUFVLENBQUMsc0JBQXNCLG9CQUFvQjtDQUFFO0NBQy9QO0VBQUUsTUFBTTtFQUFVLE9BQU87RUFBVSxhQUFhO0VBQWdGLFFBQVE7RUFBVSxPQUFPO0VBQW9ELFVBQVUsQ0FBQyxvQkFBb0IsYUFBYTtDQUFFO0NBQzNQO0VBQUUsTUFBTTtFQUFXLE9BQU87RUFBVyxhQUFhO0VBQTRFLFFBQVE7RUFBTyxPQUFPO0VBQThDLFVBQVUsQ0FBQyxZQUFZLGdCQUFnQjtDQUFFO0NBQzNPO0VBQUUsTUFBTTtFQUFtQixPQUFPO0VBQW1CLGFBQWE7RUFBMkUsUUFBUTtFQUFTLE9BQU87RUFBbUQsVUFBVSxDQUFDLG9CQUFvQixvQkFBb0I7Q0FBRTtBQUMvUTtBQUVBLE9BQU8sTUFBTSxpQkFBaUIsU0FBUyxTQUFTLE1BQU0sWUFBWSxRQUFRLFNBQVMsSUFBSTtBQUN2RixPQUFPLE1BQU0sb0JBQW9CLFNBQVMsWUFBWSxNQUFNLGVBQWUsV0FBVyxTQUFTLElBQUk7QUFFbkcsTUFBTSxxQkFBcUI7Q0FBQztDQUFnQjtDQUFTO0NBQVk7QUFBVztBQUU1RSxPQUFPLFNBQVMsdUJBQXVCLFNBQVMsUUFBUTtDQUN0RCxNQUFNLGFBQWE7RUFDakIsY0FBYyxRQUFRO0VBQ3RCLE9BQU8sUUFBUSxrQkFBa0IsUUFBUTtFQUN6QyxVQUFVLFFBQVEsZUFBZSxRQUFRO0VBQ3pDLFdBQVcsUUFBUSxhQUFhLFFBQVE7Q0FDMUM7Q0FDQSxNQUFNLFVBQVUsUUFBUSxVQUFVLE1BQU0sU0FBUyxLQUFLLE9BQU8sWUFBWSxNQUFNLE9BQU8sWUFBWSxDQUFDO0NBRW5HLElBQUksQ0FBQyxTQUFTO0VBQ1osTUFBTSxlQUFlLFFBQVEsT0FBTyxZQUFZLE1BQU0sT0FBTyxZQUFZO0VBQ3pFLE9BQU87R0FBRSxRQUFRO0dBQVksV0FBVztHQUFjLGdCQUFnQixRQUFRO0VBQU87Q0FDdkY7Q0FFQSxNQUFNLFNBQVMsT0FBTyxZQUFZLG1CQUFtQixLQUFLLFFBQVEsQ0FBQyxLQUFLLFFBQVEsT0FBTyxRQUFRLFdBQVcsSUFBSSxDQUFDLENBQUM7Q0FDaEgsTUFBTSxZQUFZLG1CQUFtQixPQUFPLFFBQVEsUUFBUSxRQUFRLE9BQU8sSUFBSSxDQUFDO0NBQ2hGLE9BQU87RUFBRTtFQUFRO0VBQVcsZ0JBQWdCLFFBQVE7Q0FBTztBQUM3RCIsIm5hbWVzIjpbXSwic291cmNlcyI6WyJjYXRhbG9nLmpzIl0sInZlcnNpb24iOjMsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBjb25zdCBDQVRFR09SSUVTID0gWydTb2ZhcycsICdDaGFpcnMnLCAnVGFibGVzJywgJ0JlZHMnLCAnU3RvcmFnZScsICdMaWdodGluZycsICdBY2Nlc3NvcmllcyddXG5cbi8vIERlbW9uc3RyYXRpb24gY2F0YWxvZ3VlOiBwcmljZXMgYW5kIGF2YWlsYWJpbGl0eSBhcmUgaWxsdXN0cmF0aXZlLCBub3QgbGl2ZSBpbnZlbnRvcnkuXG5leHBvcnQgY29uc3QgUFJPRFVDVFMgPSBbXG4gIHtcbiAgICBzbHVnOiAnbGlubmVhLXNvZmEnLCBuYW1lOiAnTGlubmVhIFR3by1TZWF0ZXInLCBjYXRlZ29yeTogJ1NvZmFzJywgcHJpY2U6IDEyNDAwMCxcbiAgICBtYXRlcmlhbDogJ0xpbmVuJywgY29sb3VyOiAnT2F0JywgYXZhaWxhYmlsaXR5OiAnTWFkZSB0byBvcmRlcicsIHllYXI6IDIwMjYsIGZlYXR1cmVkOiAxLFxuICAgIGltYWdlOiAnL2ltYWdlcy9wcm9kdWN0cy9saW5uZWEtc29mYS9saW5uZWEtc29mYS1zdHVkaW8uanBnJyxcbiAgICBmYWJyaWNNYXNrOiAnL2ltYWdlcy9tYXNrcy9saW5uZWEtc29mYS1mYWJyaWMtbWFzay5wbmcnLFxuICAgIGFsdGVybmF0ZUltYWdlOiAnL2ltYWdlcy9wcm9kdWN0cy9saW5uZWEtc29mYS9saW5uZWEtc29mYS1mcm9udC5qcGcnLFxuICAgIGRldGFpbEltYWdlOiAnL2ltYWdlcy9tYXRlcmlhbHMvbGluZW4vbGluZW4tYW5kLW9hay1kZXRhaWwuanBnJyxcbiAgICByb29tSW1hZ2U6ICcvaW1hZ2VzL2xpZmVzdHlsZS9saXZpbmctcm9vbS9saXZpbmctcm9vbS1saW5uZWEuanBnJyxcbiAgICB2aXN1YWw6ICdzb2ZhJywgZmFicmljOiAnI0Q5QzdBQScsXG4gICAgc2hvcnQ6ICdBIGdlbmVyb3VzLCBxdWlldCBzaWxob3VldHRlIGluIHN0b25ld2FzaGVkIGxpbmVuLicsXG4gICAgZGVzY3JpcHRpb246ICdBIGNvbnNpZGVyZWQgdHdvLXNlYXRlciB3aXRoIGEgc29saWQgYmVlY2ggZnJhbWUsIHNvZnRseSByb3VuZGVkIGFybXMgYW5kIHJlbW92YWJsZSBsaW5lbiBjb3ZlcnMuIERlc2lnbmVkIGZvciBzbG93IG1vcm5pbmdzIGFuZCBsb25nIGNvbnZlcnNhdGlvbnMuJyxcbiAgICBkaW1lbnNpb25zOiAnVyAxOTIgw5cgRCA4OCDDlyBIIDg2IGNtJyxcbiAgICBzcGVjaWZpY2F0aW9uczogWydTb2xpZCBiZWVjaCBmcmFtZScsICdTdG9uZXdhc2hlZCBsaW5lbiB1cGhvbHN0ZXJ5JywgJ0hpZ2ggcmVzaWxpZW5jZSBmb2FtIGFuZCBmZWF0aGVyIGJsZW5kJywgJ1JlbW92YWJsZSwgcmVwYWlyYWJsZSBjb3ZlcnMnXSxcbiAgICBjb2xvdXJzOiBbJ09hdCcsICdNb3NzJywgJ0NsYXknXSxcbiAgfSxcbiAge1xuICAgIHNsdWc6ICdvcmEtbG91bmdlLWNoYWlyJywgbmFtZTogJ09yYSBMb3VuZ2UgQ2hhaXInLCBjYXRlZ29yeTogJ0NoYWlycycsIHByaWNlOiA2ODUwMCxcbiAgICBtYXRlcmlhbDogJ0JvdWNsw6knLCBjb2xvdXI6ICdJdm9yeScsIGF2YWlsYWJpbGl0eTogJ01hZGUgdG8gb3JkZXInLCB5ZWFyOiAyMDI2LCBmZWF0dXJlZDogMixcbiAgICBpbWFnZTogJy9pbWFnZXMvcHJvZHVjdHMvb3JhLWNoYWlyL29yYS1jaGFpci1zdHVkaW8uanBnJyxcbiAgICBhbHRlcm5hdGVJbWFnZTogJy9pbWFnZXMvcHJvZHVjdHMvb3JhLWNoYWlyL29yYS1jaGFpci1mcm9udC5qcGcnLFxuICAgIGRldGFpbEltYWdlOiAnL2ltYWdlcy9tYXRlcmlhbHMvYm91Y2xlL2JvdWNsZS11cGhvbHN0ZXJ5LWRldGFpbC5qcGcnLFxuICAgIHJvb21JbWFnZTogJy9pbWFnZXMvbGlmZXN0eWxlL2xvdW5nZS9sb3VuZ2UtYm91Y2xlLWNoYWlyLmpwZycsXG4gICAgdmlzdWFsOiAnbG91bmdlJywgZmFicmljOiAnI0U1REVEMicsIHNob3J0OiAnQSBzY3VscHR1cmFsIHNlYXQgd2l0aCBhIHNvZnQsIGVudmVsb3BpbmcgYmFjay4nLFxuICAgIGRlc2NyaXB0aW9uOiAnQSBsb3cgbG91bmdlIGNoYWlyIGJhbGFuY2luZyBhIGdlbmVyb3VzIHVwaG9sc3RlcmVkIHNoZWxsIHdpdGggYSBoYW5kLWZpbmlzaGVkIG9hayBiYXNlLiBJdHMgY29tcGFjdCBmb290cHJpbnQgbWFrZXMgYSBjb21mb3J0YWJsZSByZWFkaW5nIGNvcm5lciBhbnl3aGVyZS4nLFxuICAgIGRpbWVuc2lvbnM6ICdXIDc4IMOXIEQgODIgw5cgSCA3NiBjbScsIHNwZWNpZmljYXRpb25zOiBbJ1NvbGlkIG9hayBmcmFtZScsICdUZXh0dXJlZCBpdm9yeSBib3VjbMOpJywgJ0hhbmQtZmluaXNoZWQgam9pbmVyeScsICdQcm90ZWN0aXZlIGZsb29yIGdsaWRlcyddLCBjb2xvdXJzOiBbJ0l2b3J5JywgJ1dhbG51dCddLFxuICB9LFxuICB7XG4gICAgc2x1ZzogJ3RlcnJhLWNvZmZlZS10YWJsZScsIG5hbWU6ICdUZXJyYSBDb2ZmZWUgVGFibGUnLCBjYXRlZ29yeTogJ1RhYmxlcycsIHByaWNlOiAzODkwMCxcbiAgICBtYXRlcmlhbDogJ09haycsIGNvbG91cjogJ05hdHVyYWwnLCBhdmFpbGFiaWxpdHk6ICdJbiBzdHVkaW8nLCB5ZWFyOiAyMDI2LCBmZWF0dXJlZDogMyxcbiAgICBpbWFnZTogJy9pbWFnZXMvcHJvZHVjdHMvdGVycmEtdGFibGUvdGVycmEtdGFibGUtc3R1ZGlvLmpwZycsXG4gICAgYWx0ZXJuYXRlSW1hZ2U6ICcvaW1hZ2VzL3Byb2R1Y3RzL3RlcnJhLXRhYmxlL3RlcnJhLXRhYmxlLWZyb250LmpwZycsXG4gICAgZGV0YWlsSW1hZ2U6ICcvaW1hZ2VzL21hdGVyaWFscy9vYWsvb2FrLWdyYWluLWRldGFpbC5qcGcnLFxuICAgIHJvb21JbWFnZTogJy9pbWFnZXMvbGlmZXN0eWxlL2xpdmluZy1yb29tL2xpdmluZy1yb29tLWxpbm5lYS5qcGcnLFxuICAgIHZpc3VhbDogJ3RhYmxlJywgZmFicmljOiAnI0I0ODY1QScsIHNob3J0OiAnQSBncm91bmRlZCBvYWsgdGFibGUgd2l0aCBhIHNvZnRseSBlYXNlZCBlZGdlLicsXG4gICAgZGVzY3JpcHRpb246ICdBIGxvdywgdGFjdGlsZSBjZW50cmVwaWVjZSBzaGFwZWQgZnJvbSBzb2xpZCBvYWsuIFRoZSBzb2Z0bHkgZWFzZWQgZWRnZSBhbmQgcmVjZXNzZWQgcGxpbnRoIGdpdmUgdGhlIHNpbXBsZSBmb3JtIGEgcXVpZXRlciBhcmNoaXRlY3R1cmFsIHByZXNlbmNlLicsXG4gICAgZGltZW5zaW9uczogJ1cgMTEwIMOXIEQgNjIgw5cgSCAzOCBjbScsIHNwZWNpZmljYXRpb25zOiBbJ1NvbGlkIEV1cm9wZWFuIG9haycsICdMb3cgc2hlZW4gbmF0dXJhbCBvaWwnLCAnUm91bmRlZCwgaGFuZC1zYW5kZWQgZWRnZXMnLCAnRmVsdCBmbG9vciBwcm90ZWN0b3JzJ10sIGNvbG91cnM6IFsnTmF0dXJhbCcsICdTbW9rZWQnXSxcbiAgfSxcbiAge1xuICAgIHNsdWc6ICdzb3Jlbi1kaW5pbmctY2hhaXInLCBuYW1lOiAnU29yZW4gRGluaW5nIENoYWlyJywgY2F0ZWdvcnk6ICdDaGFpcnMnLCBwcmljZTogMzI0MDAsXG4gICAgbWF0ZXJpYWw6ICdPYWsnLCBjb2xvdXI6ICdOYXR1cmFsJywgYXZhaWxhYmlsaXR5OiAnTWFkZSB0byBvcmRlcicsIHllYXI6IDIwMjUsIGZlYXR1cmVkOiA0LFxuICAgIGltYWdlOiAnL2ltYWdlcy9wcm9kdWN0cy9zb3Jlbi1jaGFpci9zb3Jlbi1jaGFpci1zdHVkaW8uanBnJyxcbiAgICBhbHRlcm5hdGVJbWFnZTogJy9pbWFnZXMvcHJvZHVjdHMvc29yZW4tY2hhaXIvc29yZW4tY2hhaXItZnJvbnQuanBnJyxcbiAgICBkZXRhaWxJbWFnZTogJy9pbWFnZXMvbWF0ZXJpYWxzL29hay9vYWstZ3JhaW4tZGV0YWlsLmpwZycsXG4gICAgcm9vbUltYWdlOiAnL2ltYWdlcy9saWZlc3R5bGUvZGluaW5nL2RpbmluZy1uYXR1cmFsLW9hay5qcGcnLFxuICAgIHZpc3VhbDogJ2NoYWlyJywgZmFicmljOiAnI0I0ODY1QScsIHNob3J0OiAnQSBsaWdodCBvYWsgZnJhbWUgc2hhcGVkIGZvciBldmVyeWRheSBkaW5pbmcuJyxcbiAgICBkZXNjcmlwdGlvbjogJ0EgcGFyZWQtYmFjayBkaW5pbmcgY2hhaXIgd2l0aCBhIGN1cnZlZCBiYWNrIHJhaWwsIGNvbnNpZGVyZWQgcHJvcG9ydGlvbnMgYW5kIGEgd292ZW4gc2VhdC4gTWFkZSB0byBnYXRoZXIgYXJvdW5kLCBhbmQgbWFkZSB0byBzdGF5LicsXG4gICAgZGltZW5zaW9uczogJ1cgNDggw5cgRCA1MiDDlyBIIDc5IGNtJywgc3BlY2lmaWNhdGlvbnM6IFsnU29saWQgb2FrIGZyYW1lJywgJ0hhbmQtd292ZW4gbmF0dXJhbCBydXNoIHNlYXQnLCAnVHJhZGl0aW9uYWwgbW9ydGlzZSBhbmQgdGVub24gam9pbnRzJywgJ0xvdyBWT0MgZmluaXNoJ10sIGNvbG91cnM6IFsnTmF0dXJhbCcsICdXYWxudXQnXSxcbiAgfSxcbiAge1xuICAgIHNsdWc6ICdhbG1hLWJlZCcsIG5hbWU6ICdBbG1hIFVwaG9sc3RlcmVkIEJlZCcsIGNhdGVnb3J5OiAnQmVkcycsIHByaWNlOiAxMTIwMDAsXG4gICAgbWF0ZXJpYWw6ICdMaW5lbicsIGNvbG91cjogJ1NhbmQnLCBhdmFpbGFiaWxpdHk6ICdNYWRlIHRvIG9yZGVyJywgeWVhcjogMjAyNSwgZmVhdHVyZWQ6IDUsXG4gICAgaW1hZ2U6ICcvaW1hZ2VzL3Byb2R1Y3RzL2FsbWEtYmVkL2FsbWEtYmVkLXN0dWRpby5qcGcnLFxuICAgIGZhYnJpY01hc2s6ICcvaW1hZ2VzL21hc2tzL2FsbWEtYmVkLWZhYnJpYy1tYXNrLnBuZycsXG4gICAgYWx0ZXJuYXRlSW1hZ2U6ICcvaW1hZ2VzL3Byb2R1Y3RzL2FsbWEtYmVkL2FsbWEtYmVkLWZyb250LmpwZycsXG4gICAgZGV0YWlsSW1hZ2U6ICcvaW1hZ2VzL21hdGVyaWFscy9saW5lbi9saW5lbi1hbmQtb2FrLWRldGFpbC5qcGcnLFxuICAgIHJvb21JbWFnZTogJy9pbWFnZXMvbGlmZXN0eWxlL2JlZHJvb20vYmVkcm9vbS1hbG1hLmpwZycsXG4gICAgdmlzdWFsOiAnYmVkJywgZmFicmljOiAnI0Q5QzdBQScsIHNob3J0OiAnQSBzb2Z0bHkgdXBob2xzdGVyZWQgaGVhZGJvYXJkIHdpdGggYSBncm91bmRlZCBvYWsgYmFzZS4nLFxuICAgIGRlc2NyaXB0aW9uOiAnQSByZXN0ZnVsIGJlZCBidWlsdCBhcm91bmQgYSBzdHVyZHkgYmVlY2ggZnJhbWUsIGEgZ2VudGx5IGN1cnZlZCBsaW5lbiBoZWFkYm9hcmQgYW5kIGRpc2NyZWV0IG9hayBmZWV0LiBTaXplZCBmb3IgY29uc2lkZXJlZCwgdW5jbHV0dGVyZWQgYmVkcm9vbXMuJyxcbiAgICBkaW1lbnNpb25zOiAnVyAxNjggw5cgRCAyMTggw5cgSCAxMDQgY20nLCBzcGVjaWZpY2F0aW9uczogWydTb2xpZCBiZWVjaCBhbmQgb2FrIGZyYW1lJywgJ0xpbmVuIHVwaG9sc3RlcmVkIGhlYWRib2FyZCcsICdGaXRzIGEgMTYwIMOXIDIwMCBjbSBtYXR0cmVzcycsICdTbGF0dGVkIHRpbWJlciBzdXBwb3J0J10sIGNvbG91cnM6IFsnU2FuZCcsICdPYXQnLCAnTW9zcyddLFxuICB9LFxuICB7XG4gICAgc2x1ZzogJ25vcmQtc2lkZWJvYXJkJywgbmFtZTogJ05vcmQgU2lkZWJvYXJkJywgY2F0ZWdvcnk6ICdTdG9yYWdlJywgcHJpY2U6IDg5NTAwLFxuICAgIG1hdGVyaWFsOiAnV2FsbnV0JywgY29sb3VyOiAnV2FsbnV0JywgYXZhaWxhYmlsaXR5OiAnTWFkZSB0byBvcmRlcicsIHllYXI6IDIwMjUsIGZlYXR1cmVkOiA2LFxuICAgIGltYWdlOiAnL2ltYWdlcy9wcm9kdWN0cy9ub3JkLXNpZGVib2FyZC9ub3JkLXNpZGVib2FyZC1zdHVkaW8uanBnJyxcbiAgICBhbHRlcm5hdGVJbWFnZTogJy9pbWFnZXMvcHJvZHVjdHMvbm9yZC1zaWRlYm9hcmQvbm9yZC1zaWRlYm9hcmQtZnJvbnQuanBnJyxcbiAgICBkZXRhaWxJbWFnZTogJy9pbWFnZXMvbWF0ZXJpYWxzL3dhbG51dC93YWxudXQtZ3JhaW4tZGV0YWlsLmpwZycsXG4gICAgcm9vbUltYWdlOiAnL2ltYWdlcy9saWZlc3R5bGUvbGl2aW5nLXJvb20vbGl2aW5nLXJvb20tbGlubmVhLmpwZycsXG4gICAgdmlzdWFsOiAnc3RvcmFnZScsIGZhYnJpYzogJyM3OTVBNDInLCBzaG9ydDogJ1F1aWV0bHkgdXNlZnVsIHN0b3JhZ2UgaW4gcmljaGx5IGdyYWluZWQgd2FsbnV0LicsXG4gICAgZGVzY3JpcHRpb246ICdBIGxvbmcsIGxvdyBzaWRlYm9hcmQgd2l0aCBjbGVhbi1saW5lZCBkb29ycywgYWRqdXN0YWJsZSBzaGVsdmVzIGFuZCBhIHJlY2Vzc2VkIGJhc2UuIFRoZSBuYXR1cmFsIHdhbG51dCBncmFpbiBicmluZ3Mgd2FybXRoIHdpdGhvdXQgdmlzdWFsIG5vaXNlLicsXG4gICAgZGltZW5zaW9uczogJ1cgMTYwIMOXIEQgNDIgw5cgSCA3NCBjbScsIHNwZWNpZmljYXRpb25zOiBbJ1NvbGlkIHdhbG51dCBmcm9udHMnLCAnVmVuZWVyZWQgd2FsbnV0IGNhYmluZXQnLCAnU29mdC1jbG9zZSBoaW5nZXMnLCAnQWRqdXN0YWJsZSBpbnRlcmlvciBzaGVsdmVzJ10sIGNvbG91cnM6IFsnV2FsbnV0JywgJ05hdHVyYWwgb2FrJ10sXG4gIH0sXG4gIHtcbiAgICBzbHVnOiAnc29sLXRhYmxlLWxhbXAnLCBuYW1lOiAnU29sIFRhYmxlIExhbXAnLCBjYXRlZ29yeTogJ0xpZ2h0aW5nJywgcHJpY2U6IDE4NTAwLFxuICAgIG1hdGVyaWFsOiAnQ2VyYW1pYycsIGNvbG91cjogJ0NoYWxrJywgYXZhaWxhYmlsaXR5OiAnSW4gc3R1ZGlvJywgeWVhcjogMjAyNiwgZmVhdHVyZWQ6IDcsXG4gICAgaW1hZ2U6ICcvaW1hZ2VzL3Byb2R1Y3RzL3NvbC1sYW1wL3NvbC1sYW1wLXN0dWRpby5qcGcnLFxuICAgIGFsdGVybmF0ZUltYWdlOiAnL2ltYWdlcy9wcm9kdWN0cy9zb2wtbGFtcC9zb2wtbGFtcC1mcm9udC5qcGcnLFxuICAgIGRldGFpbEltYWdlOiAnL2ltYWdlcy9wcm9kdWN0cy9zb2wtbGFtcC9zb2wtbGFtcC1zdHVkaW8uanBnJyxcbiAgICByb29tSW1hZ2U6ICcvaW1hZ2VzL2xpZmVzdHlsZS9iZWRyb29tL2JlZHJvb20tYWxtYS5qcGcnLFxuICAgIHZpc3VhbDogJ2xhbXAnLCBmYWJyaWM6ICcjQzhCQkE4Jywgc2hvcnQ6ICdBIHdhcm0gcG9vbCBvZiBsaWdodCBvbiBhIGhhbmQtdGhyb3duIGNlcmFtaWMgYmFzZS4nLFxuICAgIGRlc2NyaXB0aW9uOiAnQSBzb2Z0bHkgcm91bmRlZCBjZXJhbWljIGJhc2UgYW5kIGxpbmVuIHNoYWRlIGJyaW5nIGFuIGVhc3ksIHdhcm0gZ2xvdyB0byBiZWRzaWRlIHRhYmxlcyBhbmQgcmVhZGluZyBjb3JuZXJzLicsXG4gICAgZGltZW5zaW9uczogJ1cgMzQgw5cgRCAzNCDDlyBIIDUyIGNtJywgc3BlY2lmaWNhdGlvbnM6IFsnSGFuZC10aHJvd24gY2VyYW1pYyBiYXNlJywgJ05hdHVyYWwgbGluZW4gc2hhZGUnLCAnRGltbWFibGUgd2FybSBMRUQgaW5jbHVkZWQnLCAnMjIw4oCTMjQwIFYnXSwgY29sb3VyczogWydDaGFsaycsICdTYWdlJ10sXG4gIH0sXG4gIHtcbiAgICBzbHVnOiAnc3RpbGwtdmVzc2VsLXNldCcsIG5hbWU6ICdTdGlsbCBDZXJhbWljIFZlc3NlbHMnLCBjYXRlZ29yeTogJ0FjY2Vzc29yaWVzJywgcHJpY2U6IDc4MDAsXG4gICAgbWF0ZXJpYWw6ICdDZXJhbWljJywgY29sb3VyOiAnQ2hhbGsnLCBhdmFpbGFiaWxpdHk6ICdJbiBzdHVkaW8nLCB5ZWFyOiAyMDI2LCBmZWF0dXJlZDogOCxcbiAgICBpbWFnZTogJy9pbWFnZXMvcHJvZHVjdHMvc3RpbGwtdmVzc2Vscy9zdGlsbC12ZXNzZWxzLXN0dWRpby5qcGcnLFxuICAgIGRldGFpbEltYWdlOiAnL2ltYWdlcy9wcm9kdWN0cy9zdGlsbC12ZXNzZWxzL3N0aWxsLXZlc3NlbHMtc3R1ZGlvLmpwZycsXG4gICAgcm9vbUltYWdlOiAnL2ltYWdlcy9saWZlc3R5bGUvbGl2aW5nLXJvb20vbGl2aW5nLXJvb20tbGlubmVhLmpwZycsXG4gICAgdmlzdWFsOiAndmVzc2VsJywgZmFicmljOiAnI0M4QkJBOCcsIHNob3J0OiAnQSBwYWlyIG9mIHF1aWV0IGZvcm1zLCBzaGFwZWQgYW5kIGdsYXplZCBieSBoYW5kLicsXG4gICAgZGVzY3JpcHRpb246ICdUd28gc21hbGwgc3RvbmV3YXJlIHZlc3NlbHMgd2l0aCBhIG1hdHRlLCB0YWN0aWxlIGdsYXplLiBFYWNoIHBpZWNlIGlzIGZpbmlzaGVkIGJ5IGhhbmQsIHNvIHN1YnRsZSB2YXJpYXRpb25zIG1ha2UgZXZlcnkgcGFpciBpdHMgb3duLicsXG4gICAgZGltZW5zaW9uczogJ1NldCBvZiAyIMK3IEggMTggYW5kIDI0IGNtJywgc3BlY2lmaWNhdGlvbnM6IFsnSGFuZC10aHJvd24gc3RvbmV3YXJlJywgJ01hdHRlIGZvb2Qtc2FmZSBnbGF6ZScsICdNYWRlIGluIHNtYWxsIGJhdGNoZXMnLCAnRWFjaCBwaWVjZSBpcyB1bmlxdWUnXSwgY29sb3VyczogWydDaGFsaycsICdTYWdlJ10sXG4gIH0sXG5dXG5cbmV4cG9ydCBjb25zdCBDT0xMRUNUSU9OUyA9IFtcbiAgeyBzbHVnOiAnbGl2aW5nLXJvb20nLCB0aXRsZTogJ0xpdmluZyBSb29tJywgZGVzY3JpcHRpb246ICdSb29tIHRvIHNldHRsZSBpbi4gU29mYXMsIGNoYWlycyBhbmQgdGFibGVzIHNoYXBlZCBmb3IgdGhlIGV2ZXJ5ZGF5IHJpdHVhbHMgb2YgaG9tZS4nLCB2aXN1YWw6ICdzb2ZhJywgaW1hZ2U6ICcvaW1hZ2VzL2xpZmVzdHlsZS9saXZpbmctcm9vbS9saXZpbmctcm9vbS1saW5uZWEuanBnJywgcHJvZHVjdHM6IFsnbGlubmVhLXNvZmEnLCAnb3JhLWxvdW5nZS1jaGFpcicsICd0ZXJyYS1jb2ZmZWUtdGFibGUnXSB9LFxuICB7IHNsdWc6ICdkaW5pbmcnLCB0aXRsZTogJ0RpbmluZycsIGRlc2NyaXB0aW9uOiAnSG9uZXN0IG1hdGVyaWFscyBhbmQgZ2VuZXJvdXMgZm9ybXMgZm9yIG1lYWxzIHRoYXQgbGFzdCBhIGxpdHRsZSBsb25nZXIuJywgdmlzdWFsOiAnZGluaW5nJywgaW1hZ2U6ICcvaW1hZ2VzL2xpZmVzdHlsZS9kaW5pbmcvZGluaW5nLW5hdHVyYWwtb2FrLmpwZycsIHByb2R1Y3RzOiBbJ3NvcmVuLWRpbmluZy1jaGFpcicsICd0ZXJyYS1jb2ZmZWUtdGFibGUnXSB9LFxuICB7IHNsdWc6ICdsb3VuZ2UnLCB0aXRsZTogJ0xvdW5nZScsIGRlc2NyaXB0aW9uOiAnQSBzb2Z0ZXIgcGFjZSwgZXhwcmVzc2VkIHRocm91Z2ggZW52ZWxvcGluZyBzZWF0cyBhbmQgd2FybSBuYXR1cmFsIGZpbmlzaGVzLicsIHZpc3VhbDogJ2xvdW5nZScsIGltYWdlOiAnL2ltYWdlcy9saWZlc3R5bGUvbG91bmdlL2xvdW5nZS1ib3VjbGUtY2hhaXIuanBnJywgcHJvZHVjdHM6IFsnb3JhLWxvdW5nZS1jaGFpcicsICdsaW5uZWEtc29mYSddIH0sXG4gIHsgc2x1ZzogJ2JlZHJvb20nLCB0aXRsZTogJ0JlZHJvb20nLCBkZXNjcmlwdGlvbjogJ1F1aWV0LCBjb25zaWRlcmVkIHBpZWNlcyB0byBtYWtlIHRoZSBlbmQgb2YgZWFjaCBkYXkgZmVlbCBsaWtlIGEgcmV0dXJuLicsIHZpc3VhbDogJ2JlZCcsIGltYWdlOiAnL2ltYWdlcy9saWZlc3R5bGUvYmVkcm9vbS9iZWRyb29tLWFsbWEuanBnJywgcHJvZHVjdHM6IFsnYWxtYS1iZWQnLCAnc29sLXRhYmxlLWxhbXAnXSB9LFxuICB7IHNsdWc6ICdkZXNpZ25lci1jaGFpcnMnLCB0aXRsZTogJ0Rlc2lnbmVyIENoYWlycycsIGRlc2NyaXB0aW9uOiAnRml2ZSBkaXN0aW5jdCBzdHVkaWVzIGluIGNvbWZvcnQsIHByb3BvcnRpb24gYW5kIHRoZSBjaGFyYWN0ZXIgb2Ygd29vZC4nLCB2aXN1YWw6ICdjaGFpcicsIGltYWdlOiAnL2ltYWdlcy9saWZlc3R5bGUvZGluaW5nL2RpbmluZy1uYXR1cmFsLW9hay5qcGcnLCBwcm9kdWN0czogWydvcmEtbG91bmdlLWNoYWlyJywgJ3NvcmVuLWRpbmluZy1jaGFpciddIH0sXG5dXG5cbmV4cG9ydCBjb25zdCBwcm9kdWN0QnlTbHVnID0gKHNsdWcpID0+IFBST0RVQ1RTLmZpbmQoKHByb2R1Y3QpID0+IHByb2R1Y3Quc2x1ZyA9PT0gc2x1ZylcbmV4cG9ydCBjb25zdCBjb2xsZWN0aW9uQnlTbHVnID0gKHNsdWcpID0+IENPTExFQ1RJT05TLmZpbmQoKGNvbGxlY3Rpb24pID0+IGNvbGxlY3Rpb24uc2x1ZyA9PT0gc2x1ZylcblxuY29uc3QgR0FMTEVSWV9JTUFHRV9LRVlTID0gWyd0aHJlZVF1YXJ0ZXInLCAnZnJvbnQnLCAnbWF0ZXJpYWwnLCAnbGlmZXN0eWxlJ11cblxuZXhwb3J0IGZ1bmN0aW9uIHByb2R1Y3RJbWFnZXNGb3JDb2xvdXIocHJvZHVjdCwgY29sb3VyKSB7XG4gIGNvbnN0IGJhc2VJbWFnZXMgPSB7XG4gICAgdGhyZWVRdWFydGVyOiBwcm9kdWN0LmltYWdlLFxuICAgIGZyb250OiBwcm9kdWN0LmFsdGVybmF0ZUltYWdlID8/IHByb2R1Y3QuaW1hZ2UsXG4gICAgbWF0ZXJpYWw6IHByb2R1Y3QuZGV0YWlsSW1hZ2UgPz8gcHJvZHVjdC5pbWFnZSxcbiAgICBsaWZlc3R5bGU6IHByb2R1Y3Qucm9vbUltYWdlID8/IHByb2R1Y3QuaW1hZ2UsXG4gIH1cbiAgY29uc3QgdmFyaWFudCA9IHByb2R1Y3QudmFyaWFudHM/LmZpbmQoKGl0ZW0pID0+IGl0ZW0uY29sb3VyLnRvTG93ZXJDYXNlKCkgPT09IGNvbG91ci50b0xvd2VyQ2FzZSgpKVxuXG4gIGlmICghdmFyaWFudCkge1xuICAgIGNvbnN0IGlzQmFzZUNvbG91ciA9IHByb2R1Y3QuY29sb3VyLnRvTG93ZXJDYXNlKCkgPT09IGNvbG91ci50b0xvd2VyQ2FzZSgpXG4gICAgcmV0dXJuIHsgaW1hZ2VzOiBiYXNlSW1hZ2VzLCBhdmFpbGFibGU6IGlzQmFzZUNvbG91ciwgZmFsbGJhY2tDb2xvdXI6IHByb2R1Y3QuY29sb3VyIH1cbiAgfVxuXG4gIGNvbnN0IGltYWdlcyA9IE9iamVjdC5mcm9tRW50cmllcyhHQUxMRVJZX0lNQUdFX0tFWVMubWFwKChrZXkpID0+IFtrZXksIHZhcmlhbnQuaW1hZ2VzW2tleV0gfHwgYmFzZUltYWdlc1trZXldXSkpXG4gIGNvbnN0IGF2YWlsYWJsZSA9IEdBTExFUllfSU1BR0VfS0VZUy5ldmVyeSgoa2V5KSA9PiBCb29sZWFuKHZhcmlhbnQuaW1hZ2VzW2tleV0pKVxuICByZXR1cm4geyBpbWFnZXMsIGF2YWlsYWJsZSwgZmFsbGJhY2tDb2xvdXI6IHByb2R1Y3QuY29sb3VyIH1cbn1cbiJdfQ==

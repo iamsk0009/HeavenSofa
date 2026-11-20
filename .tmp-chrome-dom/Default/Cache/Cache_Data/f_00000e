@@ -1,0 +1,636 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/sections/HomeCommerce.jsx");const useState = __vite__cjsImport0_react["useState"];const _jsxDEV = __vite__cjsImport4_react_jsxDevRuntime["jsxDEV"];import __vite__cjsImport0_react from "/node_modules/.vite/deps/react.js?v=fb43666c";
+import { Link } from "/node_modules/.vite/deps/react-router-dom.js?v=fb43666c";
+import { COLLECTIONS, PRODUCTS } from "/src/data/catalog.js";
+import { CollectionCard, ProductGrid, SampleNotice, StoreHeading } from "/src/components/StoreComponents.jsx";
+var _jsxFileName = "C:/Sujan/Sofa/src/sections/HomeCommerce.jsx";
+import __vite__cjsImport4_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=fb43666c";
+var _s = $RefreshSig$();
+const picks = (slugs) => slugs.map((slug) => PRODUCTS.find((product) => product.slug === slug)).filter(Boolean);
+function Newsletter() {
+	_s();
+	const [status, setStatus] = useState("");
+	const submit = (event) => {
+		event.preventDefault();
+		if (!event.currentTarget.reportValidity()) return;
+		setStatus("Thank you for your interest. This preview does not store or send email addresses.");
+	};
+	return /* @__PURE__ */ _jsxDEV("section", {
+		className: "bg-olive px-5 py-16 text-paper sm:px-10 md:py-20",
+		children: /* @__PURE__ */ _jsxDEV("div", {
+			className: "mx-auto grid max-w-6xl gap-9 md:grid-cols-[1fr_0.8fr] md:items-end",
+			children: [/* @__PURE__ */ _jsxDEV("div", { children: [
+				/* @__PURE__ */ _jsxDEV("p", {
+					className: "eyebrow text-paper/55",
+					children: "Letters from the studio"
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 18,
+					columnNumber: 14
+				}, this),
+				/* @__PURE__ */ _jsxDEV("h2", {
+					className: "editorial-heading mt-4 text-4xl sm:text-5xl",
+					children: "A little more room to breathe."
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 18,
+					columnNumber: 78
+				}, this),
+				/* @__PURE__ */ _jsxDEV("p", {
+					className: "mt-4 max-w-xl text-sm leading-relaxed text-paper/70",
+					children: "Occasional notes on materials, making and thoughtful living."
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 18,
+					columnNumber: 173
+				}, this)
+			] }, void 0, true, {
+				fileName: _jsxFileName,
+				lineNumber: 18,
+				columnNumber: 9
+			}, this), /* @__PURE__ */ _jsxDEV("form", {
+				onSubmit: submit,
+				className: "grid gap-3 sm:grid-cols-[1fr_auto]",
+				children: [
+					/* @__PURE__ */ _jsxDEV("label", {
+						className: "sr-only",
+						htmlFor: "newsletter-email",
+						children: "Email address"
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 20,
+						columnNumber: 11
+					}, this),
+					/* @__PURE__ */ _jsxDEV("input", {
+						id: "newsletter-email",
+						name: "email",
+						type: "email",
+						required: true,
+						placeholder: "Your email address",
+						className: "border-b border-paper/35 bg-transparent px-1 py-3 text-sm text-paper outline-none placeholder:text-paper/45 focus:border-paper"
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 21,
+						columnNumber: 11
+					}, this),
+					/* @__PURE__ */ _jsxDEV("button", {
+						className: "eyebrow justify-self-start border-b border-terracotta pb-1 text-paper",
+						type: "submit",
+						children: "Join the list"
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 22,
+						columnNumber: 11
+					}, this),
+					/* @__PURE__ */ _jsxDEV("p", {
+						role: "status",
+						"aria-live": "polite",
+						className: "text-xs text-paper/65 sm:col-span-2",
+						children: status || "No email is sent or stored in this frontend preview."
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 23,
+						columnNumber: 11
+					}, this)
+				]
+			}, void 0, true, {
+				fileName: _jsxFileName,
+				lineNumber: 19,
+				columnNumber: 9
+			}, this)]
+		}, void 0, true, {
+			fileName: _jsxFileName,
+			lineNumber: 17,
+			columnNumber: 7
+		}, this)
+	}, void 0, false, {
+		fileName: _jsxFileName,
+		lineNumber: 16,
+		columnNumber: 5
+	}, this);
+}
+_s(Newsletter, "KPYrX9LquK4QzAleGVocmTfvvco=");
+_c = Newsletter;
+function EditorialPhoto({ src, alt, caption, className = "" }) {
+	return /* @__PURE__ */ _jsxDEV("figure", {
+		className: `editorial-photo ${className}`,
+		children: [/* @__PURE__ */ _jsxDEV("img", {
+			src,
+			alt,
+			width: "1536",
+			height: "1024",
+			loading: "lazy",
+			decoding: "async"
+		}, void 0, false, {
+			fileName: _jsxFileName,
+			lineNumber: 33,
+			columnNumber: 7
+		}, this), caption && /* @__PURE__ */ _jsxDEV("figcaption", { children: caption }, void 0, false, {
+			fileName: _jsxFileName,
+			lineNumber: 34,
+			columnNumber: 19
+		}, this)]
+	}, void 0, true, {
+		fileName: _jsxFileName,
+		lineNumber: 32,
+		columnNumber: 5
+	}, this);
+}
+_c2 = EditorialPhoto;
+export default function HomeCommerce() {
+	const newest = [...PRODUCTS].sort((a, b) => b.year - a.year || a.featured - b.featured).slice(0, 4);
+	return /* @__PURE__ */ _jsxDEV("div", {
+		className: "home-commerce",
+		children: [
+			/* @__PURE__ */ _jsxDEV("section", {
+				className: "store-section pt-20 sm:pt-24",
+				children: [
+					/* @__PURE__ */ _jsxDEV(EditorialPhoto, {
+						src: "/images/lifestyle/homepage/heaven-homepage-living.jpg",
+						alt: "Sunlit ivory living room with natural oak and linen furniture",
+						caption: "A beautiful way to live",
+						className: "home-commerce-hero mb-12"
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 44,
+						columnNumber: 9
+					}, this),
+					/* @__PURE__ */ _jsxDEV(StoreHeading, {
+						as: "h2",
+						eyebrow: "A place for every day",
+						title: "Find your way home.",
+						description: "Explore furniture shaped by quiet forms, natural materials and the rituals that make a house your own."
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 45,
+						columnNumber: 9
+					}, this),
+					/* @__PURE__ */ _jsxDEV(SampleNotice, { className: "mt-5" }, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 46,
+						columnNumber: 9
+					}, this),
+					/* @__PURE__ */ _jsxDEV("div", {
+						className: "mt-10 grid gap-7 sm:grid-cols-2 lg:grid-cols-3",
+						children: COLLECTIONS.slice(0, 3).map((collection) => /* @__PURE__ */ _jsxDEV(CollectionCard, { collection }, collection.slug, false, {
+							fileName: _jsxFileName,
+							lineNumber: 48,
+							columnNumber: 56
+						}, this))
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 47,
+						columnNumber: 9
+					}, this)
+				]
+			}, void 0, true, {
+				fileName: _jsxFileName,
+				lineNumber: 43,
+				columnNumber: 7
+			}, this),
+			/* @__PURE__ */ _jsxDEV("section", {
+				className: "store-section border-t border-ink/10",
+				children: [/* @__PURE__ */ _jsxDEV("div", {
+					className: "flex flex-wrap items-end justify-between gap-4",
+					children: [/* @__PURE__ */ _jsxDEV(StoreHeading, {
+						as: "h2",
+						eyebrow: "Just arrived",
+						title: "New pieces."
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 53,
+						columnNumber: 73
+					}, this), /* @__PURE__ */ _jsxDEV(Link, {
+						to: "/shop?sort=newest",
+						className: "eyebrow border-b border-terracotta pb-1 text-terracotta",
+						children: "View all"
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 53,
+						columnNumber: 140
+					}, this)]
+				}, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 53,
+					columnNumber: 9
+				}, this), /* @__PURE__ */ _jsxDEV("div", {
+					className: "mt-8",
+					children: /* @__PURE__ */ _jsxDEV(ProductGrid, {
+						products: newest,
+						columns: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 54,
+						columnNumber: 31
+					}, this)
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 54,
+					columnNumber: 9
+				}, this)]
+			}, void 0, true, {
+				fileName: _jsxFileName,
+				lineNumber: 52,
+				columnNumber: 7
+			}, this),
+			/* @__PURE__ */ _jsxDEV("section", {
+				className: "bg-limestone/35 px-4 py-16 sm:px-8 md:py-20",
+				children: /* @__PURE__ */ _jsxDEV("div", {
+					className: "mx-auto max-w-6xl",
+					children: [/* @__PURE__ */ _jsxDEV("div", {
+						className: "flex flex-wrap items-end justify-between gap-4",
+						children: [/* @__PURE__ */ _jsxDEV(StoreHeading, {
+							as: "h2",
+							eyebrow: "Best sellers · sample edit",
+							title: "Best loved forms."
+						}, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 58,
+							columnNumber: 108
+						}, this), /* @__PURE__ */ _jsxDEV(Link, {
+							to: "/shop",
+							className: "eyebrow border-b border-terracotta pb-1 text-terracotta",
+							children: "Explore the shop"
+						}, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 58,
+							columnNumber: 195
+						}, this)]
+					}, void 0, true, {
+						fileName: _jsxFileName,
+						lineNumber: 58,
+						columnNumber: 44
+					}, this), /* @__PURE__ */ _jsxDEV("div", {
+						className: "mt-8",
+						children: /* @__PURE__ */ _jsxDEV(ProductGrid, {
+							products: picks([
+								"linnea-sofa",
+								"ora-lounge-chair",
+								"terra-coffee-table"
+							]),
+							columns: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+						}, void 0, false, {
+							fileName: _jsxFileName,
+							lineNumber: 58,
+							columnNumber: 331
+						}, this)
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 58,
+						columnNumber: 309
+					}, this)]
+				}, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 58,
+					columnNumber: 9
+				}, this)
+			}, void 0, false, {
+				fileName: _jsxFileName,
+				lineNumber: 57,
+				columnNumber: 7
+			}, this),
+			/* @__PURE__ */ _jsxDEV("section", {
+				className: "store-section grid items-center gap-9 lg:grid-cols-[1fr_1fr]",
+				children: [/* @__PURE__ */ _jsxDEV(EditorialPhoto, {
+					src: "/images/lifestyle/living-room/living-room-linnea.jpg",
+					alt: "Linnea inspired linen sofa in a warm architectural living room",
+					caption: "Natural textures, made to live with",
+					className: "min-h-80"
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 62,
+					columnNumber: 9
+				}, this), /* @__PURE__ */ _jsxDEV("div", { children: [
+					/* @__PURE__ */ _jsxDEV("p", {
+						className: "eyebrow text-terracotta",
+						children: "Featured furniture · Linnea"
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 63,
+						columnNumber: 14
+					}, this),
+					/* @__PURE__ */ _jsxDEV("h2", {
+						className: "editorial-heading mt-4 text-4xl sm:text-5xl",
+						children: "A familiar place to land."
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 63,
+						columnNumber: 84
+					}, this),
+					/* @__PURE__ */ _jsxDEV("p", {
+						className: "mt-5 max-w-lg text-sm leading-relaxed text-ink/65",
+						children: "Soft stonewashed linen, a solid beech frame and a generous two-seat silhouette. Linnea is designed to make room for the everyday."
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 63,
+						columnNumber: 174
+					}, this),
+					/* @__PURE__ */ _jsxDEV(Link, {
+						to: "/products/linnea-sofa",
+						className: "eyebrow mt-7 inline-block border-b border-terracotta pb-1 text-terracotta",
+						children: "Meet Linnea"
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 63,
+						columnNumber: 372
+					}, this)
+				] }, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 63,
+					columnNumber: 9
+				}, this)]
+			}, void 0, true, {
+				fileName: _jsxFileName,
+				lineNumber: 61,
+				columnNumber: 7
+			}, this),
+			/* @__PURE__ */ _jsxDEV("section", {
+				className: "bg-paper px-4 py-14 sm:px-8 md:py-20",
+				children: /* @__PURE__ */ _jsxDEV("div", {
+					className: "mx-auto grid max-w-6xl gap-10 md:grid-cols-[0.75fr_1.25fr]",
+					children: [/* @__PURE__ */ _jsxDEV("div", { children: [/* @__PURE__ */ _jsxDEV("p", {
+						className: "eyebrow text-terracotta",
+						children: "Our point of view"
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 68,
+						columnNumber: 16
+					}, this), /* @__PURE__ */ _jsxDEV("h2", {
+						className: "editorial-heading mt-4 text-4xl sm:text-5xl",
+						children: "A beautiful way to live."
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 68,
+						columnNumber: 76
+					}, this)] }, void 0, true, {
+						fileName: _jsxFileName,
+						lineNumber: 68,
+						columnNumber: 11
+					}, this), /* @__PURE__ */ _jsxDEV("p", {
+						className: "max-w-2xl self-end text-base leading-relaxed text-ink/65",
+						children: "We believe a room is made as much by what we leave out as by what we bring in. HEAVEN & CO. explores furniture as part of architecture: purposeful, tactile and made to find its place over time."
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 69,
+						columnNumber: 11
+					}, this)]
+				}, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 67,
+					columnNumber: 9
+				}, this)
+			}, void 0, false, {
+				fileName: _jsxFileName,
+				lineNumber: 66,
+				columnNumber: 7
+			}, this),
+			/* @__PURE__ */ _jsxDEV("section", {
+				className: "bg-walnut px-4 py-16 text-paper sm:px-8 md:py-20",
+				children: /* @__PURE__ */ _jsxDEV("div", {
+					className: "mx-auto grid max-w-6xl gap-9 md:grid-cols-3",
+					children: [
+						/* @__PURE__ */ _jsxDEV("div", { children: [
+							/* @__PURE__ */ _jsxDEV("p", {
+								className: "eyebrow text-paper/55",
+								children: "01 · Material"
+							}, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 75,
+								columnNumber: 16
+							}, this),
+							/* @__PURE__ */ _jsxDEV("h2", {
+								className: "mt-4 font-serif text-3xl",
+								children: "Honest by nature."
+							}, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 75,
+								columnNumber: 70
+							}, this),
+							/* @__PURE__ */ _jsxDEV("p", {
+								className: "mt-3 text-sm leading-relaxed text-paper/70",
+								children: "Oak, beech, linen and clay bring their own grain, warmth and character to every room."
+							}, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 75,
+								columnNumber: 133
+							}, this)
+						] }, void 0, true, {
+							fileName: _jsxFileName,
+							lineNumber: 75,
+							columnNumber: 11
+						}, this),
+						/* @__PURE__ */ _jsxDEV("div", { children: [
+							/* @__PURE__ */ _jsxDEV("p", {
+								className: "eyebrow text-paper/55",
+								children: "02 · Making"
+							}, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 76,
+								columnNumber: 16
+							}, this),
+							/* @__PURE__ */ _jsxDEV("h2", {
+								className: "mt-4 font-serif text-3xl",
+								children: "Joined with care."
+							}, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 76,
+								columnNumber: 68
+							}, this),
+							/* @__PURE__ */ _jsxDEV("p", {
+								className: "mt-3 text-sm leading-relaxed text-paper/70",
+								children: "Thoughtful construction keeps the focus on comfort, repairability and the life of a piece."
+							}, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 76,
+								columnNumber: 131
+							}, this)
+						] }, void 0, true, {
+							fileName: _jsxFileName,
+							lineNumber: 76,
+							columnNumber: 11
+						}, this),
+						/* @__PURE__ */ _jsxDEV("div", { children: [
+							/* @__PURE__ */ _jsxDEV("p", {
+								className: "eyebrow text-paper/55",
+								children: "03 · Time"
+							}, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 77,
+								columnNumber: 16
+							}, this),
+							/* @__PURE__ */ _jsxDEV("h2", {
+								className: "mt-4 font-serif text-3xl",
+								children: "Made to stay."
+							}, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 77,
+								columnNumber: 66
+							}, this),
+							/* @__PURE__ */ _jsxDEV("p", {
+								className: "mt-3 text-sm leading-relaxed text-paper/70",
+								children: "Timeless proportions and considered finishes make room for changing seasons and changing homes."
+							}, void 0, false, {
+								fileName: _jsxFileName,
+								lineNumber: 77,
+								columnNumber: 125
+							}, this)
+						] }, void 0, true, {
+							fileName: _jsxFileName,
+							lineNumber: 77,
+							columnNumber: 11
+						}, this)
+					]
+				}, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 74,
+					columnNumber: 9
+				}, this)
+			}, void 0, false, {
+				fileName: _jsxFileName,
+				lineNumber: 73,
+				columnNumber: 7
+			}, this),
+			/* @__PURE__ */ _jsxDEV("section", {
+				className: "store-section grid items-center gap-8 lg:grid-cols-[1fr_1.2fr]",
+				children: [/* @__PURE__ */ _jsxDEV("div", { children: [
+					/* @__PURE__ */ _jsxDEV("p", {
+						className: "eyebrow text-terracotta",
+						children: "At home, slowly"
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 82,
+						columnNumber: 14
+					}, this),
+					/* @__PURE__ */ _jsxDEV("h2", {
+						className: "editorial-heading mt-4 text-4xl sm:text-5xl",
+						children: "A room is never really finished."
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 82,
+						columnNumber: 72
+					}, this),
+					/* @__PURE__ */ _jsxDEV("p", {
+						className: "mt-5 max-w-md text-sm leading-relaxed text-ink/65",
+						children: "It gathers meaning with every object chosen, every book left open and every place made for someone to stay a little longer."
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 82,
+						columnNumber: 169
+					}, this),
+					/* @__PURE__ */ _jsxDEV(Link, {
+						to: "/collections/living-room",
+						className: "eyebrow mt-7 inline-block border-b border-terracotta pb-1 text-terracotta",
+						children: "Explore living room"
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 82,
+						columnNumber: 361
+					}, this)
+				] }, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 82,
+					columnNumber: 9
+				}, this), /* @__PURE__ */ _jsxDEV(EditorialPhoto, {
+					src: "/images/lifestyle/lounge/lounge-boucle-chair.jpg",
+					alt: "Ivory boucle lounge chair in a softly lit reading corner",
+					caption: "Room to live, at your own pace",
+					className: "min-h-80"
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 83,
+					columnNumber: 9
+				}, this)]
+			}, void 0, true, {
+				fileName: _jsxFileName,
+				lineNumber: 81,
+				columnNumber: 7
+			}, this),
+			/* @__PURE__ */ _jsxDEV("section", {
+				className: "store-section border-t border-ink/10",
+				children: [/* @__PURE__ */ _jsxDEV("div", {
+					className: "flex flex-wrap items-end justify-between gap-4",
+					children: [/* @__PURE__ */ _jsxDEV(StoreHeading, {
+						as: "h2",
+						eyebrow: "A few more favourites",
+						title: "Pieces with purpose."
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 87,
+						columnNumber: 73
+					}, this), /* @__PURE__ */ _jsxDEV(Link, {
+						to: "/shop",
+						className: "eyebrow border-b border-terracotta pb-1 text-terracotta",
+						children: "Shop all"
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 87,
+						columnNumber: 158
+					}, this)]
+				}, void 0, true, {
+					fileName: _jsxFileName,
+					lineNumber: 87,
+					columnNumber: 9
+				}, this), /* @__PURE__ */ _jsxDEV("div", {
+					className: "mt-8",
+					children: /* @__PURE__ */ _jsxDEV(ProductGrid, {
+						products: picks([
+							"soren-dining-chair",
+							"alma-bed",
+							"nord-sideboard"
+						]),
+						columns: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+					}, void 0, false, {
+						fileName: _jsxFileName,
+						lineNumber: 88,
+						columnNumber: 31
+					}, this)
+				}, void 0, false, {
+					fileName: _jsxFileName,
+					lineNumber: 88,
+					columnNumber: 9
+				}, this)]
+			}, void 0, true, {
+				fileName: _jsxFileName,
+				lineNumber: 86,
+				columnNumber: 7
+			}, this),
+			/* @__PURE__ */ _jsxDEV(Newsletter, {}, void 0, false, {
+				fileName: _jsxFileName,
+				lineNumber: 90,
+				columnNumber: 7
+			}, this)
+		]
+	}, void 0, true, {
+		fileName: _jsxFileName,
+		lineNumber: 42,
+		columnNumber: 5
+	}, this);
+}
+_c3 = HomeCommerce;
+var _c, _c2, _c3;
+$RefreshReg$(_c, "Newsletter");
+$RefreshReg$(_c2, "EditorialPhoto");
+$RefreshReg$(_c3, "HomeCommerce");
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope;
+import * as __vite_react_currentExports from "/src/sections/HomeCommerce.jsx";
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react can't detect preamble. Something is wrong."
+    );
+  }
+
+  const currentExports = __vite_react_currentExports;
+  queueMicrotask(() => {
+    RefreshRuntime.registerExportsForReactRefresh("C:/Sujan/Sofa/src/sections/HomeCommerce.jsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("C:/Sujan/Sofa/src/sections/HomeCommerce.jsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+function $RefreshReg$(type, id) { return RefreshRuntime.register(type, "C:/Sujan/Sofa/src/sections/HomeCommerce.jsx" + ' ' + id); }
+function $RefreshSig$() { return RefreshRuntime.createSignatureFunctionForTransform(); }
+
+//# sourceMappingURL=data:application/json;base64,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QUFEO0tBQWdCLEtBQUk7S0FBbUQsS0FBSTtLQUEyRCxTQUFRO0tBQWlDLFdBQVU7SUFBWTs7OztZQUM5TDs7Ozs7O0dBRVQsd0JBQUMsV0FBRDtJQUFTLFdBQVU7Y0FBbkIsQ0FDRSx3QkFBQyxPQUFEO0tBQUssV0FBVTtlQUFmLENBQWdFLHdCQUFDLGNBQUQ7TUFBYyxJQUFHO01BQUssU0FBUTtNQUF3QixPQUFNO0tBQXdCOzs7O2VBQUMsd0JBQUMsTUFBRDtNQUFNLElBQUc7TUFBUSxXQUFVO2dCQUEwRDtLQUFjOzs7O2FBQU07Ozs7O2NBQzlQLHdCQUFDLE9BQUQ7S0FBSyxXQUFVO2VBQU8sd0JBQUMsYUFBRDtNQUFhLFVBQVUsTUFBTTtPQUFDO09BQXNCO09BQVk7TUFBZ0IsQ0FBQztNQUFHLFNBQVE7S0FBNkM7Ozs7O0lBQU07Ozs7WUFDOUo7Ozs7OztHQUNULHdCQUFDLFlBQUQsQ0FBYTs7Ozs7RUFDVjs7Ozs7O0FBRVQiLCJuYW1lcyI6W10sInNvdXJjZXMiOlsiSG9tZUNvbW1lcmNlLmpzeCJdLCJ2ZXJzaW9uIjozLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyB1c2VTdGF0ZSB9IGZyb20gJ3JlYWN0J1xuaW1wb3J0IHsgTGluayB9IGZyb20gJ3JlYWN0LXJvdXRlci1kb20nXG5pbXBvcnQgeyBDT0xMRUNUSU9OUywgUFJPRFVDVFMgfSBmcm9tICcuLi9kYXRhL2NhdGFsb2cnXG5pbXBvcnQgeyBDb2xsZWN0aW9uQ2FyZCwgUHJvZHVjdEdyaWQsIFNhbXBsZU5vdGljZSwgU3RvcmVIZWFkaW5nIH0gZnJvbSAnLi4vY29tcG9uZW50cy9TdG9yZUNvbXBvbmVudHMnXG5cbmNvbnN0IHBpY2tzID0gKHNsdWdzKSA9PiBzbHVncy5tYXAoKHNsdWcpID0+IFBST0RVQ1RTLmZpbmQoKHByb2R1Y3QpID0+IHByb2R1Y3Quc2x1ZyA9PT0gc2x1ZykpLmZpbHRlcihCb29sZWFuKVxuXG5mdW5jdGlvbiBOZXdzbGV0dGVyKCkge1xuICBjb25zdCBbc3RhdHVzLCBzZXRTdGF0dXNdID0gdXNlU3RhdGUoJycpXG4gIGNvbnN0IHN1Ym1pdCA9IChldmVudCkgPT4ge1xuICAgIGV2ZW50LnByZXZlbnREZWZhdWx0KClcbiAgICBpZiAoIWV2ZW50LmN1cnJlbnRUYXJnZXQucmVwb3J0VmFsaWRpdHkoKSkgcmV0dXJuXG4gICAgc2V0U3RhdHVzKCdUaGFuayB5b3UgZm9yIHlvdXIgaW50ZXJlc3QuIFRoaXMgcHJldmlldyBkb2VzIG5vdCBzdG9yZSBvciBzZW5kIGVtYWlsIGFkZHJlc3Nlcy4nKVxuICB9XG4gIHJldHVybiAoXG4gICAgPHNlY3Rpb24gY2xhc3NOYW1lPVwiYmctb2xpdmUgcHgtNSBweS0xNiB0ZXh0LXBhcGVyIHNtOnB4LTEwIG1kOnB5LTIwXCI+XG4gICAgICA8ZGl2IGNsYXNzTmFtZT1cIm14LWF1dG8gZ3JpZCBtYXgtdy02eGwgZ2FwLTkgbWQ6Z3JpZC1jb2xzLVsxZnJfMC44ZnJdIG1kOml0ZW1zLWVuZFwiPlxuICAgICAgICA8ZGl2PjxwIGNsYXNzTmFtZT1cImV5ZWJyb3cgdGV4dC1wYXBlci81NVwiPkxldHRlcnMgZnJvbSB0aGUgc3R1ZGlvPC9wPjxoMiBjbGFzc05hbWU9XCJlZGl0b3JpYWwtaGVhZGluZyBtdC00IHRleHQtNHhsIHNtOnRleHQtNXhsXCI+QSBsaXR0bGUgbW9yZSByb29tIHRvIGJyZWF0aGUuPC9oMj48cCBjbGFzc05hbWU9XCJtdC00IG1heC13LXhsIHRleHQtc20gbGVhZGluZy1yZWxheGVkIHRleHQtcGFwZXIvNzBcIj5PY2Nhc2lvbmFsIG5vdGVzIG9uIG1hdGVyaWFscywgbWFraW5nIGFuZCB0aG91Z2h0ZnVsIGxpdmluZy48L3A+PC9kaXY+XG4gICAgICAgIDxmb3JtIG9uU3VibWl0PXtzdWJtaXR9IGNsYXNzTmFtZT1cImdyaWQgZ2FwLTMgc206Z3JpZC1jb2xzLVsxZnJfYXV0b11cIj5cbiAgICAgICAgICA8bGFiZWwgY2xhc3NOYW1lPVwic3Itb25seVwiIGh0bWxGb3I9XCJuZXdzbGV0dGVyLWVtYWlsXCI+RW1haWwgYWRkcmVzczwvbGFiZWw+XG4gICAgICAgICAgPGlucHV0IGlkPVwibmV3c2xldHRlci1lbWFpbFwiIG5hbWU9XCJlbWFpbFwiIHR5cGU9XCJlbWFpbFwiIHJlcXVpcmVkIHBsYWNlaG9sZGVyPVwiWW91ciBlbWFpbCBhZGRyZXNzXCIgY2xhc3NOYW1lPVwiYm9yZGVyLWIgYm9yZGVyLXBhcGVyLzM1IGJnLXRyYW5zcGFyZW50IHB4LTEgcHktMyB0ZXh0LXNtIHRleHQtcGFwZXIgb3V0bGluZS1ub25lIHBsYWNlaG9sZGVyOnRleHQtcGFwZXIvNDUgZm9jdXM6Ym9yZGVyLXBhcGVyXCIgLz5cbiAgICAgICAgICA8YnV0dG9uIGNsYXNzTmFtZT1cImV5ZWJyb3cganVzdGlmeS1zZWxmLXN0YXJ0IGJvcmRlci1iIGJvcmRlci10ZXJyYWNvdHRhIHBiLTEgdGV4dC1wYXBlclwiIHR5cGU9XCJzdWJtaXRcIj5Kb2luIHRoZSBsaXN0PC9idXR0b24+XG4gICAgICAgICAgPHAgcm9sZT1cInN0YXR1c1wiIGFyaWEtbGl2ZT1cInBvbGl0ZVwiIGNsYXNzTmFtZT1cInRleHQteHMgdGV4dC1wYXBlci82NSBzbTpjb2wtc3Bhbi0yXCI+e3N0YXR1cyB8fCAnTm8gZW1haWwgaXMgc2VudCBvciBzdG9yZWQgaW4gdGhpcyBmcm9udGVuZCBwcmV2aWV3Lid9PC9wPlxuICAgICAgICA8L2Zvcm0+XG4gICAgICA8L2Rpdj5cbiAgICA8L3NlY3Rpb24+XG4gIClcbn1cblxuZnVuY3Rpb24gRWRpdG9yaWFsUGhvdG8oeyBzcmMsIGFsdCwgY2FwdGlvbiwgY2xhc3NOYW1lID0gJycgfSkge1xuICByZXR1cm4gKFxuICAgIDxmaWd1cmUgY2xhc3NOYW1lPXtgZWRpdG9yaWFsLXBob3RvICR7Y2xhc3NOYW1lfWB9PlxuICAgICAgPGltZyBzcmM9e3NyY30gYWx0PXthbHR9IHdpZHRoPVwiMTUzNlwiIGhlaWdodD1cIjEwMjRcIiBsb2FkaW5nPVwibGF6eVwiIGRlY29kaW5nPVwiYXN5bmNcIiAvPlxuICAgICAge2NhcHRpb24gJiYgPGZpZ2NhcHRpb24+e2NhcHRpb259PC9maWdjYXB0aW9uPn1cbiAgICA8L2ZpZ3VyZT5cbiAgKVxufVxuXG5leHBvcnQgZGVmYXVsdCBmdW5jdGlvbiBIb21lQ29tbWVyY2UoKSB7XG4gIGNvbnN0IG5ld2VzdCA9IFsuLi5QUk9EVUNUU10uc29ydCgoYSwgYikgPT4gYi55ZWFyIC0gYS55ZWFyIHx8IGEuZmVhdHVyZWQgLSBiLmZlYXR1cmVkKS5zbGljZSgwLCA0KVxuICByZXR1cm4gKFxuICAgIDxkaXYgY2xhc3NOYW1lPVwiaG9tZS1jb21tZXJjZVwiPlxuICAgICAgPHNlY3Rpb24gY2xhc3NOYW1lPVwic3RvcmUtc2VjdGlvbiBwdC0yMCBzbTpwdC0yNFwiPlxuICAgICAgICA8RWRpdG9yaWFsUGhvdG8gc3JjPVwiL2ltYWdlcy9saWZlc3R5bGUvaG9tZXBhZ2UvaGVhdmVuLWhvbWVwYWdlLWxpdmluZy5qcGdcIiBhbHQ9XCJTdW5saXQgaXZvcnkgbGl2aW5nIHJvb20gd2l0aCBuYXR1cmFsIG9hayBhbmQgbGluZW4gZnVybml0dXJlXCIgY2FwdGlvbj1cIkEgYmVhdXRpZnVsIHdheSB0byBsaXZlXCIgY2xhc3NOYW1lPVwiaG9tZS1jb21tZXJjZS1oZXJvIG1iLTEyXCIgLz5cbiAgICAgICAgPFN0b3JlSGVhZGluZyBhcz1cImgyXCIgZXllYnJvdz1cIkEgcGxhY2UgZm9yIGV2ZXJ5IGRheVwiIHRpdGxlPVwiRmluZCB5b3VyIHdheSBob21lLlwiIGRlc2NyaXB0aW9uPVwiRXhwbG9yZSBmdXJuaXR1cmUgc2hhcGVkIGJ5IHF1aWV0IGZvcm1zLCBuYXR1cmFsIG1hdGVyaWFscyBhbmQgdGhlIHJpdHVhbHMgdGhhdCBtYWtlIGEgaG91c2UgeW91ciBvd24uXCIgLz5cbiAgICAgICAgPFNhbXBsZU5vdGljZSBjbGFzc05hbWU9XCJtdC01XCIgLz5cbiAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJtdC0xMCBncmlkIGdhcC03IHNtOmdyaWQtY29scy0yIGxnOmdyaWQtY29scy0zXCI+XG4gICAgICAgICAge0NPTExFQ1RJT05TLnNsaWNlKDAsIDMpLm1hcCgoY29sbGVjdGlvbikgPT4gPENvbGxlY3Rpb25DYXJkIGtleT17Y29sbGVjdGlvbi5zbHVnfSBjb2xsZWN0aW9uPXtjb2xsZWN0aW9ufSAvPil9XG4gICAgICAgIDwvZGl2PlxuICAgICAgPC9zZWN0aW9uPlxuXG4gICAgICA8c2VjdGlvbiBjbGFzc05hbWU9XCJzdG9yZS1zZWN0aW9uIGJvcmRlci10IGJvcmRlci1pbmsvMTBcIj5cbiAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJmbGV4IGZsZXgtd3JhcCBpdGVtcy1lbmQganVzdGlmeS1iZXR3ZWVuIGdhcC00XCI+PFN0b3JlSGVhZGluZyBhcz1cImgyXCIgZXllYnJvdz1cIkp1c3QgYXJyaXZlZFwiIHRpdGxlPVwiTmV3IHBpZWNlcy5cIiAvPjxMaW5rIHRvPVwiL3Nob3A/c29ydD1uZXdlc3RcIiBjbGFzc05hbWU9XCJleWVicm93IGJvcmRlci1iIGJvcmRlci10ZXJyYWNvdHRhIHBiLTEgdGV4dC10ZXJyYWNvdHRhXCI+VmlldyBhbGw8L0xpbms+PC9kaXY+XG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPVwibXQtOFwiPjxQcm9kdWN0R3JpZCBwcm9kdWN0cz17bmV3ZXN0fSBjb2x1bW5zPVwiZ3JpZC1jb2xzLTEgc206Z3JpZC1jb2xzLTIgbGc6Z3JpZC1jb2xzLTRcIiAvPjwvZGl2PlxuICAgICAgPC9zZWN0aW9uPlxuXG4gICAgICA8c2VjdGlvbiBjbGFzc05hbWU9XCJiZy1saW1lc3RvbmUvMzUgcHgtNCBweS0xNiBzbTpweC04IG1kOnB5LTIwXCI+XG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPVwibXgtYXV0byBtYXgtdy02eGxcIj48ZGl2IGNsYXNzTmFtZT1cImZsZXggZmxleC13cmFwIGl0ZW1zLWVuZCBqdXN0aWZ5LWJldHdlZW4gZ2FwLTRcIj48U3RvcmVIZWFkaW5nIGFzPVwiaDJcIiBleWVicm93PVwiQmVzdCBzZWxsZXJzIMK3IHNhbXBsZSBlZGl0XCIgdGl0bGU9XCJCZXN0IGxvdmVkIGZvcm1zLlwiIC8+PExpbmsgdG89XCIvc2hvcFwiIGNsYXNzTmFtZT1cImV5ZWJyb3cgYm9yZGVyLWIgYm9yZGVyLXRlcnJhY290dGEgcGItMSB0ZXh0LXRlcnJhY290dGFcIj5FeHBsb3JlIHRoZSBzaG9wPC9MaW5rPjwvZGl2PjxkaXYgY2xhc3NOYW1lPVwibXQtOFwiPjxQcm9kdWN0R3JpZCBwcm9kdWN0cz17cGlja3MoWydsaW5uZWEtc29mYScsICdvcmEtbG91bmdlLWNoYWlyJywgJ3RlcnJhLWNvZmZlZS10YWJsZSddKX0gY29sdW1ucz1cImdyaWQtY29scy0xIHNtOmdyaWQtY29scy0yIGxnOmdyaWQtY29scy0zXCIgLz48L2Rpdj48L2Rpdj5cbiAgICAgIDwvc2VjdGlvbj5cblxuICAgICAgPHNlY3Rpb24gY2xhc3NOYW1lPVwic3RvcmUtc2VjdGlvbiBncmlkIGl0ZW1zLWNlbnRlciBnYXAtOSBsZzpncmlkLWNvbHMtWzFmcl8xZnJdXCI+XG4gICAgICAgIDxFZGl0b3JpYWxQaG90byBzcmM9XCIvaW1hZ2VzL2xpZmVzdHlsZS9saXZpbmctcm9vbS9saXZpbmctcm9vbS1saW5uZWEuanBnXCIgYWx0PVwiTGlubmVhIGluc3BpcmVkIGxpbmVuIHNvZmEgaW4gYSB3YXJtIGFyY2hpdGVjdHVyYWwgbGl2aW5nIHJvb21cIiBjYXB0aW9uPVwiTmF0dXJhbCB0ZXh0dXJlcywgbWFkZSB0byBsaXZlIHdpdGhcIiBjbGFzc05hbWU9XCJtaW4taC04MFwiIC8+XG4gICAgICAgIDxkaXY+PHAgY2xhc3NOYW1lPVwiZXllYnJvdyB0ZXh0LXRlcnJhY290dGFcIj5GZWF0dXJlZCBmdXJuaXR1cmUgwrcgTGlubmVhPC9wPjxoMiBjbGFzc05hbWU9XCJlZGl0b3JpYWwtaGVhZGluZyBtdC00IHRleHQtNHhsIHNtOnRleHQtNXhsXCI+QSBmYW1pbGlhciBwbGFjZSB0byBsYW5kLjwvaDI+PHAgY2xhc3NOYW1lPVwibXQtNSBtYXgtdy1sZyB0ZXh0LXNtIGxlYWRpbmctcmVsYXhlZCB0ZXh0LWluay82NVwiPlNvZnQgc3RvbmV3YXNoZWQgbGluZW4sIGEgc29saWQgYmVlY2ggZnJhbWUgYW5kIGEgZ2VuZXJvdXMgdHdvLXNlYXQgc2lsaG91ZXR0ZS4gTGlubmVhIGlzIGRlc2lnbmVkIHRvIG1ha2Ugcm9vbSBmb3IgdGhlIGV2ZXJ5ZGF5LjwvcD48TGluayB0bz1cIi9wcm9kdWN0cy9saW5uZWEtc29mYVwiIGNsYXNzTmFtZT1cImV5ZWJyb3cgbXQtNyBpbmxpbmUtYmxvY2sgYm9yZGVyLWIgYm9yZGVyLXRlcnJhY290dGEgcGItMSB0ZXh0LXRlcnJhY290dGFcIj5NZWV0IExpbm5lYTwvTGluaz48L2Rpdj5cbiAgICAgIDwvc2VjdGlvbj5cblxuICAgICAgPHNlY3Rpb24gY2xhc3NOYW1lPVwiYmctcGFwZXIgcHgtNCBweS0xNCBzbTpweC04IG1kOnB5LTIwXCI+XG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPVwibXgtYXV0byBncmlkIG1heC13LTZ4bCBnYXAtMTAgbWQ6Z3JpZC1jb2xzLVswLjc1ZnJfMS4yNWZyXVwiPlxuICAgICAgICAgIDxkaXY+PHAgY2xhc3NOYW1lPVwiZXllYnJvdyB0ZXh0LXRlcnJhY290dGFcIj5PdXIgcG9pbnQgb2YgdmlldzwvcD48aDIgY2xhc3NOYW1lPVwiZWRpdG9yaWFsLWhlYWRpbmcgbXQtNCB0ZXh0LTR4bCBzbTp0ZXh0LTV4bFwiPkEgYmVhdXRpZnVsIHdheSB0byBsaXZlLjwvaDI+PC9kaXY+XG4gICAgICAgICAgPHAgY2xhc3NOYW1lPVwibWF4LXctMnhsIHNlbGYtZW5kIHRleHQtYmFzZSBsZWFkaW5nLXJlbGF4ZWQgdGV4dC1pbmsvNjVcIj5XZSBiZWxpZXZlIGEgcm9vbSBpcyBtYWRlIGFzIG11Y2ggYnkgd2hhdCB3ZSBsZWF2ZSBvdXQgYXMgYnkgd2hhdCB3ZSBicmluZyBpbi4gSEVBVkVOICZhbXA7IENPLiBleHBsb3JlcyBmdXJuaXR1cmUgYXMgcGFydCBvZiBhcmNoaXRlY3R1cmU6IHB1cnBvc2VmdWwsIHRhY3RpbGUgYW5kIG1hZGUgdG8gZmluZCBpdHMgcGxhY2Ugb3ZlciB0aW1lLjwvcD5cbiAgICAgICAgPC9kaXY+XG4gICAgICA8L3NlY3Rpb24+XG5cbiAgICAgIDxzZWN0aW9uIGNsYXNzTmFtZT1cImJnLXdhbG51dCBweC00IHB5LTE2IHRleHQtcGFwZXIgc206cHgtOCBtZDpweS0yMFwiPlxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cIm14LWF1dG8gZ3JpZCBtYXgtdy02eGwgZ2FwLTkgbWQ6Z3JpZC1jb2xzLTNcIj5cbiAgICAgICAgICA8ZGl2PjxwIGNsYXNzTmFtZT1cImV5ZWJyb3cgdGV4dC1wYXBlci81NVwiPjAxIMK3IE1hdGVyaWFsPC9wPjxoMiBjbGFzc05hbWU9XCJtdC00IGZvbnQtc2VyaWYgdGV4dC0zeGxcIj5Ib25lc3QgYnkgbmF0dXJlLjwvaDI+PHAgY2xhc3NOYW1lPVwibXQtMyB0ZXh0LXNtIGxlYWRpbmctcmVsYXhlZCB0ZXh0LXBhcGVyLzcwXCI+T2FrLCBiZWVjaCwgbGluZW4gYW5kIGNsYXkgYnJpbmcgdGhlaXIgb3duIGdyYWluLCB3YXJtdGggYW5kIGNoYXJhY3RlciB0byBldmVyeSByb29tLjwvcD48L2Rpdj5cbiAgICAgICAgICA8ZGl2PjxwIGNsYXNzTmFtZT1cImV5ZWJyb3cgdGV4dC1wYXBlci81NVwiPjAyIMK3IE1ha2luZzwvcD48aDIgY2xhc3NOYW1lPVwibXQtNCBmb250LXNlcmlmIHRleHQtM3hsXCI+Sm9pbmVkIHdpdGggY2FyZS48L2gyPjxwIGNsYXNzTmFtZT1cIm10LTMgdGV4dC1zbSBsZWFkaW5nLXJlbGF4ZWQgdGV4dC1wYXBlci83MFwiPlRob3VnaHRmdWwgY29uc3RydWN0aW9uIGtlZXBzIHRoZSBmb2N1cyBvbiBjb21mb3J0LCByZXBhaXJhYmlsaXR5IGFuZCB0aGUgbGlmZSBvZiBhIHBpZWNlLjwvcD48L2Rpdj5cbiAgICAgICAgICA8ZGl2PjxwIGNsYXNzTmFtZT1cImV5ZWJyb3cgdGV4dC1wYXBlci81NVwiPjAzIMK3IFRpbWU8L3A+PGgyIGNsYXNzTmFtZT1cIm10LTQgZm9udC1zZXJpZiB0ZXh0LTN4bFwiPk1hZGUgdG8gc3RheS48L2gyPjxwIGNsYXNzTmFtZT1cIm10LTMgdGV4dC1zbSBsZWFkaW5nLXJlbGF4ZWQgdGV4dC1wYXBlci83MFwiPlRpbWVsZXNzIHByb3BvcnRpb25zIGFuZCBjb25zaWRlcmVkIGZpbmlzaGVzIG1ha2Ugcm9vbSBmb3IgY2hhbmdpbmcgc2Vhc29ucyBhbmQgY2hhbmdpbmcgaG9tZXMuPC9wPjwvZGl2PlxuICAgICAgICA8L2Rpdj5cbiAgICAgIDwvc2VjdGlvbj5cblxuICAgICAgPHNlY3Rpb24gY2xhc3NOYW1lPVwic3RvcmUtc2VjdGlvbiBncmlkIGl0ZW1zLWNlbnRlciBnYXAtOCBsZzpncmlkLWNvbHMtWzFmcl8xLjJmcl1cIj5cbiAgICAgICAgPGRpdj48cCBjbGFzc05hbWU9XCJleWVicm93IHRleHQtdGVycmFjb3R0YVwiPkF0IGhvbWUsIHNsb3dseTwvcD48aDIgY2xhc3NOYW1lPVwiZWRpdG9yaWFsLWhlYWRpbmcgbXQtNCB0ZXh0LTR4bCBzbTp0ZXh0LTV4bFwiPkEgcm9vbSBpcyBuZXZlciByZWFsbHkgZmluaXNoZWQuPC9oMj48cCBjbGFzc05hbWU9XCJtdC01IG1heC13LW1kIHRleHQtc20gbGVhZGluZy1yZWxheGVkIHRleHQtaW5rLzY1XCI+SXQgZ2F0aGVycyBtZWFuaW5nIHdpdGggZXZlcnkgb2JqZWN0IGNob3NlbiwgZXZlcnkgYm9vayBsZWZ0IG9wZW4gYW5kIGV2ZXJ5IHBsYWNlIG1hZGUgZm9yIHNvbWVvbmUgdG8gc3RheSBhIGxpdHRsZSBsb25nZXIuPC9wPjxMaW5rIHRvPVwiL2NvbGxlY3Rpb25zL2xpdmluZy1yb29tXCIgY2xhc3NOYW1lPVwiZXllYnJvdyBtdC03IGlubGluZS1ibG9jayBib3JkZXItYiBib3JkZXItdGVycmFjb3R0YSBwYi0xIHRleHQtdGVycmFjb3R0YVwiPkV4cGxvcmUgbGl2aW5nIHJvb208L0xpbms+PC9kaXY+XG4gICAgICAgIDxFZGl0b3JpYWxQaG90byBzcmM9XCIvaW1hZ2VzL2xpZmVzdHlsZS9sb3VuZ2UvbG91bmdlLWJvdWNsZS1jaGFpci5qcGdcIiBhbHQ9XCJJdm9yeSBib3VjbGUgbG91bmdlIGNoYWlyIGluIGEgc29mdGx5IGxpdCByZWFkaW5nIGNvcm5lclwiIGNhcHRpb249XCJSb29tIHRvIGxpdmUsIGF0IHlvdXIgb3duIHBhY2VcIiBjbGFzc05hbWU9XCJtaW4taC04MFwiIC8+XG4gICAgICA8L3NlY3Rpb24+XG5cbiAgICAgIDxzZWN0aW9uIGNsYXNzTmFtZT1cInN0b3JlLXNlY3Rpb24gYm9yZGVyLXQgYm9yZGVyLWluay8xMFwiPlxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImZsZXggZmxleC13cmFwIGl0ZW1zLWVuZCBqdXN0aWZ5LWJldHdlZW4gZ2FwLTRcIj48U3RvcmVIZWFkaW5nIGFzPVwiaDJcIiBleWVicm93PVwiQSBmZXcgbW9yZSBmYXZvdXJpdGVzXCIgdGl0bGU9XCJQaWVjZXMgd2l0aCBwdXJwb3NlLlwiIC8+PExpbmsgdG89XCIvc2hvcFwiIGNsYXNzTmFtZT1cImV5ZWJyb3cgYm9yZGVyLWIgYm9yZGVyLXRlcnJhY290dGEgcGItMSB0ZXh0LXRlcnJhY290dGFcIj5TaG9wIGFsbDwvTGluaz48L2Rpdj5cbiAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJtdC04XCI+PFByb2R1Y3RHcmlkIHByb2R1Y3RzPXtwaWNrcyhbJ3NvcmVuLWRpbmluZy1jaGFpcicsICdhbG1hLWJlZCcsICdub3JkLXNpZGVib2FyZCddKX0gY29sdW1ucz1cImdyaWQtY29scy0xIHNtOmdyaWQtY29scy0yIGxnOmdyaWQtY29scy0zXCIgLz48L2Rpdj5cbiAgICAgIDwvc2VjdGlvbj5cbiAgICAgIDxOZXdzbGV0dGVyIC8+XG4gICAgPC9kaXY+XG4gIClcbn1cbiJdfQ==
