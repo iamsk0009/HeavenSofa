@@ -14,17 +14,17 @@ function Swatch({ option, selected, onClick }) {
   </button>
 }
 
-function PillowDetailControl({ selected, onSelect, compact = false }) {
-  if (compact) return <section className="config-pillow-detail config-pillow-detail--compact" aria-label="Pillow Detail">
-    <span className="config-pillow-detail__compact-label">Pillow detail</span>
-    <div className="config-pillow-choices" role="group" aria-label="Pillow Detail">
-      {['included', 'removed'].map((value) => <button key={value} type="button" aria-pressed={selected === value} onClick={() => onSelect(value)}>{value === 'included' ? 'Included' : 'Removed'}</button>)}
+function CushionDetailsControl({ selected, onSelect, compact = false }) {
+  if (compact) return <section className="config-cushion-details config-cushion-details--compact" aria-label="Cushion Details">
+    <span className="config-cushion-details__compact-label">Cushion Details</span>
+    <div className="config-cushion-choices" role="group" aria-label="Cushion Details">
+      {['enabled', 'disabled'].map((value) => <button key={value} type="button" aria-pressed={selected === value} onClick={() => onSelect(value)}>{value === 'enabled' ? 'Enabled' : 'Disabled'}</button>)}
     </div>
   </section>
-  return <section className="config-pillow-detail" aria-labelledby="pillow-detail-title">
-    <div><p className="eyebrow">Structure option</p><h2 id="pillow-detail-title">Pillow Detail</h2><p>Show or remove the original accent pillow.</p></div>
-    <div className="config-pillow-choices" role="group" aria-label="Pillow Detail">
-      {['included', 'removed'].map((value) => <button key={value} type="button" aria-pressed={selected === value} onClick={() => onSelect(value)}>{value === 'included' ? 'Included' : 'Removed'}</button>)}
+  return <section className="config-cushion-details" aria-labelledby="cushion-details-title">
+    <div><p className="eyebrow">Structure option</p><h2 id="cushion-details-title">Cushion Details</h2><p>Show or hide the original accent cushion.</p></div>
+    <div className="config-cushion-choices" role="group" aria-label="Cushion Details">
+      {['enabled', 'disabled'].map((value) => <button key={value} type="button" aria-pressed={selected === value} onClick={() => onSelect(value)}>{value === 'enabled' ? 'Enabled' : 'Disabled'}</button>)}
     </div>
   </section>
 }
@@ -57,7 +57,7 @@ export default function Configurator() {
     const choice = MATERIAL_OPTIONS[component.kind]?.find((item) => item.color === selections[component.id])
     return `${component.label}: ${choice?.label ?? 'Original'}`
   })
-  if (product.slug === 'linnea-sofa') configText.push(`Pillow detail: ${selections.pillowDetail === 'removed' ? 'Removed' : 'Included'}`)
+  if (product.slug === 'linnea-sofa') configText.push(`Cushion Details: ${selections.cushionDetails === 'disabled' ? 'Disabled' : 'Enabled'}`)
 
   const saveDesign = () => {
     try {
@@ -78,7 +78,7 @@ export default function Configurator() {
       const option = MATERIAL_OPTIONS[component.kind]?.find((item) => item.color === color)
       return color && option ? [[component.label, { label: option.label, color }]] : []
     }))
-    if (product.slug === 'linnea-sofa') savedConfiguration.pillowDetail = selections.pillowDetail === 'removed' ? 'removed' : 'included'
+    if (product.slug === 'linnea-sofa') savedConfiguration.cushionDetails = selections.cushionDetails === 'disabled' ? 'disabled' : 'enabled'
     addToCart(product.slug, 1, ['linnea-sofa', 'alma-bed'].includes(product.slug) ? selectedFabric : null, savedConfiguration)
     setNotice(`${product.name} added to your sample cart.`)
   }
@@ -138,7 +138,7 @@ export default function Configurator() {
                 {(MATERIAL_OPTIONS[component.kind] ?? []).map((option) => <Swatch key={option.id} option={option} selected={selections[component.id] === option.color} onClick={() => updateSelections((current) => ({ ...current, [component.id]: option.color }))} />)}
               </div>
               <p className="config-capability">Changes the model’s <strong>{component.materials.join(', ')}</strong> material group.</p>
-              {product.slug === 'linnea-sofa' && component.id === 'accent' && <PillowDetailControl compact selected={selections.pillowDetail} onSelect={(value) => updateSelections((current) => ({ ...current, pillowDetail: value }))} />}
+              {product.slug === 'linnea-sofa' && component.id === 'accent' && <CushionDetailsControl compact selected={selections.cushionDetails} onSelect={(value) => updateSelections((current) => ({ ...current, cushionDetails: value }))} />}
             </section>)}
             {product.model && product.components.length === 0 && <p className="text-sm text-ink/60">No independently customizable material slots were found for this model.</p>}
           </div>}
@@ -147,8 +147,8 @@ export default function Configurator() {
             <p className="eyebrow">Model components</p>
             {product.model ? <>
               <p className="text-sm leading-relaxed text-ink/65">The viewer exposes only the named mesh groups found in this model. Geometry-changing options are not available in the supplied asset.</p>
-              {product.slug === 'linnea-sofa' && <PillowDetailControl selected={selections.pillowDetail} onSelect={(value) => updateSelections((current) => ({ ...current, pillowDetail: value }))} />}
-              <ul>{product.meshes.map((mesh) => <li key={mesh}><span>{mesh}</span><span>Present</span></li>)}</ul>
+              {product.slug === 'linnea-sofa' && <CushionDetailsControl selected={selections.cushionDetails} onSelect={(value) => updateSelections((current) => ({ ...current, cushionDetails: value }))} />}
+              <ul>{product.meshes.map((mesh) => <li key={mesh}><span>{mesh === 'Pillow' ? 'Cushion' : mesh}</span><span>Present</span></li>)}</ul>
               <p className="config-capability">Separate cushion or structural variants require additional model geometry.</p>
             </> : <div className="config-notice"><p>No matching 3D model is available to inspect or customize.</p></div>}
           </div>}

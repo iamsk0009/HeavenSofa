@@ -1,0 +1,222 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="1600" height="900" viewBox="0 0 1600 900" role="img"
+     id="sofa-upholstery" data-production="cushion" aria-labelledby="scene04-linnea-title scene04-linnea-desc">
+  <title id="scene04-linnea-title">Linnea two-seat sofa — front view</title>
+  <desc id="scene04-linnea-desc">Layered editable vector illustration of a beige two-seat sofa with two back cushions, two seat cushions, symmetrical arms and four oak legs.</desc>
+
+  <defs>
+    <linearGradient id="scene04-fabricMain" x1="0" y1="0" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#E2D3BD"/>
+      <stop offset="0.52" stop-color="#CEB99E"/>
+      <stop offset="1" stop-color="#BBA486"/>
+    </linearGradient>
+    <linearGradient id="scene04-fabricLight" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E9DDC9"/>
+      <stop offset="1" stop-color="#D0BDA4"/>
+    </linearGradient>
+    <linearGradient id="scene04-fabricSide" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#B9A58D"/>
+      <stop offset="0.5" stop-color="#D2BEA5"/>
+      <stop offset="1" stop-color="#B19A80"/>
+    </linearGradient>
+    <linearGradient id="scene04-oak" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#9A704B"/>
+      <stop offset="0.45" stop-color="#C49A6D"/>
+      <stop offset="1" stop-color="#805B3D"/>
+    </linearGradient>
+    <linearGradient id="scene04-oakFront" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#C9A477"/>
+      <stop offset="1" stop-color="#936B46"/>
+    </linearGradient>
+    <filter id="scene04-softShadow" x="-20%" y="-30%" width="140%" height="170%">
+      <feGaussianBlur stdDeviation="12"/>
+    </filter>
+    <filter id="scene04-cushionShadow" x="-15%" y="-20%" width="130%" height="150%">
+      <feGaussianBlur stdDeviation="5"/>
+    </filter>
+    <pattern id="scene04-weave" width="12" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 2H12 M0 8H12" stroke="#FFFFFF" stroke-opacity=".12" stroke-width=".65"/>
+      <path d="M3 0V12 M9 0V12" stroke="#8F7D6C" stroke-opacity=".055" stroke-width=".55"/>
+    </pattern>
+    <clipPath id="sofa-backrest-wipe" clipPathUnits="userSpaceOnUse"><rect id="sofa-backrest-wipe-rect" x="330" y="180" width="0" height="270" transform="translate(330 0) scale(1.317 1) translate(-330 0)"/></clipPath>
+    <clipPath id="sofa-base-wipe" clipPathUnits="userSpaceOnUse"><rect id="sofa-base-wipe-rect" x="250" y="320" width="0" height="320" transform="translate(250 0) scale(1.628 1) translate(-250 0)"/></clipPath>
+    <clipPath id="sofa-arm-left-wipe" clipPathUnits="userSpaceOnUse"><rect id="sofa-arm-left-wipe-rect" x="220" y="330" width="0" height="280" transform="translate(220 0) scale(1.3 1) translate(-220 0)"/></clipPath>
+    <clipPath id="sofa-arm-right-wipe" clipPathUnits="userSpaceOnUse"><rect id="sofa-arm-right-wipe-rect" x="850" y="330" width="0" height="280" transform="translate(850 0) scale(0.985 1) translate(-850 0)"/></clipPath>
+    <clipPath id="sofa-seat-left-wipe" clipPathUnits="userSpaceOnUse"><rect id="sofa-seat-left-wipe-rect" x="339" y="410" width="0" height="170" transform="translate(339 0) scale(1.374 1) translate(-339 0)"/></clipPath>
+    <clipPath id="sofa-seat-right-wipe" clipPathUnits="userSpaceOnUse"><rect id="sofa-seat-right-wipe-rect" x="593" y="410" width="0" height="170" transform="translate(593 0) scale(1.449 1) translate(-593 0)"/></clipPath>
+    <clipPath id="sofa-back-left-wipe" clipPathUnits="userSpaceOnUse"><rect id="sofa-back-left-wipe-rect" x="357" y="205" width="0" height="245" transform="translate(357 0) scale(1.317 1) translate(-357 0)"/></clipPath>
+    <clipPath id="sofa-back-right-wipe" clipPathUnits="userSpaceOnUse"><rect id="sofa-back-right-wipe-rect" x="606" y="205" width="0" height="245" transform="translate(606 0) scale(1.354 1) translate(-606 0)"/></clipPath>
+  </defs>
+
+  <g id="scene04-linnea-art" transform="translate(524 203.24) scale(0.56)">
+  <!-- Ground shadow -->
+  <g id="sofa-ground-shadow" data-production="shadow" opacity=".22">
+    <ellipse cx="600" cy="690" rx="390" ry="22" fill="#65594D" filter="url(#scene04-softShadow)"/>
+  </g>
+
+  <!-- Structural timber frame, kept as a separate editable group -->
+  <g id="sofa-authored-frame">
+    <g id="sofa-frame-rails">
+      <path d="M260 570 Q600 550 940 570 L930 625 Q600 610 270 625Z" fill="url(#scene04-oak)" opacity=".96"/>
+      <path d="M282 578 Q600 563 918 578" fill="none" stroke="#E0BD91" stroke-width="3" opacity=".65"/>
+      <path d="M285 614 Q600 602 915 614" fill="none" stroke="#65472F" stroke-width="3" opacity=".35"/>
+    </g>
+    <g id="sofa-authored-cross-support">
+      <path d="M355 584H845V601H355Z" fill="#936B46"/>
+      <path d="M355 585H845" stroke="#D2AE80" stroke-width="2" opacity=".65"/>
+    </g>
+  </g>
+
+  <!-- Four oak legs -->
+  <g id="sofa-legs" data-sofa-component="legs">
+    <g id="sofa-leg-front-left">
+      <path d="M300 606 L350 606 L343 704 Q326 713 309 704Z" fill="url(#scene04-oakFront)"/>
+      <path d="M311 615L316 698" stroke="#E2C096" stroke-width="3" opacity=".48"/>
+      <path d="M341 615L335 700" stroke="#684A31" stroke-width="2" opacity=".3"/>
+      <path d="M309 704Q326 711 343 704" fill="none" stroke="#684A31" stroke-width="2"/>
+    </g>
+    <g id="sofa-leg-front-right">
+      <path d="M850 606 L900 606 L891 704 Q875 713 858 704Z" fill="url(#scene04-oakFront)"/>
+      <path d="M861 615L866 698" stroke="#E2C096" stroke-width="3" opacity=".48"/>
+      <path d="M891 615L884 700" stroke="#684A31" stroke-width="2" opacity=".3"/>
+      <path d="M858 704Q875 711 891 704" fill="none" stroke="#684A31" stroke-width="2"/>
+    </g>
+    <g id="sofa-leg-rear-left" opacity=".9">
+      <path d="M382 598L416 598L411 708.5L390 708.5Z" fill="#98704B"/>
+    </g>
+    <g id="sofa-leg-rear-right" opacity=".9">
+      <path d="M784 598L818 598L810 708.5L789 708.5Z" fill="#98704B"/>
+    </g>
+  </g>
+
+  <!-- Upholstered outer body -->
+  <g id="sofa-upholstered-body" data-sofa-component="base" clip-path="url(#sofa-base-wipe)">
+    <path d="M250 390 Q250 350 292 340 L908 340 Q950 350 950 390 L950 574 Q950 602 922 610 L278 610 Q250 602 250 574Z"
+          fill="url(#scene04-fabricMain)" stroke="#B6A694" stroke-width="3"/>
+    <path d="M270 398 Q270 370 300 363 L900 363 Q930 370 930 398 L930 566 Q930 584 910 590 L290 590 Q270 584 270 566Z"
+          fill="#D7CABB" opacity=".42"/>
+    <path d="M264 575Q600 594 936 575" fill="none" stroke="#A99784" stroke-width="3" opacity=".55"/>
+    <path d="M274 390Q600 375 926 390" fill="none" stroke="#F5EEE5" stroke-width="4" opacity=".7"/>
+    <path d="M260 420V566 M940 420V566" stroke="#B19F8D" stroke-width="2" opacity=".35"/>
+  </g>
+
+  <!-- Foam remains visible only during the upholstery reveal. -->
+  <g id="sofa-foam-arms" data-sofa-component="foam-arms" opacity="0">
+    <path d="M220 405Q220 360 258 344Q285 332 321 346L350 390V566H220Z" fill="#D9D2C8"/>
+    <path d="M850 390L879 346Q915 332 942 344Q980 360 980 405V566H850Z" fill="#D9D2C8"/>
+  </g>
+
+  <!-- Left arm -->
+  <g id="sofa-arm-left" data-sofa-component="arm-left" clip-path="url(#sofa-arm-left-wipe)">
+    <path d="M220 405 Q220 360 258 344 Q285 332 321 346 Q348 357 350 390 L350 566 Q350 591 326 598 L250 598 Q220 592 220 563Z"
+          fill="url(#scene04-fabricSide)" stroke="#B5A491" stroke-width="3"/>
+    <path d="M235 405Q236 370 266 360Q294 350 322 364Q336 373 337 399"
+          fill="none" stroke="#F3EADF" stroke-width="4" opacity=".8"/>
+    <path d="M237 424L237 557Q237 578 258 582" fill="none" stroke="#A99784" stroke-width="2" opacity=".45"/>
+    <path d="M250 380Q285 366 319 382" fill="none" stroke="#FFFFFF" stroke-opacity=".22" stroke-width="14"/>
+    <path d="M227 570Q284 584 343 570" fill="none" stroke="#A99784" stroke-width="2" opacity=".6"/>
+    <path d="M231 411Q230 399 235 390" fill="none" stroke="#F8F2EA" stroke-width="2" opacity=".65"/>
+  </g>
+
+  <!-- Right arm -->
+  <g id="sofa-arm-right" data-sofa-component="arm-right" clip-path="url(#sofa-arm-right-wipe)">
+    <path d="M850 390 Q852 357 879 346 Q915 332 942 344 Q980 360 980 405 L980 563 Q980 592 950 598 L874 598 Q850 591 850 566Z"
+          fill="url(#scene04-fabricSide)" stroke="#B5A491" stroke-width="3"/>
+    <path d="M863 399Q864 373 878 364Q906 350 934 360Q964 370 965 405"
+          fill="none" stroke="#F3EADF" stroke-width="4" opacity=".8"/>
+    <path d="M963 424L963 557Q963 578 942 582" fill="none" stroke="#A99784" stroke-width="2" opacity=".45"/>
+    <path d="M881 380Q915 366 950 382" fill="none" stroke="#FFFFFF" stroke-opacity=".22" stroke-width="14"/>
+    <path d="M857 570Q916 584 973 570" fill="none" stroke="#A99784" stroke-width="2" opacity=".6"/>
+  </g>
+
+  <!-- Backrest foam and upholstered back -->
+  <g id="sofa-foam-back" data-sofa-component="foam-back">
+    <path d="M330 250 Q330 218 365 210 Q600 180 835 210 Q870 218 870 250 L870 414 Q870 437 847 442 L353 442 Q330 437 330 414Z" fill="#D9D2C8"/>
+  </g>
+
+  <g id="sofa-backrest" data-sofa-component="backrest" clip-path="url(#sofa-backrest-wipe)">
+    <path d="M330 250 Q330 218 365 210 Q600 180 835 210 Q870 218 870 250 L870 414 Q870 437 847 442 L353 442 Q330 437 330 414Z"
+          fill="url(#scene04-fabricMain)" stroke="#B5A491" stroke-width="3"/>
+    <path d="M345 251Q345 230 372 224Q600 197 828 224Q855 230 855 251"
+          fill="none" stroke="#F7F0E7" stroke-width="5" opacity=".8"/>
+  </g>
+
+  <!-- Two separate back cushions -->
+  <g id="sofa-back-cushions">
+    <g id="sofa-back-left" data-sofa-component="back-cushion-left" clip-path="url(#sofa-back-left-wipe)">
+      <path d="M357 245 Q357 225 380 221 Q483 208 574 222 Q594 226 594 249 L594 407 Q594 426 574 429 Q470 438 378 427 Q357 424 357 404Z"
+            fill="url(#scene04-fabricLight)" stroke="#B9A997" stroke-width="2.5"/>
+      <path d="M373 250Q373 235 389 233Q478 222 562 234Q578 237 578 252" fill="none" stroke="#FFF9F1" stroke-width="4" opacity=".8"/>
+      <path d="M373 399Q470 414 578 400" fill="none" stroke="#B2A18F" stroke-width="2" opacity=".5"/>
+      <path d="M378 246L378 400" stroke="#C2B2A1" stroke-width="1.5" opacity=".4"/>
+      <path d="M570 248L570 400" stroke="#C2B2A1" stroke-width="1.5" opacity=".4"/>
+      <path d="M357 245Q476 224 594 249L594 407Q594 426 574 429Q470 438 378 427Q357 424 357 404Z" fill="url(#scene04-weave)" opacity=".48"/>
+      <path d="M369 420Q475 435 583 419" fill="none" stroke="#9F8E7D" stroke-width="2" stroke-dasharray="2 5" opacity=".55"/>
+    </g>
+    <g id="sofa-back-right" data-sofa-component="back-cushion-right" clip-path="url(#sofa-back-right-wipe)">
+      <path d="M606 249 Q606 226 626 222 Q717 208 820 221 Q843 225 843 245 L843 404 Q843 424 822 427 Q730 438 626 429 Q606 426 606 407Z"
+            fill="url(#scene04-fabricLight)" stroke="#B9A997" stroke-width="2.5"/>
+      <path d="M622 252Q622 237 638 234Q722 222 811 233Q827 235 827 250" fill="none" stroke="#FFF9F1" stroke-width="4" opacity=".8"/>
+      <path d="M622 400Q730 414 827 399" fill="none" stroke="#B2A18F" stroke-width="2" opacity=".5"/>
+      <path d="M630 248L630 400" stroke="#C2B2A1" stroke-width="1.5" opacity=".4"/>
+      <path d="M824 246L824 400" stroke="#C2B2A1" stroke-width="1.5" opacity=".4"/>
+      <path d="M606 249Q724 224 843 245L843 404Q843 424 822 427Q730 438 626 429Q606 426 606 407Z" fill="url(#scene04-weave)" opacity=".48"/>
+      <path d="M617 419Q725 435 831 420" fill="none" stroke="#9F8E7D" stroke-width="2" stroke-dasharray="2 5" opacity=".55"/>
+    </g>
+  </g>
+
+  <!-- Seat base -->
+  <g id="sofa-base" data-sofa-component="base" clip-path="url(#sofa-base-wipe)">
+    <path d="M335 430 Q600 416 865 430 L858 555 Q600 574 342 555Z"
+          fill="url(#scene04-fabricMain)" stroke="#B4A391" stroke-width="2.5"/>
+    <path d="M350 541Q600 559 850 541" fill="none" stroke="#A99784" stroke-width="2" opacity=".55"/>
+  </g>
+
+  <g id="sofa-foam-seat" data-sofa-component="foam-seat">
+    <path d="M352 427 Q470 413 592 427 Q607 430 607 448 L607 526 Q607 545 590 550 Q470 563 354 548 Q339 545 339 527 L339 450 Q339 432 352 427Z" fill="#D9D2C8"/>
+    <path d="M613 427 Q733 413 848 427 Q861 432 861 450 L861 527 Q861 545 846 548 Q730 563 610 550 Q593 545 593 526 L593 448 Q593 430 613 427Z" fill="#D9D2C8"/>
+  </g>
+
+  <!-- Exactly two seat cushions -->
+  <g id="sofa-seat-cushions">
+    <g id="sofa-seat-left" data-sofa-component="seat-cushion-left" clip-path="url(#sofa-seat-left-wipe)">
+      <path d="M352 427 Q470 413 592 427 Q607 430 607 448 L607 526 Q607 545 590 550 Q470 563 354 548 Q339 545 339 527 L339 450 Q339 432 352 427Z"
+            fill="url(#scene04-fabricLight)" stroke="#B7A694" stroke-width="2.5"/>
+      <path d="M353 440Q470 427 590 440" fill="none" stroke="#FFF9F1" stroke-width="4" opacity=".8"/>
+      <path d="M352 533Q470 547 592 533" fill="none" stroke="#A99784" stroke-width="2" opacity=".5"/>
+      <path d="M344 450Q340 494 344 526" fill="none" stroke="#BBAA98" stroke-width="2" opacity=".45"/>
+      <path d="M602 450Q606 494 601 526" fill="none" stroke="#BBAA98" stroke-width="2" opacity=".45"/>
+      <path d="M339 450Q470 414 607 448L607 526Q607 545 590 550Q470 563 354 548Q339 545 339 527Z" fill="url(#scene04-weave)" opacity=".45"/>
+      <path d="M355 551Q470 564 590 552" fill="none" stroke="#9E8D7C" stroke-width="2" stroke-dasharray="2 5" opacity=".6"/>
+    </g>
+    <g id="sofa-seat-right" data-sofa-component="seat-cushion-right" clip-path="url(#sofa-seat-right-wipe)">
+      <path d="M613 427 Q733 413 848 427 Q861 432 861 450 L861 527 Q861 545 846 548 Q730 563 610 550 Q593 545 593 526 L593 448 Q593 430 613 427Z"
+            fill="url(#scene04-fabricLight)" stroke="#B7A694" stroke-width="2.5"/>
+      <path d="M612 440Q730 427 847 440" fill="none" stroke="#FFF9F1" stroke-width="4" opacity=".8"/>
+      <path d="M610 533Q730 547 847 533" fill="none" stroke="#A99784" stroke-width="2" opacity=".5"/>
+      <path d="M599 450Q595 494 599 526" fill="none" stroke="#BBAA98" stroke-width="2" opacity=".45"/>
+      <path d="M856 450Q860 494 856 526" fill="none" stroke="#BBAA98" stroke-width="2" opacity=".45"/>
+      <path d="M593 448Q730 414 861 450L861 527Q861 545 846 548Q730 563 610 550Q593 545 593 526Z" fill="url(#scene04-weave)" opacity=".45"/>
+      <path d="M610 552Q730 564 846 551" fill="none" stroke="#9E8D7C" stroke-width="2" stroke-dasharray="2 5" opacity=".6"/>
+    </g>
+  </g>
+
+  <!-- Fine piping and tailored seams -->
+  <g id="sofa-tailoring" fill="none" stroke="#A89582" stroke-width="1.8" opacity=".65">
+    <path d="M252 401Q285 385 326 399" clip-path="url(#sofa-arm-left-wipe)"/>
+    <path d="M874 399Q915 385 948 401" clip-path="url(#sofa-arm-right-wipe)"/>
+    <path d="M360 245Q475 222 590 245" clip-path="url(#sofa-back-left-wipe)"/>
+    <path d="M610 245Q725 222 840 245" clip-path="url(#sofa-back-right-wipe)"/>
+    <path d="M346 448Q470 419 600 448" clip-path="url(#sofa-seat-left-wipe)"/>
+    <path d="M600 448Q730 419 854 448" clip-path="url(#sofa-seat-right-wipe)"/>
+  </g>
+
+  <!-- Soft fabric highlights -->
+  <g id="sofa-fabric-highlights" fill="none" stroke="#FFFFFF" stroke-linecap="round" opacity=".22">
+    <path d="M286 375Q300 365 317 372" stroke-width="9" clip-path="url(#sofa-arm-left-wipe)"/>
+    <path d="M883 372Q900 365 916 375" stroke-width="9" clip-path="url(#sofa-arm-right-wipe)"/>
+    <path d="M400 265Q470 252 530 262" stroke-width="5" clip-path="url(#sofa-back-left-wipe)"/>
+    <path d="M668 262Q740 252 800 265" stroke-width="5" clip-path="url(#sofa-back-right-wipe)"/>
+  </g>
+  </g>
+</svg>

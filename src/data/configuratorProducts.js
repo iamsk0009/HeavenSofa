@@ -65,7 +65,7 @@ export function createInitialConfiguratorSelections(product) {
     const selected = options.find((option) => option.color === component.defaultColor) ?? options[0]
     return [component.id, selected?.color ?? component.defaultColor]
   }))
-  if (product.slug === 'linnea-sofa') selections.pillowDetail = 'included'
+  if (product.slug === 'linnea-sofa') selections.cushionDetails = 'enabled'
   return selections
 }
 
@@ -75,7 +75,7 @@ export function selectionsForProduct(state, product) {
 
 export function createResetConfiguratorSelections(product) {
   const selections = Object.fromEntries(product.components.map((component) => [component.id, null]))
-  if (product.slug === 'linnea-sofa') selections.pillowDetail = 'included'
+  if (product.slug === 'linnea-sofa') selections.cushionDetails = 'enabled'
   return selections
 }
 

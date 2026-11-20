@@ -3,11 +3,26 @@ import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls, useGLTF } from '@react-three/drei'
 import * as THREE from 'three'
 import { applyConfiguratorConfiguration, cloneConfiguratorMaterials, disposeConfiguratorMaterials } from '../experience/models/configuratorMaterialManager'
+import { makeConfiguratorLinen } from '../experience/models/materials'
 
 function LoadedFurniture({ product, selections }) {
   const { scene } = useGLTF(product.model)
   const furniture = useMemo(() => {
     const object = cloneConfiguratorMaterials(scene)
+    if (product.slug === 'linnea-sofa') {
+      object.traverse((node) => {
+        if (!node.isMesh) return
+        const replaceFabric = (material) => {
+          if (!['Fabric', 'Accent'].includes(material.name)) return material
+          const linen = makeConfiguratorLinen(material.color)
+          linen.name = material.name
+          linen.userData = { ...material.userData }
+          material.dispose()
+          return linen
+        }
+        node.material = Array.isArray(node.material) ? node.material.map(replaceFabric) : replaceFabric(node.material)
+      })
+    }
     object.updateMatrixWorld(true)
     const bounds = new THREE.Box3().setFromObject(object)
     const center = bounds.getCenter(new THREE.Vector3())
@@ -16,7 +31,7 @@ function LoadedFurniture({ product, selections }) {
     object.scale.setScalar(scale)
     object.position.set(-center.x * scale, -bounds.min.y * scale, -center.z * scale)
     return object
-  }, [scene])
+  }, [scene, product.slug])
 
   useEffect(() => () => {
     disposeConfiguratorMaterials(furniture)
@@ -75,7 +90,7 @@ export default function ConfiguratorViewer({ product, selections, command }) {
       <color attach="background" args={['#DED8CC']} />
       <hemisphereLight skyColor="#fffdf8" groundColor="#9a8d79" intensity={1.45} />
       <ambientLight intensity={0.35} />
-      <directionalLight castShadow position={[4, 6, 4]} intensity={3.2} shadow-mapSize-width={2048} shadow-mapSize-height={2048} shadow-camera-near={0.1} shadow-camera-far={18} shadow-camera-left={-4} shadow-camera-right={4} shadow-camera-top={4} shadow-camera-bottom={-4} />
+      <directionalLight castShadow position={[4, 6, 4]} intensity={3.2} shadow-mapSize-width={2048} shadow-mapSize-height={2048} shadow-camera-near={0.1} shadow-camera-far={18} shadow-camera-left={-4} shadow-camera-right={4} shadow-camera-top={4} shadow-camera-bottom={-4} shadow-normalBias={0.015} />
       <directionalLight position={[-4, 3, -2]} intensity={1.15} color="#f0dfc5" />
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.012, 0]} receiveShadow>
         <planeGeometry args={[200, 200]} /><shadowMaterial transparent opacity={0.18} />

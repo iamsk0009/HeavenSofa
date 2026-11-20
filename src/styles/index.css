@@ -100,17 +100,17 @@
 .config-notice p { margin: 0; color: rgb(41 41 37 / 69%); font-size: 0.76rem; line-height: 1.5; }
 .config-notice p + p { margin-top: 0.4rem; }
 .config-info-list { display: grid; gap: 0.9rem; align-content: start; }
-.config-pillow-detail { display: grid; gap: 0.75rem; border-block: 1px solid rgb(41 41 37 / 14%); padding: 1rem 0; }
-.config-pillow-detail h2 { margin: 0.25rem 0 0; font: 1.2rem Georgia, serif; }
-.config-pillow-detail p:last-child { margin: 0.35rem 0 0; color: rgb(41 41 37 / 57%); font-size: 0.72rem; }
-.config-pillow-choices { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem; }
-.config-pillow-choices button { border: 1px solid rgb(41 41 37 / 20%); padding: 0.68rem 0.8rem; color: rgb(41 41 37 / 72%); background: transparent; font-size: 0.7rem; text-align: center; transition: border-color 160ms ease, color 160ms ease, background-color 160ms ease; cursor: pointer; }
-.config-pillow-choices button[aria-pressed="true"] { border-color: var(--config-olive); color: var(--config-paper); background: var(--config-olive); }
-.config-pillow-choices button:hover:not([aria-pressed="true"]) { border-color: rgb(41 41 37 / 55%); }
-.config-pillow-detail--compact { display: flex; align-items: center; justify-content: space-between; gap: 0.7rem; border: 0; padding: 0.65rem 0 0; }
-.config-pillow-detail__compact-label { color: rgb(41 41 37 / 59%); font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; }
-.config-pillow-detail--compact .config-pillow-choices { display: flex; gap: 0.3rem; }
-.config-pillow-detail--compact .config-pillow-choices button { min-width: 4.5rem; padding: 0.38rem 0.55rem; font-size: 0.58rem; }
+.config-cushion-details { display: grid; gap: 0.75rem; border-block: 1px solid rgb(41 41 37 / 14%); padding: 1rem 0; }
+.config-cushion-details h2 { margin: 0.25rem 0 0; font: 1.2rem Georgia, serif; }
+.config-cushion-details p:last-child { margin: 0.35rem 0 0; color: rgb(41 41 37 / 57%); font-size: 0.72rem; }
+.config-cushion-choices { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem; }
+.config-cushion-choices button { border: 1px solid rgb(41 41 37 / 20%); padding: 0.68rem 0.8rem; color: rgb(41 41 37 / 72%); background: transparent; font-size: 0.7rem; text-align: center; transition: border-color 160ms ease, color 160ms ease, background-color 160ms ease; cursor: pointer; }
+.config-cushion-choices button[aria-pressed="true"] { border-color: var(--config-olive); color: var(--config-paper); background: var(--config-olive); }
+.config-cushion-choices button:hover:not([aria-pressed="true"]) { border-color: rgb(41 41 37 / 55%); }
+.config-cushion-details--compact { display: flex; align-items: center; justify-content: space-between; gap: 0.7rem; border: 0; padding: 0.65rem 0 0; }
+.config-cushion-details__compact-label { color: rgb(41 41 37 / 59%); font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.config-cushion-details--compact .config-cushion-choices { display: flex; gap: 0.3rem; }
+.config-cushion-details--compact .config-cushion-choices button { min-width: 4.5rem; padding: 0.38rem 0.55rem; font-size: 0.58rem; }
 .config-info-list > p { margin: 0; }
 .config-info-list > p:not(.eyebrow) { color: rgb(41 41 37 / 65%); font-size: 0.78rem; line-height: 1.55; }
 .config-info-list ul { display: grid; gap: 0.1rem; margin: 0; padding: 0; list-style: none; }

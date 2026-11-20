@@ -20,13 +20,6 @@ const FRAMES = {
   portrait: '430 -560 820 1460',
 }
 
-// One shared yaw keeps the frame, cut pieces and upholstery in the same view.
-const SOFA_VIEW = {
-  transform: 'perspective(1800px) rotateY(-12deg)',
-  transformOrigin: '860px 455px',
-  transformBox: 'view-box',
-}
-
 export default function ProductionScene() {
   const viewBox = useResponsiveViewBox(FRAMES)
   return (
@@ -48,12 +41,12 @@ export default function ProductionScene() {
 
       <Workbench />
       <FurnitureAssembly />
-      <g id="production-sofa-view" style={SOFA_VIEW}>
+      <g id="production-sofa-view">
         <WoodenFrame />
       </g>
       <WoodCutting />
       <WoodShaping />
-      <g id="production-finished-sofa-view" style={SOFA_VIEW}>
+      <g id="production-finished-sofa-view">
         <FinishingScene compact={viewBox === FRAMES.portrait} />
       </g>
     </svg>

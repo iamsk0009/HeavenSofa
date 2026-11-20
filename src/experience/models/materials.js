@@ -222,6 +222,33 @@ export function makeLinen(color = PALETTE.linen, repeat = 14) {
   })
 }
 
+/** Subtle non-periodic linen grain for the configurable sofa surfaces. */
+function configuratorLinenMaps() {
+  return cached('configurator-linen', () => {
+    const size = 256
+    const height = fbm(size, [[12, 0.34], [36, 0.24], [96, 0.16], [192, 0.08]], 47)
+    return {
+      normal: toTexture(size, normalFromHeight(height, size, 0.9)),
+      roughness: toTexture(size, roughnessFromHeight(height, size, 0.94, 0.06)),
+    }
+  })
+}
+
+/** Linen material for the configurator: fine grain without the high-contrast weave bands. */
+export function makeConfiguratorLinen(color = PALETTE.linen, repeat = 8) {
+  const maps = configuratorLinenMaps()
+  return new THREE.MeshPhysicalMaterial({
+    color,
+    roughness: 0.96,
+    roughnessMap: withRepeat(maps.roughness, [repeat]),
+    normalMap: withRepeat(maps.normal, [repeat]),
+    normalScale: new THREE.Vector2(0.12, 0.12),
+    sheen: 0.32,
+    sheenRoughness: 0.92,
+    sheenColor: new THREE.Color('#FFF4E6'),
+  })
+}
+
 export function makePaint(color = PALETTE.terracotta, repeat = 2) {
   return new THREE.MeshPhysicalMaterial({
     color,

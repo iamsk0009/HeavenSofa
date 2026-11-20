@@ -6,10 +6,13 @@ const MAX_QUANTITY = 99
 
 const normalizeConfiguration = (configuration) => {
   if (!configuration || typeof configuration !== 'object' || Array.isArray(configuration)) return null
-  const entries = Object.entries(configuration).filter(([key, value]) => typeof key === 'string' && (
-    key === 'pillowDetail' && (value === 'included' || value === 'removed')
-    || value && typeof value === 'object' && typeof value.label === 'string' && (value.color === undefined || typeof value.color === 'string')
-  ))
+  const entries = Object.entries(configuration).flatMap(([key, value]) => {
+    if (typeof key !== 'string') return []
+    if (key === 'cushionDetails' && (value === 'enabled' || value === 'disabled')) return [[key, value]]
+    // Migrate saved cart configurations from the former UI terminology.
+    if (key === 'pillowDetail' && (value === 'included' || value === 'removed')) return [['cushionDetails', value === 'included' ? 'enabled' : 'disabled']]
+    return value && typeof value === 'object' && typeof value.label === 'string' && (value.color === undefined || typeof value.color === 'string') ? [[key, value]] : []
+  })
   return entries.length ? Object.fromEntries(entries.sort(([left], [right]) => left.localeCompare(right))) : null
 }
 
