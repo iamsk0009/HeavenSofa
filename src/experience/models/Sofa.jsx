@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import { ContactShadows, useGLTF } from '@react-three/drei'
 import { makeLinen, makeWood, PALETTE } from './materials'
 
-export const SOFA_URL = '/models/sofa.glb'
+export const SOFA_URL = '/models-optimized/sofa.glb'
 
 /**
  * Beige two-seater built in Blender (tools/blender/build_sofa.py).

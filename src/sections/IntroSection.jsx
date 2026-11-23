@@ -1,7 +1,8 @@
-import { useRef } from 'react'
+import { useLayoutEffect, useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import SplitWords from '../components/SplitWords'
+import { markHomepageReady, useHomepageReadiness } from '../experience/homepageReadiness'
 
 /**
  * HTML layer for Scene 01. Scroll-driven tweens target the data-intro
@@ -10,13 +11,21 @@ import SplitWords from '../components/SplitWords'
  */
 export default function IntroSection() {
   const root = useRef()
+  const entranceStarted = useRef(false)
+  const { entered: canEnter } = useHomepageReadiness()
+
+  useLayoutEffect(() => {
+    markHomepageReady('pageReady')
+  }, [])
 
   useGSAP(
     () => {
+      if (!canEnter || entranceStarted.current) return
+      entranceStarted.current = true
       gsap.from('[data-load-word]', { yPercent: 110, duration: 1.4, stagger: 0.07, ease: 'expo.out', delay: 0.35 })
       gsap.from('[data-load-fade]', { autoAlpha: 0, y: 16, duration: 1.2, stagger: 0.1, ease: 'power2.out', delay: 0.9 })
     },
-    { scope: root },
+    { scope: root, dependencies: [canEnter], revertOnUpdate: true },
   )
 
   return (

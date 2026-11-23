@@ -3,14 +3,14 @@ import { ContactShadows, useGLTF } from '@react-three/drei'
 import { makeWood, PALETTE } from './materials'
 import { FURNITURE_COLORS, makeBoucle } from '../materials/furnitureMaterials'
 
-export const ACCENT_CHAIR_URL = '/models/accent_chair.glb'
+export const ACCENT_CHAIR_URL = '/models-optimized/accent_chair.glb'
 
 /**
- * Sculptural bouclé tub chair built in Blender (tools/blender/build_chair.py).
+ * Sculptural bouclÃ© tub chair built in Blender (tools/blender/build_chair.py).
  * Separate meshes: Backrest (curved shell), Seat (domed cushion), SeatBase,
  * Plinth. GLB placeholder materials (Fabric / Wood) are swapped by name.
  *
- * Origin: floor level, centred, front facing +z. Ø 0.84 m × 0.77 m H.
+ * Origin: floor level, centred, front facing +z. Ã˜ 0.84 m Ã— 0.77 m H.
  */
 export default function AccentChair({ ref, fabric = FURNITURE_COLORS.boucleOrange, wood = PALETTE.oak, ...props }) {
   const { scene } = useGLTF(ACCENT_CHAIR_URL)
@@ -34,5 +34,3 @@ export default function AccentChair({ ref, fabric = FURNITURE_COLORS.boucleOrang
     </group>
   )
 }
-
-useGLTF.preload(ACCENT_CHAIR_URL)

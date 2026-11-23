@@ -1,5 +1,5 @@
-import { lazy, Suspense } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { lazy, Suspense, useLayoutEffect } from 'react'
+import { Route, Routes, useLocation } from 'react-router-dom'
 
 const Home = lazy(() => import('./pages/Home'))
 const Shop = lazy(() => import('./pages/Shop'))
@@ -15,6 +15,10 @@ const Configurator = lazy(() => import('./pages/Configurator'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 
 function RouteFallback() {
+  const { pathname } = useLocation()
+  useLayoutEffect(() => {
+    if (pathname !== '/') document.getElementById('heaven-boot-shell')?.remove()
+  }, [pathname])
   return <div className="grid min-h-svh place-items-center bg-paper"><p className="eyebrow text-ink/55">A moment, please</p></div>
 }
 

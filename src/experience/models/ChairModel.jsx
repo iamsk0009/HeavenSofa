@@ -1,9 +1,8 @@
-import { useMemo } from 'react'
+import { Suspense, useMemo } from 'react'
 import * as THREE from 'three'
 import { useGLTF } from '@react-three/drei'
 import { makeLinen, makeWood, PALETTE } from './materials'
 import { makeBlackMetal, makeBoucle, makeLeather, makeWoolFelt } from '../materials/furnitureMaterials'
-import { CHAIRS } from '../../data/chairCollection'
 
 /** Site PBR material factories, keyed as in data/chairCollection.js `mats`. */
 const FACTORIES = {
@@ -33,14 +32,7 @@ function blob() {
   return blobTexture
 }
 
-/**
- * One chair of the collection: the GLB with site materials applied, plus a
- * soft grounding shadow. Unlike ContactShadows (baked once on the first
- * frame), the blob is a plain textured plane, so it can scale and fade with
- * the chair's entrance. Refs: `ref` → chair group (animated), `shadowRef` →
- * blob mesh (animated opacity).
- */
-export default function ChairModel({ ref, shadowRef, url, mats, ...props }) {
+function ChairMesh({ url, mats }) {
   const { scene } = useGLTF(url)
 
   const model = useMemo(() => {
@@ -55,6 +47,20 @@ export default function ChairModel({ ref, shadowRef, url, mats, ...props }) {
     return clone
   }, [scene, mats])
 
+  return <primitive object={model} />
+}
+
+/**
+ * One chair of the collection: the GLB with site materials applied, plus a
+ * soft grounding shadow. Unlike ContactShadows (baked once on the first
+ * frame), the blob is a plain textured plane, so it can scale and fade with
+ * the chair's entrance. Refs: `ref` → chair group (animated), `shadowRef` →
+ * blob mesh (animated opacity).
+ *
+ * Wrapped in per-chair Suspense so outer groups and shadow planes are available
+ * to GSAP immediately, while 3D chair meshes load progressively.
+ */
+export default function ChairModel({ ref, shadowRef, url, mats, ...props }) {
   const shadowMat = useMemo(
     () => new THREE.MeshBasicMaterial({ map: blob(), transparent: true, depthWrite: false, opacity: 1 }),
     [],
@@ -66,10 +72,10 @@ export default function ChairModel({ ref, shadowRef, url, mats, ...props }) {
         <planeGeometry args={[1, 1]} />
       </mesh>
       <group ref={ref}>
-        <primitive object={model} />
+        <Suspense fallback={null}>
+          <ChairMesh url={url} mats={mats} />
+        </Suspense>
       </group>
     </group>
   )
 }
-
-CHAIRS.forEach((c) => useGLTF.preload(c.url))

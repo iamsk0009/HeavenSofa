@@ -6,6 +6,7 @@ import { Breadcrumbs, formatMoney, SampleNotice, StoreHeading } from '../compone
 import { productBySlug } from '../data/catalog'
 import { getFabricFinish } from '../data/fabricFinishes'
 import { useShopStore } from '../store/useShopStore'
+import ResponsiveImage from '../components/ResponsiveImage'
 
 export default function Cart() {
   const cart = useShopStore((state) => state.cart)
@@ -35,7 +36,7 @@ export default function Cart() {
                 return <article key={variantKey} className="grid grid-cols-[112px_1fr] gap-4 py-5 sm:grid-cols-[160px_1fr_auto] sm:gap-6">
                   <Link to={`/products/${slug}`} className="product-art product-art--product h-28 overflow-hidden bg-limestone/45 sm:h-36">{finish && product.fabricMask
                     ? <FabricFinishImage product={product} finish={finish} alt={`${product.name} in ${finish.name}`} width="1122" height="1402" imageClassName="h-full w-full object-contain" className="h-full w-full" />
-                    : <img src={product.image} alt={`${product.name} in ${product.colour}`} width="1122" height="1402" loading="lazy" decoding="async" className="h-full w-full object-contain" />}</Link>
+                    : <ResponsiveImage src={product.image} alt={`${product.name} in ${product.colour}`} width="1122" height="1402" sizes="112px" loading="lazy" decoding="async" className="h-full w-full object-contain" />}</Link>
                   <div className="flex flex-col justify-between py-1">
                     <div><p className="eyebrow text-ink/45">{product.category}</p><Link to={`/products/${slug}`} className="mt-1 inline-block font-serif text-xl hover:text-terracotta">{product.name}</Link><p className="mt-1 text-sm text-ink/55">{product.material} · {finish ? finish.name : product.colour}</p>{configuration && <p className="mt-2 grid gap-1 text-xs text-ink/55">{Object.entries(configuration).map(([key, value]) => <span key={key}>{key === 'cushionDetails' ? 'Cushion Details' : key}: {typeof value === 'string' ? key === 'cushionDetails' ? value === 'enabled' ? 'Enabled' : 'Disabled' : value : value.label}</span>)}</p>}</div>
                     <button type="button" onClick={() => removeFromCart(slug, finishId, configuration)} className="mt-4 self-start text-xs text-ink/50 underline underline-offset-4 hover:text-terracotta">Remove</button>

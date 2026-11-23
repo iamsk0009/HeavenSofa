@@ -1,6 +1,7 @@
 import { useEffect, useMemo } from 'react'
 import * as THREE from 'three'
 import { PALETTE } from './materials'
+import { markHomepageReady } from '../homepageReadiness'
 
 const CANVAS = { w: 4096, h: 1024 }
 
@@ -10,11 +11,19 @@ const CANVAS = { w: 4096, h: 1024 }
  * cap-height fraction so the plane can be sized to an exact cap height.
  */
 async function buildWordmark(text, { weight = 300, tracking = 0.08 } = {}) {
-  const family = 'Fraunces'
+  let family = 'Fraunces'
+  let fontTimeout
   try {
-    await Promise.all([document.fonts.load(`${weight} 200px ${family}`), document.fonts.load(`italic ${weight} 200px ${family}`)])
+    const loaded = await Promise.race([
+      Promise.all([document.fonts.load(`${weight} 200px ${family}`), document.fonts.load(`italic ${weight} 200px ${family}`)]).then(() => true),
+      new Promise((resolve) => { fontTimeout = setTimeout(() => resolve(false), 8000) }),
+    ])
+    if (!loaded) family = '"Times New Roman", serif'
   } catch {
     /* fall back to the serif stack below */
+    family = '"Times New Roman", serif'
+  } finally {
+    clearTimeout(fontTimeout)
   }
   const canvas = document.createElement('canvas')
   canvas.width = CANVAS.w
@@ -82,10 +91,16 @@ export default function BrandTypography({ ref, text = 'HEAVEN & CO.', capHeight 
       if (cancelled) return texture.dispose()
       tex = texture
       material.map = texture
-      material.visible = true
-      material.needsUpdate = true
       const h = capHeight / capFraction
       ref.current?.scale.set(h * (CANVAS.w / CANVAS.h), h, 1)
+    }).catch(() => {
+      // A plain material remains a safe fallback if canvas/font rendering fails.
+      if (cancelled) return
+    }).finally(() => {
+      if (cancelled) return
+      material.visible = true
+      material.needsUpdate = true
+      markHomepageReady('wordmarkReady')
     })
     return () => {
       cancelled = true

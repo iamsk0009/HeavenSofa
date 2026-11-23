@@ -1,4 +1,5 @@
 import { FABRIC_FINISHES } from '../data/fabricFinishes'
+import ResponsiveImage from './ResponsiveImage'
 
 export function FabricFinishSelector({ selected, onSelect }) {
   const active = FABRIC_FINISHES.find((finish) => finish.id === selected) ?? FABRIC_FINISHES[0]
@@ -23,13 +24,13 @@ export function FabricFinishSelector({ selected, onSelect }) {
 
 export function FabricFinishImage({ product, finish, alt, className = '', imageClassName = '', width = '1122', height = '1402', loading = 'lazy' }) {
   if (!product?.fabricMask || !finish) {
-    return <img src={product?.image} alt={alt} width={width} height={height} loading={loading} decoding="async" className={imageClassName} />
+    return <ResponsiveImage src={product?.image} alt={alt} width={width} height={height} sizes="(min-width: 1024px) 58vw, 100vw" loading={loading} decoding="async" className={imageClassName} />
   }
 
   const mask = `url("${product.fabricMask}")`
   return (
     <span className={`fabric-finish-image ${className}`}>
-      <img src={product.image} alt={alt} width={width} height={height} loading={loading} decoding="async" className={imageClassName} />
+      <ResponsiveImage src={product.image} alt={alt} width={width} height={height} sizes="(min-width: 1024px) 58vw, 100vw" loading={loading} decoding="async" className={imageClassName} />
       <span
         aria-hidden="true"
         className="fabric-finish-image__overlay"

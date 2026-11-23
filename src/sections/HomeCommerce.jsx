@@ -1,7 +1,10 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { COLLECTIONS, PRODUCTS } from '../data/catalog'
 import { CollectionCard, ProductGrid, SampleNotice, StoreHeading } from '../components/StoreComponents'
+import ResponsiveImage from '../components/ResponsiveImage'
+import { useExperienceStore } from '../store/useExperienceStore'
+import { useHomepageReadiness } from '../experience/homepageReadiness'
 
 const picks = (slugs) => slugs.map((slug) => PRODUCTS.find((product) => product.slug === slug)).filter(Boolean)
 
@@ -27,21 +30,53 @@ function Newsletter() {
   )
 }
 
-function EditorialPhoto({ src, alt, caption, className = '' }) {
+function EditorialPhoto({ src, alt, caption, className = '', sizes = '(min-width: 1024px) 50vw, 100vw' }) {
   return (
     <figure className={`editorial-photo ${className}`}>
-      <img src={src} alt={alt} width="1536" height="1024" loading="lazy" decoding="async" />
+      <ResponsiveImage src={src} alt={alt} width="1536" height="1024" sizes={sizes} loading="lazy" decoding="async" />
       {caption && <figcaption>{caption}</figcaption>}
     </figure>
   )
 }
 
 export default function HomeCommerce() {
+  const [shouldRender, setShouldRender] = useState(false)
+  const progress = useExperienceStore((s) => s.progress)
+  const { entered } = useHomepageReadiness()
+
+  useEffect(() => {
+    if (shouldRender) return
+
+    if (progress > 0.02 || (typeof window !== 'undefined' && window.scrollY > 30)) {
+      setShouldRender(true)
+      return
+    }
+
+    const onScroll = () => {
+      if (window.scrollY > 30) setShouldRender(true)
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+
+    let timer
+    if (entered) {
+      timer = setTimeout(() => setShouldRender(true), 3500)
+    }
+
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      clearTimeout(timer)
+    }
+  }, [shouldRender, progress, entered])
+
+  if (!shouldRender) {
+    return <div className="home-commerce min-h-[40vh]" aria-hidden="true" />
+  }
+
   const newest = [...PRODUCTS].sort((a, b) => b.year - a.year || a.featured - b.featured).slice(0, 4)
   return (
     <div className="home-commerce">
       <section className="store-section pt-20 sm:pt-24">
-        <EditorialPhoto src="/images/lifestyle/homepage/heaven-homepage-living.jpg" alt="Sunlit ivory living room with natural oak and linen furniture" caption="A beautiful way to live" className="home-commerce-hero mb-12" />
+        <EditorialPhoto src="/images/lifestyle/homepage/heaven-homepage-living.jpg" alt="Sunlit ivory living room with natural oak and linen furniture" caption="A beautiful way to live" className="home-commerce-hero mb-12" sizes="100vw" />
         <StoreHeading as="h2" eyebrow="A place for every day" title="Find your way home." description="Explore furniture shaped by quiet forms, natural materials and the rituals that make a house your own." />
         <SampleNotice className="mt-5" />
         <div className="mt-10 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">

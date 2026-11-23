@@ -6,6 +6,7 @@ import { Breadcrumbs, formatMoney, ProductGrid, SampleNotice, StoreHeading } fro
 import { PRODUCTS, productBySlug, productImagesForColour } from '../data/catalog'
 import { DEFAULT_FABRIC_FINISH, getFabricFinish, isFinishableProduct } from '../data/fabricFinishes'
 import { useShopStore } from '../store/useShopStore'
+import ResponsiveImage from '../components/ResponsiveImage'
 
 const colourFabric = { Oat: '#D9C7AA', Moss: '#87917B', Clay: '#B86C52', Ivory: '#E5DED2', Walnut: '#795A42', Natural: '#B4865A', Smoked: '#765B45', Sand: '#C8BBA8', 'Natural oak': '#B4865A', Chalk: '#D8D0C2', Sage: '#AAB59A' }
 
@@ -62,11 +63,12 @@ export default function ProductDetail() {
                 loading={view === 0 ? 'eager' : 'lazy'}
                 className="h-full w-full"
                 imageClassName="product-gallery-image"
-              /> : <img
+              /> : <ResponsiveImage
                 src={activeGalleryView.src}
                 alt={activeGalleryView.alt}
                 width={activeGalleryView.dimensions.split(' ')[0]}
                 height={activeGalleryView.dimensions.split(' ')[1]}
+                sizes="(min-width: 1024px) 58vw, 100vw"
                 fetchPriority={view === 0 ? 'high' : undefined}
                 loading={view === 0 ? 'eager' : 'lazy'}
                 decoding="async"
@@ -75,7 +77,7 @@ export default function ProductDetail() {
             </div>
             <div className="mt-4 grid grid-cols-[repeat(auto-fit,minmax(4rem,1fr))] gap-3" role="group" aria-label="Product image views">
               {galleryViews.map((item, index) => <button type="button" key={item.label} onClick={() => setView(index)} aria-pressed={view === index} className={`gallery-thumb ${view === index ? 'gallery-thumb--active' : ''}`}>
-                <img src={item.src} alt={`${item.alt} thumbnail`} width={item.dimensions.split(' ')[0]} height={item.dimensions.split(' ')[1]} loading="lazy" decoding="async" />
+                <ResponsiveImage src={item.src} alt={`${item.alt} thumbnail`} width={item.dimensions.split(' ')[0]} height={item.dimensions.split(' ')[1]} sizes="120px" loading="lazy" decoding="async" />
                 <span>{item.label}</span>
               </button>)}
             </div>

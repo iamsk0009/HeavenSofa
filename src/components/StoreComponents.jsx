@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useShopStore } from '../store/useShopStore'
+import ResponsiveImage from './ResponsiveImage'
 
 export const formatMoney = (amount) => new Intl.NumberFormat('en-IN', {
   style: 'currency', currency: 'INR', maximumFractionDigits: 0,
@@ -30,7 +31,7 @@ export function ProductCard({ product, compact = false }) {
     <article className="group min-w-0">
       <div className="product-art product-art--product relative overflow-hidden bg-limestone/45">
         <Link to={`/products/${product.slug}`} aria-label={`View ${product.name}`} className="block h-full">
-          <img src={product.image} alt={`${product.name} in ${product.colour}`} width="1122" height="1402" loading="lazy" decoding="async" className="h-full w-full object-contain transition-transform duration-700 group-hover:scale-[1.035]" />
+          <ResponsiveImage src={product.image} alt={`${product.name} in ${product.colour}`} width="1122" height="1402" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw" loading="lazy" decoding="async" className="h-full w-full object-contain transition-transform duration-700 group-hover:scale-[1.035]" />
         </Link>
         <button
           type="button"
@@ -62,7 +63,7 @@ export function CollectionCard({ collection }) {
   return (
     <Link to={`/collections/${collection.slug}`} className="group block">
       <div className="product-art product-art--lifestyle overflow-hidden bg-limestone/45">
-        <img src={collection.image} alt={`${collection.title} interior`} width="1536" height="1024" loading="lazy" decoding="async" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.035]" />
+        <ResponsiveImage src={collection.image} alt={`${collection.title} interior`} width="1536" height="1024" sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" loading="lazy" decoding="async" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.035]" />
       </div>
       <div className="mt-4 flex items-end justify-between gap-4">
         <div><h3 className="font-serif text-2xl">{collection.title}</h3><p className="mt-1 text-sm text-ink/55">{collection.products.length} considered pieces</p></div>
