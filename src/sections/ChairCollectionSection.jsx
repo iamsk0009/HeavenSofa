@@ -14,7 +14,7 @@ export default function ChairCollectionSection() {
         <SplitWords
           as="h2"
           data-chairs="title"
-          className="editorial-heading mx-auto max-w-[16ch] text-[clamp(2.2rem,4.6vw,4.6rem)] text-ink"
+          className="editorial-heading invisible mx-auto max-w-[16ch] text-[clamp(2.2rem,4.6vw,4.6rem)] text-ink"
           parts={[{ text: 'Designed for the way you' }, { text: 'live.', accent: true }]}
         />
       </div>

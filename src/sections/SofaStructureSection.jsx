@@ -20,7 +20,7 @@ export default function SofaStructureSection() {
         <SplitWords
           as="h2"
           data-sofa="title"
-          className="editorial-heading max-w-[14ch] text-[clamp(2.2rem,4.2vw,4.2rem)] text-ink"
+          className="editorial-heading invisible max-w-[14ch] text-[clamp(2.2rem,4.2vw,4.2rem)] text-ink"
           parts={[{ text: 'Every layer has a' }, { text: 'purpose.', accent: true }]}
         />
         <p data-sofa="intro" className="invisible mt-4 hidden max-w-xs text-sm leading-relaxed text-ink/70 md:block">

@@ -26,11 +26,14 @@ export function fadeOut(tl, sel, at, duration = 2, vars = {}) {
 
 /** Masked word-by-word reveal for <SplitWords> markup ([data-word]). */
 export function revealWords(tl, containerSel, at, duration = 2.5) {
+  const container = q(containerSel)
   const words = q(`${containerSel} [data-word]`)
   if (!words.length) return
   // Staggered fromTo only immediate-renders the first target, so hide all
   // words explicitly — otherwise later words flash before their scroll point.
+  gsap.set(container, { autoAlpha: 0 })
   gsap.set(words, { yPercent: 110 })
+  tl.fromTo(container, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.1, immediateRender: false }, at)
   tl.fromTo(
     words,
     { yPercent: 110 },

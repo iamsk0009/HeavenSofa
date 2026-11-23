@@ -21,7 +21,7 @@ export default function ProductionSection() {
         <SplitWords
           as="h2"
           data-production="title"
-          className="editorial-heading max-w-[13ch] text-[clamp(2.6rem,5.2vw,5.4rem)] text-ink"
+          className="editorial-heading invisible max-w-[13ch] text-[clamp(2.6rem,5.2vw,5.4rem)] text-ink"
           parts={[{ text: 'Cut.' }, { text: 'Shaped', accent: true }, { text: 'and joined' }, { text: 'by hand.', accent: true }]}
         />
       </div>

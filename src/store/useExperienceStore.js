@@ -12,6 +12,9 @@ export const useExperienceStore = create((set, get) => ({
   lenis: null,
   /** false while an illustrated chapter fully covers the Canvas (render paused) */
   canvasActive: true,
+  sofaExplodedTriggered: false,
+  sofaExplodedReady: false,
+  chairsTriggered: false,
 
   setProgress: (progress) => set({ progress }),
   setCanvasActive: (canvasActive) => {
@@ -21,4 +24,14 @@ export const useExperienceStore = create((set, get) => ({
     if (get().activeScene !== activeScene) set({ activeScene })
   },
   setLenis: (lenis) => set({ lenis }),
+  triggerSofaExploded: () => {
+    if (!get().sofaExplodedTriggered) set({ sofaExplodedTriggered: true })
+  },
+  markSofaExplodedReady: () => {
+    if (!get().sofaExplodedReady) set({ sofaExplodedReady: true })
+  },
+  triggerChairs: () => {
+    if (!get().chairsTriggered) set({ chairsTriggered: true })
+  },
+  resetStreaming: () => set({ sofaExplodedTriggered: false, sofaExplodedReady: false, chairsTriggered: false }),
 }))

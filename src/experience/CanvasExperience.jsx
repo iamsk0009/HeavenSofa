@@ -8,10 +8,16 @@ import CameraController from './CameraController'
 import SceneManager from './SceneManager'
 import RenderGate from './RenderGate'
 import { PALETTE } from './models/materials'
+import { extendExplodedSofaLoader, resetSofaExplodedTimings } from './models/ExplodedSofa'
 import { rig } from '../animations/rig'
+import { useExperienceStore } from '../store/useExperienceStore'
 import { failHomepage, getHomepageReadiness, CRITICAL_HOMEPAGE_MODELS, DEFERRED_HOMEPAGE_MODELS, HOMEPAGE_MODELS, markHomepageReady, registerHomepageRetryHandler, reportHomepageAssetProgress, subscribeHomepageReadiness, useHomepageReadiness } from './homepageReadiness'
 
-registerHomepageRetryHandler(() => HOMEPAGE_MODELS.forEach((url) => useGLTF.clear(url)))
+registerHomepageRetryHandler(() => {
+  HOMEPAGE_MODELS.forEach((url) => useGLTF.clear(url))
+  useExperienceStore.getState().resetStreaming()
+  resetSofaExplodedTimings()
+})
 
 function AssetProgressReporter() {
   const { active, progress } = useProgress()
@@ -29,20 +35,47 @@ function RequiredHomepageModels() {
 }
 
 function DeferredModelStreamer() {
-  const { modelsReady } = useHomepageReadiness()
+  const progress = useExperienceStore((s) => s.progress)
+  const activeScene = useExperienceStore((s) => s.activeScene)
+  const sofaExplodedTriggered = useExperienceStore((s) => s.sofaExplodedTriggered)
+  const sofaExplodedReady = useExperienceStore((s) => s.sofaExplodedReady)
+  const chairsTriggered = useExperienceStore((s) => s.chairsTriggered)
+  const triggerSofaExploded = useExperienceStore((s) => s.triggerSofaExploded)
+  const triggerChairs = useExperienceStore((s) => s.triggerChairs)
+
+  // Priority 1: Scene 05 exploded sofa begins streaming early during Scene 02
   useEffect(() => {
-    if (!modelsReady) return
+    if (sofaExplodedTriggered) return
+    const shouldStreamSofa =
+      progress >= 0.14 ||
+      activeScene === 'livingRoom' ||
+      activeScene === 'forest' ||
+      activeScene === 'production' ||
+      activeScene === 'sofaStructure' ||
+      activeScene === 'chairs'
 
-    // Priority 1: Scene 05 exploded sofa (starts streaming in background once opening models resolve)
-    useGLTF.preload(DEFERRED_HOMEPAGE_MODELS[0])
+    if (shouldStreamSofa) {
+      triggerSofaExploded()
+      useGLTF.preload(DEFERRED_HOMEPAGE_MODELS[0], true, true, extendExplodedSofaLoader)
+    }
+  }, [progress, activeScene, sofaExplodedTriggered, triggerSofaExploded])
 
-    // Priority 2: Scene 06 chair collection (staggered to maintain connection pool headroom)
-    const timer = setTimeout(() => {
+  // Priority 2: Scene 06 chair collection streaming is gated until sofa_exploded is ready,
+  // or user enters Scene 05 (progress >= 0.63), preventing bandwidth competition during Scenes 03-04
+  useEffect(() => {
+    if (chairsTriggered) return
+    const shouldStreamChairs =
+      (sofaExplodedReady && progress >= 0.5) ||
+      progress >= 0.63 ||
+      (activeScene === 'sofaStructure' && sofaExplodedReady) ||
+      activeScene === 'chairs'
+
+    if (shouldStreamChairs) {
+      triggerChairs()
       DEFERRED_HOMEPAGE_MODELS.slice(1).forEach((url) => useGLTF.preload(url))
-    }, 1200)
+    }
+  }, [progress, activeScene, sofaExplodedReady, chairsTriggered, triggerChairs])
 
-    return () => clearTimeout(timer)
-  }, [modelsReady])
   return null
 }
 
@@ -76,6 +109,7 @@ function CanvasExperience() {
   const readiness = useSyncExternalStore(subscribeHomepageReadiness, getHomepageReadiness, getHomepageReadiness)
   return (
     <CanvasFailureBoundary key={`canvas-${readiness.attempt}`}>
+      <DeferredModelStreamer />
       <Canvas
         shadows="percentage"
         dpr={[1, 1.75]}
@@ -90,7 +124,6 @@ function CanvasExperience() {
         <color attach="background" args={[PALETTE.paper]} />
         <fog attach="fog" args={[PALETTE.paper, 16, 34]} />
         <AssetProgressReporter />
-        <DeferredModelStreamer />
         <RenderGate />
 
         {/* Everything resolves together; the scroll timeline starts after

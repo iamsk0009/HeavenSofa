@@ -10,7 +10,16 @@ import { homepageIsReady, markHomepageEntered, retryHomepage, useHomepageReadine
  */
 export default function BrandLoader() {
   const readiness = useHomepageReadiness()
-  const done = homepageIsReady(readiness) && !readiness.active && readiness.progress === 100
+  const isReady = homepageIsReady(readiness)
+  const [criticalReady, setCriticalReady] = useState(false)
+
+  useEffect(() => {
+    if (isReady && !criticalReady) {
+      setCriticalReady(true)
+    }
+  }, [isReady, criticalReady])
+
+  const done = criticalReady || isReady
   const [gone, setGone] = useState(false)
 
   useLayoutEffect(() => {

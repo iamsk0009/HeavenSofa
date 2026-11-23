@@ -21,7 +21,7 @@ export default function LivingRoomSection() {
         <SplitWords
           as="h2"
           data-living="title"
-          className="editorial-heading text-[clamp(1.8rem,3vw,2.6rem)] text-ink"
+          className="editorial-heading invisible text-[clamp(1.8rem,3vw,2.6rem)] text-ink"
           parts={[{ text: 'Quiet forms,' }, { text: 'warm', accent: true }, { text: 'materials.' }]}
         />
         <ul data-living="products" className="invisible mt-5 space-y-1.5 text-sm text-ink/70">

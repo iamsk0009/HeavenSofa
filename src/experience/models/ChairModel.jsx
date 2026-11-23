@@ -3,6 +3,8 @@ import * as THREE from 'three'
 import { useGLTF } from '@react-three/drei'
 import { makeLinen, makeWood, PALETTE } from './materials'
 import { makeBlackMetal, makeBoucle, makeLeather, makeWoolFelt } from '../materials/furnitureMaterials'
+import { useExperienceStore } from '../../store/useExperienceStore'
+import { CRITICAL_HOMEPAGE_MODELS } from '../homepageReadiness'
 
 /** Site PBR material factories, keyed as in data/chairCollection.js `mats`. */
 const FACTORIES = {
@@ -65,6 +67,9 @@ export default function ChairModel({ ref, shadowRef, url, mats, ...props }) {
     () => new THREE.MeshBasicMaterial({ map: blob(), transparent: true, depthWrite: false, opacity: 1 }),
     [],
   )
+  const chairsTriggered = useExperienceStore((s) => s.chairsTriggered)
+  const isCritical = CRITICAL_HOMEPAGE_MODELS.includes(url)
+  const shouldMountMesh = isCritical || chairsTriggered
 
   return (
     <group {...props}>
@@ -73,7 +78,7 @@ export default function ChairModel({ ref, shadowRef, url, mats, ...props }) {
       </mesh>
       <group ref={ref}>
         <Suspense fallback={null}>
-          <ChairMesh url={url} mats={mats} />
+          {shouldMountMesh ? <ChairMesh url={url} mats={mats} /> : null}
         </Suspense>
       </group>
     </group>

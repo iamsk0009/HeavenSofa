@@ -38,9 +38,17 @@ export function applyConfiguratorMaterials(object, components, selections) {
 /** Apply product-specific structural visibility without mutating the cached GLB. */
 export function applyConfiguratorStructure(object, product, selections) {
   if (product.slug !== 'linnea-sofa') return
-  const cushion = object.getObjectByName('Pillow')
-  if (!cushion?.isMesh) throw new Error('Linnea sofa GLB must contain the verified accent cushion mesh.')
-  cushion.visible = selections.cushionDetails !== 'disabled'
+  const isVisible = selections.cushionDetails !== 'disabled'
+  const cushions = []
+  object.traverse((node) => {
+    if (node.isMesh && (node.name === 'Pillow' || node.name.startsWith('Pillow_'))) {
+      cushions.push(node)
+    }
+  })
+  if (cushions.length === 0) throw new Error('Linnea sofa GLB must contain the verified accent cushion mesh.')
+  for (const cushion of cushions) {
+    cushion.visible = isVisible
+  }
 }
 
 export function applyConfiguratorConfiguration(object, product, selections) {

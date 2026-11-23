@@ -93,7 +93,7 @@ export function buildLivingRoom(tl, o, { start, length }) {
 
   // HTML overlay
   hideWords(tl, '[data-intro="caption-title"]', at(0), 2)
-  fadeOut(tl, '[data-intro="caption-body"]', at(0), 1.8)
+  fadeOut(tl, '[data-intro="caption-body"], [data-intro="caption-title"]', at(0), 1.8)
   fadeIn(tl, '[data-living="eyebrow"]', at(9.5), 1.8)
   revealWords(tl, '[data-living="title"]', at(9.8), 2)
   fadeIn(tl, '[data-living="products"]', at(10.4), 1.8)

@@ -23,7 +23,7 @@ export default function ForestSection() {
         <SplitWords
           as="h2"
           data-forest="title"
-          className="editorial-heading max-w-[12ch] text-[clamp(3rem,6.4vw,6.4rem)] text-ink"
+          className="editorial-heading invisible max-w-[12ch] text-[clamp(3rem,6.4vw,6.4rem)] text-ink"
           parts={[{ text: 'From forest to' }, { text: 'home.', accent: true }]}
         />
         {/* sits in the open sky under the headline, clear of the sun */}

@@ -31,7 +31,7 @@ export function buildForest(tl, _o, { start, length }) {
   // ── page turn: the illustrated chapter rises over the 3D scene ──
   reveal(tl, F('root'), { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 3.5, ease: 'power2.inOut' }, at(0))
   reveal(tl, `${F('near')}, ${F('front')}`, { y: 70 }, { y: 0, duration: 4.5, ease: 'power2.out' }, at(0))
-  fadeOut(tl, '[data-living="eyebrow"], [data-living="products"]', at(0), 1.5)
+  fadeOut(tl, '[data-living="eyebrow"], [data-living="title"], [data-living="products"]', at(0), 1.5)
   tl.fromTo(q('[data-living="title"] [data-word]'), { yPercent: 0 }, { yPercent: -140, duration: 1.5, ease: 'power2.in', immediateRender: false }, at(0))
 
   // ── trees grow ──

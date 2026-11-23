@@ -22,7 +22,7 @@ export default function IntroSection() {
     () => {
       if (!canEnter || entranceStarted.current) return
       entranceStarted.current = true
-      gsap.from('[data-load-word]', { yPercent: 110, duration: 1.4, stagger: 0.07, ease: 'expo.out', delay: 0.35 })
+      gsap.from('[data-intro="headline"] [data-load-word]', { yPercent: 110, duration: 1.4, stagger: 0.07, ease: 'expo.out', delay: 0.35 })
       gsap.from('[data-load-fade]', { autoAlpha: 0, y: 16, duration: 1.2, stagger: 0.1, ease: 'power2.out', delay: 0.9 })
     },
     { scope: root, dependencies: [canEnter], revertOnUpdate: true },
@@ -57,7 +57,7 @@ export default function IntroSection() {
         <SplitWords
           as="h2"
           data-intro="caption-title"
-          className="editorial-heading text-[clamp(2rem,4vw,3.4rem)] text-ink"
+          className="editorial-heading invisible text-[clamp(2rem,4vw,3.4rem)] text-ink"
           parts={[{ text: 'Every room begins at the' }, { text: 'threshold.', accent: true }]}
         />
         <p data-intro="caption-body" className="invisible mt-5 max-w-xs text-sm leading-relaxed text-ink/70">

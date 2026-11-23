@@ -4,9 +4,58 @@ import { ContactShadows, useGLTF } from '@react-three/drei'
 import { makeLinen, makeWood, PALETTE } from './materials'
 import { makeFibre, makeFoam, makeSpringSteel, makeTimber, makeWebbing } from '../materials/furnitureMaterials'
 import { EXPLODE, SOFA_LABELS } from '../../data/sofaStructure'
+import { useExperienceStore } from '../../store/useExperienceStore'
 import Sofa from './Sofa'
 
 export const EXPLODED_SOFA_URL = '/models-optimized/sofa_exploded.glb'
+
+export const sofaExplodedTimings = {
+  requestStart: 0,
+  downloadEnd: 0,
+  decodeEnd: 0,
+  ready: 0,
+  downloadMs: 0,
+  decodeMs: 0,
+  prepMs: 0,
+  totalMs: 0,
+}
+
+if (typeof window !== 'undefined') {
+  window.__SOFA_EXPLODED_TIMINGS__ = sofaExplodedTimings
+}
+
+export function resetSofaExplodedTimings() {
+  sofaExplodedTimings.requestStart = 0
+  sofaExplodedTimings.downloadEnd = 0
+  sofaExplodedTimings.decodeEnd = 0
+  sofaExplodedTimings.ready = 0
+  sofaExplodedTimings.downloadMs = 0
+  sofaExplodedTimings.decodeMs = 0
+  sofaExplodedTimings.prepMs = 0
+  sofaExplodedTimings.totalMs = 0
+}
+
+export function extendExplodedSofaLoader(loader) {
+  if (!loader) return
+  if (!sofaExplodedTimings.requestStart) {
+    sofaExplodedTimings.requestStart = performance.now()
+  }
+  const origParse = loader.parse.bind(loader)
+  loader.parse = function (data, path, onLoad, onError) {
+    if (!sofaExplodedTimings.downloadEnd) {
+      sofaExplodedTimings.downloadEnd = performance.now()
+      sofaExplodedTimings.downloadMs = Math.round(sofaExplodedTimings.downloadEnd - sofaExplodedTimings.requestStart)
+    }
+    const wrappedOnLoad = function (gltf) {
+      if (!sofaExplodedTimings.decodeEnd) {
+        sofaExplodedTimings.decodeEnd = performance.now()
+        sofaExplodedTimings.decodeMs = Math.round(sofaExplodedTimings.decodeEnd - sofaExplodedTimings.downloadEnd)
+      }
+      if (onLoad) onLoad(gltf)
+    }
+    return origParse(data, path, wrappedOnLoad, onError)
+  }
+}
 
 function createSofaProxies() {
   const root = new THREE.Group()
@@ -60,9 +109,10 @@ function createSofaProxies() {
 }
 
 function ExplodedSofaContent({ proxies }) {
-  const { scene } = useGLTF(EXPLODED_SOFA_URL)
+  const { scene } = useGLTF(EXPLODED_SOFA_URL, true, true, extendExplodedSofaLoader)
+  const markSofaExplodedReady = useExperienceStore((s) => s.markSofaExplodedReady)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const mats = {
       Fabric: makeLinen(PALETTE.linen),
       Wood: makeWood(PALETTE.oak),
@@ -79,30 +129,49 @@ function ExplodedSofaContent({ proxies }) {
       o.material = mats[o.material.name] ?? mats.Fabric
     })
 
-    for (const name of Object.keys(EXPLODE.parts)) {
-      const node = clone.getObjectByName(name)
-      const proxy = proxies.parts[name]
-      if (node && proxy) {
-        node.position.set(0, 0, 0)
-        proxy.add(node)
-      }
-    }
-
-    const frame = clone.getObjectByName('Frame')
-    if (frame && proxies.parts.Frame) {
-      frame.position.set(0, 0, 0)
-      proxies.parts.Frame.add(frame)
-    }
-
+    // 1. Attach covers to cover proxies FIRST, before cushion nodes are detached from clone
     for (const name of Object.keys(EXPLODE.covers)) {
       const cover = clone.getObjectByName(name)
       const coverProxy = proxies.covers[name]
       if (cover && coverProxy) {
         cover.position.set(0, 0, 0)
+        cover.userData.isModelAttachment = true
+        coverProxy.children.filter((c) => c.userData.isModelAttachment).forEach((c) => coverProxy.remove(c))
         coverProxy.add(cover)
       }
     }
-  }, [scene, proxies])
+
+    // 2. Attach exploded parts (including cushion nodes with their remaining foam/fibre cores)
+    for (const name of Object.keys(EXPLODE.parts)) {
+      const node = clone.getObjectByName(name)
+      const proxy = proxies.parts[name]
+      if (node && proxy) {
+        node.position.set(0, 0, 0)
+        node.userData.isModelAttachment = true
+        proxy.children.filter((c) => c.userData.isModelAttachment).forEach((c) => proxy.remove(c))
+        proxy.add(node)
+      }
+    }
+
+    // 3. Attach frame
+    const frame = clone.getObjectByName('Frame')
+    if (frame && proxies.parts.Frame) {
+      frame.position.set(0, 0, 0)
+      frame.userData.isModelAttachment = true
+      proxies.parts.Frame.children.filter((c) => c.userData.isModelAttachment).forEach((c) => proxies.parts.Frame.remove(c))
+      proxies.parts.Frame.add(frame)
+    }
+
+    if (!sofaExplodedTimings.ready) {
+      sofaExplodedTimings.ready = performance.now()
+      const decodePoint = sofaExplodedTimings.decodeEnd || sofaExplodedTimings.ready
+      const startPoint = sofaExplodedTimings.requestStart || sofaExplodedTimings.ready
+      sofaExplodedTimings.prepMs = Math.round(sofaExplodedTimings.ready - decodePoint)
+      sofaExplodedTimings.totalMs = Math.round(sofaExplodedTimings.ready - startPoint)
+    }
+
+    markSofaExplodedReady()
+  }, [scene, proxies, markSofaExplodedReady])
 
   return null
 }
@@ -110,7 +179,7 @@ function ExplodedSofaContent({ proxies }) {
 function SofaFallback() {
   return (
     <group position-y={0.02}>
-      <Sofa />
+      <Sofa contactShadow={false} />
     </group>
   )
 }
@@ -128,6 +197,8 @@ function SofaFallback() {
 export default function ExplodedSofa({ nodesRef, ...props }) {
   const proxies = useMemo(() => createSofaProxies(), [])
   const shadowRef = useRef()
+  const sofaExplodedTriggered = useExperienceStore((s) => s.sofaExplodedTriggered)
+  const sofaExplodedReady = useExperienceStore((s) => s.sofaExplodedReady)
 
   useLayoutEffect(() => {
     if (nodesRef) {
@@ -152,9 +223,12 @@ export default function ExplodedSofa({ nodesRef, ...props }) {
         color="#3A3127"
       />
       <primitive object={proxies.root} />
-      <Suspense fallback={<SofaFallback />}>
-        <ExplodedSofaContent proxies={proxies} />
-      </Suspense>
+      {!sofaExplodedReady && <SofaFallback />}
+      {sofaExplodedTriggered && (
+        <Suspense fallback={null}>
+          <ExplodedSofaContent proxies={proxies} />
+        </Suspense>
+      )}
     </group>
   )
 }

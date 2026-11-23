@@ -10,6 +10,31 @@ function LoadedFurniture({ product, selections }) {
   const furniture = useMemo(() => {
     const object = cloneConfiguratorMaterials(scene)
     if (product.slug === 'linnea-sofa') {
+      const pillow = object.getObjectByName('Pillow')
+      if (pillow && !object.getObjectByName('Pillow_L')) {
+        // Rotate into diamond orientation (45 degrees around local Z face normal)
+        const diamondAngle = Math.PI / 4
+        pillow.rotation.set(pillow.rotation.x, pillow.rotation.y, diamondAngle)
+
+        const pillow2 = pillow.clone(true)
+        pillow2.name = 'Pillow_L'
+        if (Array.isArray(pillow.material)) {
+          pillow2.material = pillow.material.map((m) => m.clone())
+        } else if (pillow.material) {
+          pillow2.material = pillow.material.clone()
+        }
+        pillow2.position.set(-pillow.position.x, pillow.position.y, pillow.position.z)
+        pillow2.rotation.set(pillow.rotation.x, -pillow.rotation.y, -diamondAngle)
+        pillow2.scale.copy(pillow.scale)
+        pillow2.castShadow = true
+        pillow2.receiveShadow = true
+        if (pillow.parent) {
+          pillow.parent.add(pillow2)
+        } else {
+          object.add(pillow2)
+        }
+      }
+
       object.traverse((node) => {
         if (!node.isMesh) return
         const replaceFabric = (material) => {
