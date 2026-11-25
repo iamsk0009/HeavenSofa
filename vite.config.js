@@ -38,7 +38,7 @@ export default defineConfig({
             },
             {
               name: 'react-runtime',
-              test: /node_modules[\\/]react[\\/]jsx-runtime\.js$/,
+              test: /node_modules[\\/]react[\\/]/,
               priority: 40,
               minSize: 0,
               maxSize: 128 * 1024,

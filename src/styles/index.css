@@ -63,7 +63,7 @@
 .configurator-product-picker select { max-width: min(24rem, 52vw); border: 0; border-bottom: 1px solid rgb(41 41 37 / 32%); padding: 0.35rem 1.5rem 0.35rem 0; color: var(--config-ink); background: transparent; font: 1.05rem Georgia, serif; }
 .configurator-model-state { margin-left: auto; color: #9b553d; font-size: 0.62rem; letter-spacing: 0.11em; text-transform: uppercase; }
 .configurator-model-state.is-supported { color: var(--config-olive); }
-.configurator-stage { position: relative; flex: 1; min-height: 430px; overflow: hidden; background: var(--config-stone); }
+.configurator-stage { position: relative; flex: 1; min-height: 430px; height: clamp(520px, calc(100svh - 13rem), 720px); overflow: hidden; background: var(--config-stone); }
 .configurator-canvas { position: absolute; inset: 0; }
 .configurator-canvas canvas { display: block; width: 100%; height: 100%; }
 .configurator-view-controls { position: absolute; right: 1rem; bottom: 1rem; display: flex; gap: 0.25rem; align-items: center; padding: 0.35rem; border: 1px solid rgb(41 41 37 / 17%); background: rgb(244 241 234 / 92%); }
@@ -73,7 +73,7 @@
 .configurator-drag-hint { position: absolute; bottom: 1.45rem; left: 1rem; margin: 0; color: rgb(41 41 37 / 58%); font-size: 0.65rem; letter-spacing: 0.04em; pointer-events: none; }
 .configurator-no-model { position: absolute; inset: 0; display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(14rem, 0.8fr); align-items: center; gap: 1.5rem; padding: clamp(1rem, 4vw, 4rem); }
 .configurator-no-model img { display: block; width: 100%; max-height: 100%; object-fit: contain; mix-blend-mode: multiply; }
-.configurator-panel { display: flex; min-height: 0; flex-direction: column; border-left: 1px solid rgb(41 41 37 / 13%); padding-left: 1.6rem; }
+.configurator-panel { display: flex; min-height: 0; height: clamp(520px, calc(100svh - 13rem), 720px); flex-direction: column; border-left: 1px solid rgb(41 41 37 / 13%); padding-left: 1.6rem; }
 .configurator-panel-heading { padding: 0.45rem 0 1.15rem; }
 .configurator-panel-heading h1 { margin: 0.6rem 0 0; font: clamp(2rem, 3vw, 3.2rem)/0.98 Georgia, serif; letter-spacing: -0.035em; }
 .configurator-panel-heading > p:last-child { margin: 0.65rem 0 0; color: rgb(41 41 37 / 60%); font-size: 0.82rem; line-height: 1.55; }
@@ -104,13 +104,16 @@
 .config-cushion-details h2 { margin: 0.25rem 0 0; font: 1.2rem Georgia, serif; }
 .config-cushion-details p:last-child { margin: 0.35rem 0 0; color: rgb(41 41 37 / 57%); font-size: 0.72rem; }
 .config-cushion-choices { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem; }
+.config-cushion-choices.config-three-choices { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.4rem; }
 .config-cushion-choices button { border: 1px solid rgb(41 41 37 / 20%); padding: 0.68rem 0.8rem; color: rgb(41 41 37 / 72%); background: transparent; font-size: 0.7rem; text-align: center; transition: border-color 160ms ease, color 160ms ease, background-color 160ms ease; cursor: pointer; }
 .config-cushion-choices button[aria-pressed="true"] { border-color: var(--config-olive); color: var(--config-paper); background: var(--config-olive); }
 .config-cushion-choices button:hover:not([aria-pressed="true"]) { border-color: rgb(41 41 37 / 55%); }
 .config-cushion-details--compact { display: flex; align-items: center; justify-content: space-between; gap: 0.7rem; border: 0; padding: 0.65rem 0 0; }
 .config-cushion-details__compact-label { color: rgb(41 41 37 / 59%); font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; }
 .config-cushion-details--compact .config-cushion-choices { display: flex; gap: 0.3rem; }
+.config-cushion-details--compact .config-cushion-choices.config-three-choices { display: flex; gap: 0.25rem; flex-wrap: wrap; }
 .config-cushion-details--compact .config-cushion-choices button { min-width: 4.5rem; padding: 0.38rem 0.55rem; font-size: 0.58rem; }
+.config-cushion-details--compact .config-cushion-choices.config-three-choices button { min-width: 4.1rem; padding: 0.36rem 0.45rem; font-size: 0.58rem; }
 .config-info-list > p { margin: 0; }
 .config-info-list > p:not(.eyebrow) { color: rgb(41 41 37 / 65%); font-size: 0.78rem; line-height: 1.55; }
 .config-info-list ul { display: grid; gap: 0.1rem; margin: 0; padding: 0; list-style: none; }

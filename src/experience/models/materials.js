@@ -238,7 +238,7 @@ function configuratorLinenMaps() {
 export function makeConfiguratorLinen(color = PALETTE.linen, repeat = 8) {
   const maps = configuratorLinenMaps()
   return new THREE.MeshPhysicalMaterial({
-    color,
+    color: new THREE.Color(color),
     roughness: 0.96,
     roughnessMap: withRepeat(maps.roughness, [repeat]),
     normalMap: withRepeat(maps.normal, [repeat]),
@@ -246,6 +246,131 @@ export function makeConfiguratorLinen(color = PALETTE.linen, repeat = 8) {
     sheen: 0.32,
     sheenRoughness: 0.92,
     sheenColor: new THREE.Color('#FFF4E6'),
+  })
+}
+
+let terraTexturesCache = null
+
+/**
+ * Loads and caches the real 2K Meshy Oak Wood Grain PBR textures:
+ * - /textures/terra-oak/oak-wood-grain_2k_color.jpg (sRGB)
+ * - /textures/terra-oak/oak-wood-grain_2k_normalgl.jpg (Linear / NoColorSpace)
+ * - /textures/terra-oak/oak-wood-grain_2k_roughness.jpg (Linear / NoColorSpace)
+ * Displacement map is omitted initially per instructions to avoid unwanted surface distortion.
+ */
+export function loadTerraOakTextures() {
+  if (terraTexturesCache) return terraTexturesCache
+
+  const loader = new THREE.TextureLoader()
+
+  const colorMap = loader.load('/textures/terra-oak/oak-wood-grain_2k_color.jpg')
+  colorMap.colorSpace = THREE.SRGBColorSpace
+  colorMap.wrapS = THREE.RepeatWrapping
+  colorMap.wrapT = THREE.RepeatWrapping
+  colorMap.anisotropy = 8
+
+  const normalMap = loader.load('/textures/terra-oak/oak-wood-grain_2k_normalgl.jpg')
+  normalMap.colorSpace = THREE.NoColorSpace
+  normalMap.wrapS = THREE.RepeatWrapping
+  normalMap.wrapT = THREE.RepeatWrapping
+  normalMap.anisotropy = 8
+
+  const roughnessMap = loader.load('/textures/terra-oak/oak-wood-grain_2k_roughness.jpg')
+  roughnessMap.colorSpace = THREE.NoColorSpace
+  roughnessMap.wrapS = THREE.RepeatWrapping
+  roughnessMap.wrapT = THREE.RepeatWrapping
+  roughnessMap.anisotropy = 8
+
+  terraTexturesCache = {
+    colorMap,
+    normalMap,
+    roughnessMap,
+  }
+
+  return terraTexturesCache
+}
+
+export function disposeTerraOakTextures() {
+  if (!terraTexturesCache) return
+  terraTexturesCache.colorMap?.dispose()
+  terraTexturesCache.normalMap?.dispose()
+  terraTexturesCache.roughnessMap?.dispose()
+  terraTexturesCache = null
+}
+
+/** Authentic European Oak PBR material using real 2K Meshy oak wood grain texture maps. */
+export function makeTerraOak(color = '#B4865A', finish = 'matte') {
+  const textures = loadTerraOakTextures()
+  const isMatte = finish === 'matte'
+  const isGloss = finish === 'gloss'
+  const roughness = isMatte ? 0.80 : isGloss ? 0.24 : 0.50
+  const clearcoat = isGloss ? 0.48 : isMatte ? 0 : 0.14
+  const clearcoatRoughness = isGloss ? 0.14 : 0.32
+
+  const isDefaultOak = !color || color === '#B4865A' || color === 'oak'
+  const colorMap = {
+    '#594438': '#604638', // Walnut
+    '#765B45': '#7E6652', // Smoked Oak
+  }
+  const baseColor = isDefaultOak ? 0xF6E7D2 : (colorMap[color] ?? color)
+
+  const mat = new THREE.MeshPhysicalMaterial({
+    color: new THREE.Color(baseColor),
+    map: textures.colorMap,
+    roughnessMap: textures.roughnessMap,
+    normalMap: textures.normalMap,
+    normalScale: new THREE.Vector2(0.28, 0.28),
+    roughness,
+    clearcoat,
+    clearcoatRoughness,
+  })
+
+  mat.userData = {
+    isTerraOak: true,
+    configuratorOriginalColor: 0xF6E7D2,
+  }
+
+  return mat
+}
+
+/** Procedural straight wood grain maps for configurable furniture surfaces. */
+function configuratorWoodMaps() {
+  return cached('configurator-wood', () => {
+    const s = 512
+    const n = fbm(s, [[8, 1], [32, 0.4], [128, 0.15]], 67)
+    const h = new Float32Array(s * s)
+    for (let y = 0; y < s; y++) {
+      for (let x = 0; x < s; x++) {
+        const i = y * s + x
+        const wave = Math.sin((y / s) * Math.PI * 2 * 28 + n[i] * 5) * 0.5 + 0.5
+        h[i] = wave * 0.75 + n[i] * 0.25
+      }
+    }
+    return {
+      normal: toTexture(s, normalFromHeight(h, s, 1.4)),
+      roughness: toTexture(s, roughnessFromHeight(h, s, 0.58, 0.18)),
+    }
+  })
+}
+
+/** Realistic natural wood PBR material for the configurator (Terra, Nord, etc.). */
+export function makeConfiguratorWood(color = PALETTE.oak, finish = 'satin', repeat = [5, 4]) {
+  const maps = configuratorWoodMaps()
+  const isMatte = finish === 'matte'
+  const isGloss = finish === 'gloss'
+  const roughness = isMatte ? 0.88 : isGloss ? 0.22 : 0.46
+  const clearcoat = isGloss ? 0.5 : isMatte ? 0 : 0.16
+  const clearcoatRoughness = isGloss ? 0.15 : 0.35
+  const rep = Array.isArray(repeat) ? repeat : [repeat, repeat]
+
+  return new THREE.MeshPhysicalMaterial({
+    color: new THREE.Color(color),
+    roughness,
+    roughnessMap: withRepeat(maps.roughness, rep),
+    normalMap: withRepeat(maps.normal, rep),
+    normalScale: new THREE.Vector2(0.3, 0.3),
+    clearcoat,
+    clearcoatRoughness,
   })
 }
 
@@ -258,6 +383,180 @@ export function makePaint(color = PALETTE.terracotta, repeat = 2) {
     clearcoat: 0.2,
     clearcoatRoughness: 0.55,
   })
+}
+
+/** High-fidelity straight architectural veneer maps for Nord Sideboard. */
+function nordVeneerMaps() {
+  return cached('nord-veneer', () => {
+    const s = 512
+    const fibers = fbm(s, [[16, 0.4], [64, 0.3], [128, 0.2], [256, 0.1]], 93)
+    const h = new Float32Array(s * s)
+    for (let y = 0; y < s; y++) {
+      for (let x = 0; x < s; x++) {
+        const i = y * s + x
+        // Straight-line comb with very subtle micro-sway (pure vertical rift cut)
+        const sway = Math.sin((y / s) * Math.PI * 4) * 0.04
+        const u = ((x / s) * 20 + sway + fibers[i] * 0.4) % 1
+        const pore = Math.sin(u * Math.PI * 2) * 0.5 + 0.5
+        h[i] = pore * 0.55 + fibers[i] * 0.45
+      }
+    }
+    return {
+      normal: toTexture(s, normalFromHeight(h, s, 1.1)),
+      roughness: toTexture(s, roughnessFromHeight(h, s, 0.52, 0.14)),
+    }
+  })
+}
+
+export function makeNordWood(color = '#594438', finish = 'satin', repeat = [3, 2]) {
+  const isChalkWhite = color === '#F2EDE4' || color === 'chalk-white'
+  const isSlateGrey = color === '#4E5357' || color === 'slate-grey'
+  const isMatteLacquer = isChalkWhite || isSlateGrey
+
+  const isMatte = finish === 'matte' || isMatteLacquer
+  const isGloss = finish === 'gloss' && !isMatteLacquer
+  const roughness = isMatteLacquer ? 0.70 : isMatte ? 0.82 : isGloss ? 0.20 : 0.48
+  const clearcoat = isMatteLacquer ? 0 : isGloss ? 0.55 : isMatte ? 0 : 0.18
+  const clearcoatRoughness = isGloss ? 0.12 : 0.26
+
+  const colorMap = {
+    '#594438': '#523D2F', // Warm Walnut
+    '#B4865A': '#C49A6C', // Natural White Oak
+    '#3D3028': '#382B24', // Smoked Espresso Oak
+    '#222120': '#1F1E1D', // Black Stained Ash
+    '#F2EDE4': '#F2EDE4', // Chalk White
+    '#4E5357': '#4E5357', // Slate Grey
+  }
+  const baseColor = colorMap[color] ?? color
+
+  const maps = isMatteLacquer ? paintMaps() : nordVeneerMaps()
+  const rep = Array.isArray(repeat) ? repeat : [repeat, repeat]
+
+  const mat = new THREE.MeshPhysicalMaterial({
+    color: new THREE.Color(baseColor),
+    roughness,
+    roughnessMap: maps.roughness ? withRepeat(maps.roughness, rep) : null,
+    normalMap: withRepeat(maps.normal, rep),
+    normalScale: isMatteLacquer ? new THREE.Vector2(0.12, 0.12) : new THREE.Vector2(0.35, 0.35),
+    clearcoat,
+    clearcoatRoughness,
+  })
+
+  mat.userData = {
+    isNordWood: true,
+    isMatteLacquer,
+    configuratorOriginalColor: new THREE.Color(baseColor).getHex(),
+  }
+
+  return mat
+}
+
+export function makeNordHardware(color = '#D4AF37') {
+  const isBlack = color === '#222222' || color === 'black'
+  const isBronze = color === '#5A4532' || color === 'bronze'
+  const isSteel = color === '#CCCCCC' || color === 'steel'
+
+  let hex = '#D8B048' // Brushed Champagne Brass
+  let metalness = 0.94
+  let roughness = 0.26
+
+  if (isBlack) {
+    hex = '#202020'
+    metalness = 0.85
+    roughness = 0.42
+  } else if (isBronze) {
+    hex = '#544131'
+    metalness = 0.90
+    roughness = 0.36
+  } else if (isSteel) {
+    hex = '#CCCCCC'
+    metalness = 0.96
+    roughness = 0.22
+  }
+
+  const mat = new THREE.MeshStandardMaterial({
+    color: new THREE.Color(hex),
+    metalness,
+    roughness,
+  })
+
+  mat.userData = {
+    isNordHardware: true,
+    configuratorOriginalColor: new THREE.Color(hex).getHex(),
+  }
+
+  return mat
+}
+
+/** Tactile looped yarn bouclé maps for Alma Bed. */
+function boucleMaps() {
+  return cached('boucle', () => {
+    const s = 256
+    const n1 = fbm(s, [[16, 0.4], [32, 0.35], [64, 0.2]], 77)
+    const n2 = fbm(s, [[24, 0.5], [48, 0.3], [96, 0.15]], 89)
+    const h = new Float32Array(s * s)
+    for (let y = 0; y < s; y++) {
+      for (let x = 0; x < s; x++) {
+        const i = y * s + x
+        const curl = Math.sin(n1[i] * Math.PI * 4) * Math.cos(n2[i] * Math.PI * 4) * 0.5 + 0.5
+        h[i] = curl * 0.65 + n1[i] * 0.35
+      }
+    }
+    return {
+      normal: toTexture(s, normalFromHeight(h, s, 1.8)),
+      roughness: toTexture(s, roughnessFromHeight(h, s, 0.92, 0.08)),
+    }
+  })
+}
+
+export function makeConfiguratorBoucle(color = '#E8DDC8', repeat = 12) {
+  const maps = boucleMaps()
+  const mat = new THREE.MeshPhysicalMaterial({
+    color: new THREE.Color(color),
+    roughness: 0.92,
+    roughnessMap: withRepeat(maps.roughness, [repeat]),
+    normalMap: withRepeat(maps.normal, [repeat]),
+    normalScale: new THREE.Vector2(0.35, 0.35),
+    sheen: 0.50,
+    sheenRoughness: 0.80,
+    sheenColor: new THREE.Color('#FFF6E8'),
+  })
+  mat.userData = {
+    isAlmaBoucle: true,
+    configuratorOriginalColor: new THREE.Color(color).getHex(),
+  }
+  return mat
+}
+
+/** Bedding washed percale / linen cloth maps. */
+function beddingMaps() {
+  return cached('bedding', () => {
+    const s = 256
+    const h = fbm(s, [[16, 0.4], [48, 0.3], [128, 0.15]], 61)
+    return {
+      normal: toTexture(s, normalFromHeight(h, s, 0.75)),
+      roughness: toTexture(s, roughnessFromHeight(h, s, 0.88, 0.10)),
+    }
+  })
+}
+
+export function makeConfiguratorBedding(color = '#F5F1E9', repeat = 8) {
+  const maps = beddingMaps()
+  const mat = new THREE.MeshPhysicalMaterial({
+    color: new THREE.Color(color),
+    roughness: 0.88,
+    roughnessMap: withRepeat(maps.roughness, [repeat]),
+    normalMap: withRepeat(maps.normal, [repeat]),
+    normalScale: new THREE.Vector2(0.18, 0.18),
+    sheen: 0.30,
+    sheenRoughness: 0.85,
+    sheenColor: new THREE.Color('#FFFFFF'),
+  })
+  mat.userData = {
+    isAlmaBedding: true,
+    configuratorOriginalColor: new THREE.Color(color).getHex(),
+  }
+  return mat
 }
 
 export const makeWood = (color = PALETTE.oak) =>
